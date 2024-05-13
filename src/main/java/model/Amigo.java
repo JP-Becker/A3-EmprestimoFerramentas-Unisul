@@ -1,59 +1,66 @@
 package model;
 
-
 public class Amigo {
-	
-    private String nome;
-	private String telefone;
-	private int emprestimosTotais;
-	private int emprestimosAtivos;
 
-	public Amigo() {
-		nome = "";
-		telefone = "";
-		emprestimosTotais = 0;
-		emprestimosAtivos = 0;
-	}
-	
-	public Amigo(String nome, String telefone) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.emprestimosTotais = 0;
-		this.emprestimosAtivos = 0;
-	}
+    private int idAmigo;
+    private String nomeAmigo;
+    private String telefone;
+    private int emprestimosTotais;
+    private int emprestimosAtivos;
 
-	public String getNome() {
-		return nome;
-	}
+    public Amigo() {
+        nomeAmigo = "";
+        telefone = "";
+        emprestimosTotais = 0;
+        emprestimosAtivos = 0;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Amigo(int idAmigo, String nomeAmigo, String telefone) {
+        this.idAmigo = idAmigo;
+        this.nomeAmigo = nomeAmigo;
+        this.telefone = telefone;
+        this.emprestimosTotais = 0;
+        this.emprestimosAtivos = 0;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public int getIdAmigo() {
+        return idAmigo;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setIdAmigo(int idAmigo) {
+        this.idAmigo = idAmigo;
+    }
 
-	public int getEmprestimosTotais() {
-		return emprestimosTotais;
-	}
+    public String getNomeAmigo() {
+        return nomeAmigo;
+    }
 
-	public void setEmprestimosTotais(int emprestimosTotais) {
-		this.emprestimosTotais = emprestimosTotais;
-	}
+    public void setNomeAmigo(String nomeAmigo) {
+        this.nomeAmigo = nomeAmigo;
+    }
 
-	public int getEmprestimosAtivos() {
-		return emprestimosAtivos;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setEmprestimosAtivos(int emprestimosAtivos) {
-		this.emprestimosAtivos = emprestimosAtivos;
-	}
-	
-	
-	
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public int getEmprestimosTotais() {
+        return emprestimosTotais;
+    }
+
+    public void setEmprestimosTotais(int emprestimosTotais) {
+        this.emprestimosTotais = emprestimosTotais;
+    }
+
+    public int getEmprestimosAtivos() {
+        return emprestimosAtivos;
+    }
+
+    public void setEmprestimosAtivos(int emprestimosAtivos) {
+        this.emprestimosAtivos = emprestimosAtivos;
+    }
+
 }

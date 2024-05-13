@@ -1,67 +1,75 @@
 package model;
 
 public class Emprestimo {
-	
-	private int dataEmprestimo;
-	private int dataDevolucao;
-	private boolean ativo;
-	private Ferramenta ferramenta;
-	private Amigo amigo;
-	
-	public Emprestimo() {
-		dataEmprestimo = 0;
-		dataDevolucao = 0;
-		ativo = true;
-	}
-	
-	public Emprestimo(Ferramenta ferramenta, Amigo amigo, int dataEmprestimo, int dataDevolucao) {
-		this.dataEmprestimo = dataEmprestimo;
-		this.dataDevolucao = dataDevolucao;
-		this.ativo = true;
-		this.ferramenta = ferramenta;
-		this.amigo = amigo;
-	}
 
-	public int getDataEmprestimo() {
-		return dataEmprestimo;
-	}
+    private int idEmprestimo;
+    private int dataEmprestimo;
+    private int dataDevolucao;
+    private boolean ativo;
+    private Ferramenta ferramenta;
+    private Amigo amigo;
 
-	public void setDataEmprestimo(int dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-	}
+    public Emprestimo() {
+        dataEmprestimo = 0;
+        dataDevolucao = 0;
+        ativo = true;
+    }
 
-	public int getDataDevolucao() {
-		return dataDevolucao;
-	}
+    public Emprestimo(int idEmprestimo, Ferramenta ferramenta, Amigo amigo, int dataEmprestimo, int dataDevolucao) {
+        this.idEmprestimo = idEmprestimo;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.ativo = true;
+        this.ferramenta = ferramenta;
+        this.amigo = amigo;
+    }
 
-	public void setDataDevolucao(int dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
+    public int getIdEmprestimo() {
+        return idEmprestimo;
+    }
 
-	public boolean isAtivo() {
-		return ativo;
-	}
+    public void setId(int idEmprestimo) {
+        this.idEmprestimo = idEmprestimo;
+    }
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
+    public int getDataEmprestimo() {
+        return dataEmprestimo;
+    }
 
-	public Ferramenta getFerramenta() {
-		return ferramenta;
-	}
+    public void setDataEmprestimo(int dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
+    }
 
-	public void setFerramenta(Ferramenta ferramenta) {
-		this.ferramenta = ferramenta;
-	}
+    public int getDataDevolucao() {
+        return dataDevolucao;
+    }
 
-	public Amigo getAmigo() {
-		return amigo;
-	}
+    public void setDataDevolucao(int dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
 
-	public void setAmigo(Amigo amigo) {
-		this.amigo = amigo;
-	}
-	
-	
-    
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Ferramenta getFerramenta() {
+        return ferramenta;
+    }
+
+    public void setFerramenta(Ferramenta ferramenta) {
+        this.ferramenta = ferramenta;
+    }
+
+    public Amigo getAmigo() {
+        return amigo;
+    }
+
+    public void setAmigo(Amigo amigo) {
+        this.amigo = amigo;
+    }
+
 }
