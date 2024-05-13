@@ -9,18 +9,19 @@ public class Amigo {
     private int emprestimosAtivos;
 
     public Amigo() {
+        idAmigo = 0;
         nomeAmigo = "";
         telefone = "";
         emprestimosTotais = 0;
         emprestimosAtivos = 0;
     }
 
-    public Amigo(int idAmigo, String nomeAmigo, String telefone) {
+    public Amigo(int idAmigo, String nomeAmigo, String telefone, int emprestimosTotais, int emprestimosAtivos) {
         this.idAmigo = idAmigo;
         this.nomeAmigo = nomeAmigo;
         this.telefone = telefone;
-        this.emprestimosTotais = 0;
-        this.emprestimosAtivos = 0;
+        this.emprestimosTotais = emprestimosTotais;
+        this.emprestimosAtivos = emprestimosAtivos;
     }
 
     public int getIdAmigo() {
