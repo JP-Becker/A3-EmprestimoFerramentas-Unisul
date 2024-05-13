@@ -31,4 +31,4 @@ CREATE TABLE tb_ferramentas (
 INSERT INTO tb_amigos(idAmigo,nomeAmigo,telefone,emprestimosTotais,emprestimosAtivos) VALUES (1,"João","48999666847","0",0);
 
 
-INSERT INTO tb_ferramentas(idFerramenta,nomeFerramenta,marca,custo,emprestada) VALUES (1,"chave de fenda","48999666847","0",0);
+INSERT INTO tb_ferramentas(idFerramenta,nomeFerramenta,marca,custo,emprestada) VALUES (1,"chave de fenda","philips","9.99", false);
