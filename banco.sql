@@ -6,7 +6,7 @@ USE db_a3;
 DROP TABLE IF EXISTS tb_amigos;
 
 
-// criadno tabela dos amigos
+// criando tabela dos amigos
 CREATE TABLE tb_amigos (
     idAmigo INTEGER NOT NULL,
     nomeAmigo VARCHAR(100),
@@ -22,7 +22,7 @@ CREATE TABLE tb_ferramentas (
     nomeFerramenta VARCHAR(100),
     marca VARCHAR(100),
     custo DOUBLE,
-    emrpestada BOOLEAN,
+    emprestada BOOLEAN,
     PRIMARY KEY(idFerramenta)
 );
 
@@ -30,5 +30,5 @@ CREATE TABLE tb_ferramentas (
 // INSERINDO O PRIMEIRO AMIGO PARA TESTAR
 INSERT INTO tb_amigos(idAmigo,nomeAmigo,telefone,emprestimosTotais,emprestimosAtivos) VALUES (1,"João","48999666847","0",0);
 
-
+// INSERINDO UMA FERRAMENTA
 INSERT INTO tb_ferramentas(idFerramenta,nomeFerramenta,marca,custo,emprestada) VALUES (1,"chave de fenda","philips","9.99", false);
