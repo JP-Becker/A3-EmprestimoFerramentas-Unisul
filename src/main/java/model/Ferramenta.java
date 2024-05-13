@@ -9,19 +9,24 @@ public class Ferramenta {
     private boolean emprestada;
 
     public Ferramenta() {
-        idFerramenta = 0;
-        nomeFerramenta = "";
-        marca = "";
-        custo = 0.0;
-        emprestada = false;
+        this(0, "", "", 0.0, false);
     }
 
+    // Construtor com valor false no boolean emprestada já que toda ferramenta começa não emprestada
+    public Ferramenta(int idFerramenta, String nomeFerramenta, String marca, double custo) {
+        this.idFerramenta = idFerramenta;
+        this.nomeFerramenta = nomeFerramenta;
+        this.marca = marca;
+        this.custo = custo;
+        this.emprestada = false;
+    }
+    
     public Ferramenta(int idFerramenta, String nomeFerramenta, String marca, double custo, boolean emprestada) {
         this.idFerramenta = idFerramenta;
         this.nomeFerramenta = nomeFerramenta;
         this.marca = marca;
         this.custo = custo;
-        emprestada = false;
+        this.emprestada = emprestada;
     }
 
     public int getIdFerramenta() {

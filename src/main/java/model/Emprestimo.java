@@ -10,16 +10,24 @@ public class Emprestimo {
     private Amigo amigo;
 
     public Emprestimo() {
-        dataEmprestimo = 0;
-        dataDevolucao = 0;
-        ativo = true;
+        this(0, 0, 0, true, null, null);
     }
-
-    public Emprestimo(int idEmprestimo, Ferramenta ferramenta, Amigo amigo, int dataEmprestimo, int dataDevolucao) {
+    
+    //O Professor recomendou a criação de um construtor sem os objetos
+    public Emprestimo(int idEmprestimo, int dataEmprestimo, int dataDevolucao, boolean ativo) {
         this.idEmprestimo = idEmprestimo;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
-        this.ativo = true;
+        this.ativo = ativo;
+        this.ferramenta = null;
+        this.amigo = null;
+    }
+
+    public Emprestimo(int idEmprestimo, int dataEmprestimo, int dataDevolucao, boolean ativo, Ferramenta ferramenta, Amigo amigo) {
+        this.idEmprestimo = idEmprestimo;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.ativo = ativo;
         this.ferramenta = ferramenta;
         this.amigo = amigo;
     }

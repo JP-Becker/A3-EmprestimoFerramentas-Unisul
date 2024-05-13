@@ -9,9 +9,14 @@ public class Amigo {
     private int emprestimosAtivos;
 
     public Amigo() {
-        idAmigo = 0;
-        nomeAmigo = "";
-        telefone = "";
+        this(0, "", "", 0, 0);
+    }
+    
+    // Construtor com valor 0 nos emprestimos já que todo amigo começa sem emprestimos
+    public Amigo(int idAmigo, String nomeAmigo, String telefone) {
+        this.idAmigo = idAmigo;
+        this.nomeAmigo = nomeAmigo;
+        this.telefone = telefone;
         emprestimosTotais = 0;
         emprestimosAtivos = 0;
     }
