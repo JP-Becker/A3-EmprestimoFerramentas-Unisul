@@ -36,6 +36,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         JBCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro De Ferramentas");
 
         jLabel1.setText("Nome Da Ferramenta:");
 

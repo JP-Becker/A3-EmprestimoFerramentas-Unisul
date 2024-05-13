@@ -35,6 +35,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
 
         jMenu1.setText("arquivo");
 
@@ -49,7 +50,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem2.setText("Cadastro Ferramenta");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Registro De Emprestimo");
+        jMenuItem3.setText("Cadastro De Emprestimo");
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Sair");
