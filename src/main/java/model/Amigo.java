@@ -11,7 +11,7 @@ public class Amigo {
     public Amigo() {
         this(0, "", "", 0, 0);
     }
-    
+
     // Construtor com valor 0 nos emprestimos já que todo amigo começa sem emprestimos
     public Amigo(int idAmigo, String nomeAmigo, String telefone) {
         this.idAmigo = idAmigo;
@@ -67,6 +67,21 @@ public class Amigo {
 
     public void setEmprestimosAtivos(int emprestimosAtivos) {
         this.emprestimosAtivos = emprestimosAtivos;
+    }
+
+    @Override
+    public String toString() {
+        return "idAmigo=" + idAmigo + ", nomeAmigo=" + nomeAmigo + ", telefone=" + telefone + ", emprestimosTotais=" + emprestimosTotais;
+    }
+
+    public String limparTelefone(String telefone) {
+
+        telefone = telefone.replace("-", "");
+        telefone = telefone.replace("(", "");
+        telefone = telefone.replace(")", "");
+        telefone = telefone.replace(" ", "");
+        return telefone;
+
     }
 
 }
