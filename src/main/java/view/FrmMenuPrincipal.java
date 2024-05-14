@@ -32,7 +32,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         JMenuCadastroAmigo = new javax.swing.JMenuItem();
         JMenuCadastroFerramenta = new javax.swing.JMenuItem();
         JMenuCadastroEmpretimo = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        JMenuRelatorioEmprestimo = new javax.swing.JMenuItem();
         JMenuSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -65,13 +65,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(JMenuCadastroEmpretimo);
 
-        jMenuItem5.setText("Relatorio De Emprestimo");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        JMenuRelatorioEmprestimo.setText("Relatorio De Emprestimo");
+        JMenuRelatorioEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                JMenuRelatorioEmprestimoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(JMenuRelatorioEmprestimo);
 
         JMenuSair.setText("Sair");
         JMenuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +107,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             objetoTela.setVisible(true);
     }//GEN-LAST:event_JMenuCadastroAmigoActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void JMenuRelatorioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuRelatorioEmprestimoActionPerformed
+       FrmRelatorioEmprestimo objetoTela = new FrmRelatorioEmprestimo();
+            objetoTela.setVisible(true);
+    }//GEN-LAST:event_JMenuRelatorioEmprestimoActionPerformed
 
     private void JMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSairActionPerformed
         System.exit(0);
@@ -164,10 +165,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMenuCadastroAmigo;
     private javax.swing.JMenuItem JMenuCadastroEmpretimo;
     private javax.swing.JMenuItem JMenuCadastroFerramenta;
+    private javax.swing.JMenuItem JMenuRelatorioEmprestimo;
     private javax.swing.JMenuItem JMenuSair;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

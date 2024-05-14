@@ -40,6 +40,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         JTFData = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Emprestimo");
 
         jLabel1.setText("Nome do Amigo:");
 
