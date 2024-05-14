@@ -68,5 +68,10 @@ public class Ferramenta {
     public void setEmprestada(boolean emprestada) {
         this.emprestada = emprestada;
     }
+    
+    @Override
+    public String toString() {
+        return "idFerramenta=" + idFerramenta + ", nomeFerramenta=" + nomeFerramenta + ", marca=" + marca + ", custo=" + custo + ", emprestada=" + emprestada;
+    }
 
 }
