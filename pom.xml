@@ -11,4 +11,15 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.a3.projeto.A3Projeto</exec.mainClass>
     </properties>
+    
+<!--    Adicionando dependencias do driver para o mySQL-->
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+    </dependencies>
+    
+    <name>Empréstimo de Ferramentas - A3</name>
 </project>
