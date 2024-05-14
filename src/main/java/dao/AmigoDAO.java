@@ -6,10 +6,12 @@ import utils.Utils;
 
 // FEITO POR JOÃO
 public class AmigoDAO {
+
     public static ArrayList<Amigo> minhaLista = new ArrayList<>();
    
     public ArrayList<Amigo> getMinhaLista() {
         minhaLista.clear();
+        
 
         try {
             // instanciando interface Statement para utilizar métodos SQL
@@ -30,10 +32,12 @@ public class AmigoDAO {
                 Amigo objeto = new Amigo(idAmigo, nomeAmigo, telefone, emprestimosTotais, emprestimosAtivos);
                 minhaLista.add(objeto);
 
-                res.close();
-                stmt.close();
+                
             }
+            res.close();
+            stmt.close();
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
         return minhaLista;
