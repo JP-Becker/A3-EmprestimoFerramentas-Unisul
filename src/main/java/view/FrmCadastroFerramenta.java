@@ -51,6 +51,11 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         });
 
         JBCancelar.setText("Cancelar");
+        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCancelarActionPerformed(evt);
+            }
+        });
 
         JBCadastrar.setText("Cadastrar");
 
@@ -104,6 +109,10 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
     private void JTFCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFCustoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFCustoActionPerformed
+
+    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_JBCancelarActionPerformed
 
     /**
      * @param args the command line arguments

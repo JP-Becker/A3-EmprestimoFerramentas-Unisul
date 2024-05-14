@@ -29,10 +29,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        JMenuCadastroAmigo = new javax.swing.JMenuItem();
+        JMenuCadastroFerramenta = new javax.swing.JMenuItem();
+        JMenuCadastroEmpretimo = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        JMenuSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,22 +41,45 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("arquivo");
 
-        jMenuItem1.setText("Cadastro Amigo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JMenuCadastroAmigo.setText("Cadastro Amigo");
+        JMenuCadastroAmigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JMenuCadastroAmigoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(JMenuCadastroAmigo);
 
-        jMenuItem2.setText("Cadastro Ferramenta");
-        jMenu1.add(jMenuItem2);
+        JMenuCadastroFerramenta.setText("Cadastro Ferramenta");
+        JMenuCadastroFerramenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuCadastroFerramentaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMenuCadastroFerramenta);
 
-        jMenuItem3.setText("Cadastro De Emprestimo");
-        jMenu1.add(jMenuItem3);
+        JMenuCadastroEmpretimo.setText("Cadastro De Emprestimo");
+        JMenuCadastroEmpretimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuCadastroEmpretimoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMenuCadastroEmpretimo);
 
-        jMenuItem4.setText("Sair");
-        jMenu1.add(jMenuItem4);
+        jMenuItem5.setText("Relatorio De Emprestimo");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        JMenuSair.setText("Sair");
+        JMenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMenuSair);
 
         jMenuBar1.add(jMenu1);
 
@@ -78,9 +102,28 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void JMenuCadastroAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroAmigoActionPerformed
+        FrmCadastroAmigo objetoTela = new FrmCadastroAmigo();
+            objetoTela.setVisible(true);
+    }//GEN-LAST:event_JMenuCadastroAmigoActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void JMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_JMenuSairActionPerformed
+
+    private void JMenuCadastroFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroFerramentaActionPerformed
+        FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
+            objetoTela.setVisible(true);
+    }//GEN-LAST:event_JMenuCadastroFerramentaActionPerformed
+
+    private void JMenuCadastroEmpretimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroEmpretimoActionPerformed
+        FrmCadastroEmprestimo objetoTela = new FrmCadastroEmprestimo();
+            objetoTela.setVisible(true);
+    }//GEN-LAST:event_JMenuCadastroEmpretimoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,12 +161,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMenuCadastroAmigo;
+    private javax.swing.JMenuItem JMenuCadastroEmpretimo;
+    private javax.swing.JMenuItem JMenuCadastroFerramenta;
+    private javax.swing.JMenuItem JMenuSair;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
