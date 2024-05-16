@@ -15,14 +15,14 @@ public class Utils {
             Class.forName(driver);
             
             //Configurando o servidor
-            String server = "localhost";
+            String servidor = "localhost";
             String database = "db_a3";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "root";
+            String url = "jdbc:mysql://" + servidor + ":3306/" + database + "?useTimezone=true&servidorTimezone=UTC";
+            String usuario = "root";
+            String senha = "root";
             
             //Conectando
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, usuario, senha);
             
             // Testando pra ver se conectou e imprimindo no console
             if (connection != null) {

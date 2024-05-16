@@ -73,7 +73,7 @@ public class AmigoDAO {
     }
     
      // Método para cadastrar novo amigo
-    public boolean insertAmigoBD(Amigo objeto) {
+    public boolean inserirAmigoBD(Amigo objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
         String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, idade, emprestimosTotais, emprestimosAtivos) VALUES (?,?,?,?,?)";
 
@@ -118,7 +118,7 @@ public class AmigoDAO {
     }
     
     //Método para deletar amigo da BD
-    public boolean deleteAmigoBD (int idAmigo) {
+    public boolean deletarAmigoBD (int idAmigo) {
          try {
             Statement stmt = Utils.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_amigos WHERE idAmigo = " +  idAmigo);
@@ -133,7 +133,7 @@ public class AmigoDAO {
     }
     
     // método para alterar dados de algum amigo
-    public boolean updateAmigoBD (Amigo objeto) {
+    public boolean atualizarAmigoBD (Amigo objeto) {
         String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? ,emprestimosTotais = ? ,emprestimosAtivos = ? WHERE id = ?";
         
         try {
