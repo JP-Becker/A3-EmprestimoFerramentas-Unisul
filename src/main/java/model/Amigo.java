@@ -95,16 +95,23 @@ public class Amigo {
 		return dao.getMinhaLista();
 	}
 
-        public Amigo carregaAmigoporId(int id) {
-		return dao.carregaAmigo(id);
+        public Amigo carregaAmigoPorId(int id) {
+		return dao.carregaAmigoPorId(id);
 	}
         
-//	public boolean insertAmigoBD(String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {;;;;;;;;;;;;;;;;;;;;
-//		int id = this.maiorID() + 1;
-//		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
-//		dao.insertAmigoBD(objeto);
-//		return true;
-//	}
+	public boolean insertAmigoBD(String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {;;;;;;;;;;;;;;;;;;;;
+		int id = this.maiorID() + 1;
+		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
+		dao.insertAmigoBD(objeto);
+		return true;
+	}
+          
+	public int maiorID() {
+		return dao.maiorID();
+	}
+      
+        
+        
 //
 //	public boolean deleteAmigoBD(int id) {
 //		dao.deleteAmigoBD(id);
@@ -116,9 +123,5 @@ public class Amigo {
 //		dao.updateAmigoBD(objeto);
 //		return true;
 //	}
-//       
-//	public int maiorID() {
-//		return dao.maiorID();
-//	}
-//        
+       
 }
