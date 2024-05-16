@@ -77,7 +77,7 @@ public class AmigoDAO {
         // variável para guardar o comando SQL a ser executado pelo método
         String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, idade, emprestimosTotais, emprestimosAtivos) VALUES (?,?,?,?,?)";
 
-        // usando o blocm try catch para tratar possíveis erros
+        // usando o bloco try catch para tratar possíveis erros
         try {
             //objeto que representa uma instrução SQL a ser executada
             PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
@@ -116,5 +116,44 @@ public class AmigoDAO {
         
         return maiorID;
     }
+    
+    //Método para deletar amigo da BD
+    public boolean deleteAmigoBD (int idAmigo) {
+         try {
+            Statement stmt = Utils.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_amigos WHERE idAmigo = " +  idAmigo);
+            stmt.close();
+            
+            return true;
 
+        } catch (SQLException e) {
+            System.out.println("Erro:" + e);
+            throw new RuntimeException(e);
+        }
+    }
+    
+    // método para alterar dados de algum amigo
+    public boolean updateAmigoBD (Amigo objeto) {
+        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? ,emprestimosTotais = ? ,emprestimosAtivos = ? WHERE id = ?";
+        
+        try {
+            //objeto que representa uma instrução SQL a ser executada
+            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            
+            
+            stmt.setString(1, objeto.getNomeAmigo());
+            stmt.setString(2, objeto.getTelefone());
+            stmt.setInt(3, objeto.getEmprestimosTotais());
+            stmt.setInt(4, objeto.getEmprestimosAtivos());
+            stmt.setInt(5, objeto.getIdAmigo());
+            stmt.execute(); // Executando a operação
+            
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Erro:" + e);
+            throw new RuntimeException(e);
+        }
+    }
 }
