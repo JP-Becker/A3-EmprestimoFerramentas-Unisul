@@ -10,6 +10,6 @@ public class Principal {
         objetoTela.setVisible(true);
         
         AmigoDAO objAmgDAO = new AmigoDAO();
-        System.out.println("Lista de amigos: " + objAmgDAO.getMinhaLista() );
+        System.out.println("Lista de amigos: " + objAmgDAO.getMinhaLista());
     }
 }

@@ -1,6 +1,6 @@
 package model;
 
-import dao.FerramentaDAO;
+import dao.AmigoDAO;
 import java.util.ArrayList;
 
 public class Amigo {
@@ -11,7 +11,7 @@ public class Amigo {
 	private int emprestimosTotais;
 	private int emprestimosAtivos;
 
-	private FerramentaDAO dao;
+	private AmigoDAO dao;
 
 	public Amigo() {
 		this(0, "", "", 0, 0);
@@ -90,37 +90,35 @@ public class Amigo {
 	// Os métodos a seguir referenciam implementacoes futuras da classe DAO
 	// Pro netbeans não reclamar, mantenha esse trecho comentado por enquanto
 	
-	/*
+	
 	public ArrayList<Amigo> getMinhaLista() {
 		return dao.getMinhaLista();
 	}
 
-	public boolean insertAmigoBD(String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-		int id = this.maiorID() + 1;
-		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
-		dao.insertAmigoBD(objeto);
-		return true;
-	}
-
-	public boolean deleteAmigoBD(int id) {
-		dao.deleteAmigoBD(id);
-		return true;
-	}
-
-	public boolean updateAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
-		dao.updateAmigoBD(objeto);
-		return true;
-	}
-
-	public Amigo carregaAmigo(int id) {
+        public Amigo carregaAmigoporId(int id) {
 		return dao.carregaAmigo(id);
 	}
-
-	public int maiorID() {
-		return dao.maiorID();
-	}
-
-	*/
-
+        
+//	public boolean insertAmigoBD(String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {;;;;;;;;;;;;;;;;;;;;
+//		int id = this.maiorID() + 1;
+//		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
+//		dao.insertAmigoBD(objeto);
+//		return true;
+//	}
+//
+//	public boolean deleteAmigoBD(int id) {
+//		dao.deleteAmigoBD(id);
+//		return true;
+//	}
+//
+//	public boolean updateAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
+//		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
+//		dao.updateAmigoBD(objeto);
+//		return true;
+//	}
+//       
+//	public int maiorID() {
+//		return dao.maiorID();
+//	}
+//        
 }

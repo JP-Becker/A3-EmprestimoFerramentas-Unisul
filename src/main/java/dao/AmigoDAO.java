@@ -42,4 +42,31 @@ public class AmigoDAO {
         }
         return minhaLista;
     }
+    
+    // retorna o amigo procurado pela id
+    public Amigo carregaAmigo(int id) {
+        Amigo objeto = new Amigo();
+        objeto.setIdAmigo(id);
+
+        try {
+            Statement stmt = Utils.getConexao().createStatement();
+
+            // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_alunos WHERE id = " + id);
+            res.next();
+
+            objeto.setNomeAmigo(res.getString("nome"));
+            objeto.setTelefone(res.getString("telefone"));
+            objeto.setEmprestimosTotais(res.getInt("emprestimosTotais"));
+            objeto.setEmprestimosAtivos(res.getInt("emprestimosAtivos"));
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e);
+        }
+
+        return objeto;
+    }
+
 }
