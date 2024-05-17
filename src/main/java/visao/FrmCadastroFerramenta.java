@@ -1,5 +1,5 @@
 
-package view;
+package visao;
 
 public class FrmCadastroFerramenta extends javax.swing.JFrame {
 

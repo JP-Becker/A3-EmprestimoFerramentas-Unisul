@@ -1,5 +1,5 @@
 
-package view;
+package visao;
 
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {

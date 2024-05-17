@@ -1,7 +1,7 @@
 package principal;
 
-import dao.AmigoDAO;
-import view.FrmMenuPrincipal;
+import modelo.Amigo;
+import visao.FrmMenuPrincipal;
 
 public class Principal {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class Principal {
         FrmMenuPrincipal objetoTela = new FrmMenuPrincipal();
         objetoTela.setVisible(true);
         
-        AmigoDAO objAmgDAO = new AmigoDAO();
-        System.out.println("Lista de amigos: " + objAmgDAO.getMinhaLista());
+        Amigo objetoAmigo = new Amigo();
+        System.out.println(objetoAmigo.getMinhaLista().toString());
     }
 }

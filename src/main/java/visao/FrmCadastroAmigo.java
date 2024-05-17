@@ -1,13 +1,18 @@
+package visao;
 
-package view;
+import javax.swing.JOptionPane;
+import modelo.Amigo;
 
 public class FrmCadastroAmigo extends javax.swing.JFrame {
 
+    private Amigo objetoAmigo; //Criando o vínculo com a classe Amigo
+
     public FrmCadastroAmigo() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.objetoAmigo = new Amigo(); // instancia o objeto de aluno vazio
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,6 +51,11 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
         });
 
         JBCadastrar.setText("Cadastrar");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,9 +114,49 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
-    
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        // TODO add your handling code here:
+
+        // iniciando as variáveis 
+        int idAmigo = objetoAmigo.maiorID() + 1; // atribuindo a ID automáticamente
+        String nome = "";
+        String telefone = "";
+        int emprestimosTotais = 0;
+        int emprestimosAtivos = 0;
+
+        // Loop para que caso o nome ou telefone sejam inválidos o programa pare de rodar e não insira nome e telefone vazios na BD
+        while (true) {
+            if (this.JTFNome.getText().length() < 3) {
+                JOptionPane.showMessageDialog(null, "O nome deve ter ao menos 3 caracteres");
+                break;
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFTelefone.getText().length() < 11) {
+                JOptionPane.showMessageDialog(null, "O número de telefone precisa de ao menos 11 números");
+                break;
+            } else {
+                telefone = this.JTFTelefone.getText();
+            }
+
+            // inserindo amigo novo na BD
+            if (this.objetoAmigo.inserirAmigoBD(idAmigo, nome, telefone, emprestimosTotais, emprestimosAtivos)) {
+                JOptionPane.showMessageDialog(null, "Aluno Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.JTFNome.setText("");
+                this.JTFTelefone.setText("");
+                break;
+            }
+
+        }
+
+        // printando no console a lista de amigos que está na BD
+        System.out.println(this.objetoAmigo.getMinhaLista().toString());
+    }//GEN-LAST:event_JBCadastrarActionPerformed
+
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmCadastroAmigo().setVisible(true);

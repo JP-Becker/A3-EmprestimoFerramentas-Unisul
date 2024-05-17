@@ -1,4 +1,4 @@
-package model;
+package modelo;
 
 import dao.AmigoDAO;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class Amigo {
 	private int emprestimosTotais;
 	private int emprestimosAtivos;
 
-	private AmigoDAO dao;
+	public AmigoDAO dao = new AmigoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
 
 	public Amigo() {
 		this(0, "", "", 0, 0);
@@ -99,8 +99,8 @@ public class Amigo {
 		return dao.carregaAmigoPorId(id);
 	}
         
-	public boolean inserirAmigoBD(String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-		int id = this.maiorID() + 1;
+	public boolean inserirAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
+		id = dao.maiorID() + 1;
 		Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
 		dao.inserirAmigoBD(objeto);
 		return true;

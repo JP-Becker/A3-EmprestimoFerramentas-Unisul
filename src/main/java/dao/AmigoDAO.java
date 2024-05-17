@@ -1,7 +1,11 @@
 package dao;
-import java.sql.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import model.Amigo;
+import modelo.Amigo;
 import utils.Utils;
 
 // FEITO POR JOÃO
@@ -13,7 +17,7 @@ public class AmigoDAO {
     public ArrayList<Amigo> getMinhaLista() {
         minhaLista.clear();
         
-         // usando o blocm try catch para tratar possíveis erros
+         // usando o bloco try catch para tratar possíveis erros
         try {
             // instanciando interface Statement para utilizar métodos SQL
             Statement stmt = Utils.getConexao().createStatement();
@@ -75,7 +79,7 @@ public class AmigoDAO {
      // Método para cadastrar novo amigo
     public boolean inserirAmigoBD(Amigo objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
-        String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, idade, emprestimosTotais, emprestimosAtivos) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, telefone, emprestimosTotais, emprestimosAtivos) VALUES (?,?,?,?,?)";
 
         // usando o bloco try catch para tratar possíveis erros
         try {
@@ -84,8 +88,8 @@ public class AmigoDAO {
 
             stmt.setInt(1, objeto.getIdAmigo());
             stmt.setString(2, objeto.getNomeAmigo());
-            stmt.setString(2, objeto.getTelefone());
-            stmt.setInt(3, objeto.getEmprestimosTotais());
+            stmt.setString(3, objeto.getTelefone());
+            stmt.setInt(4, objeto.getEmprestimosTotais());
             stmt.setInt(5, objeto.getEmprestimosAtivos());
 
             stmt.execute();
@@ -105,7 +109,7 @@ public class AmigoDAO {
 
         try {
             Statement stmt = Utils.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_amigos");
+            ResultSet res = stmt.executeQuery("SELECT MAX(idAmigo) idAmigo FROM tb_amigos");
 
             res.next();
             maiorID = res.getInt("idAmigo");
