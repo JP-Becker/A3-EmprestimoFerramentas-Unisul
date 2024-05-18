@@ -91,8 +91,8 @@ public class Ferramenta {
 		return dao.carregaFerramentaPorId(id);
 	}
         
-        public boolean inserirFerramentaBD(String nomeFerramenta, String marca, double custo, boolean emprestada) {
-		int id = dao.maiorID() + 1;
+        public boolean inserirFerramentaBD(int id, String nomeFerramenta, String marca, double custo, boolean emprestada) {
+		id = dao.maiorID() + 1;
 		Ferramenta objeto = new Ferramenta(id, nomeFerramenta, marca, custo, emprestada);
 		dao.inserirFerramentaBD(objeto);
 		return true;

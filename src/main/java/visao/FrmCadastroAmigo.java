@@ -10,7 +10,7 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
     public FrmCadastroAmigo() {
         initComponents();
         setLocationRelativeTo(null);
-        this.objetoAmigo = new Amigo(); // instancia o objeto de aluno vazio
+        this.objetoAmigo = new Amigo(); // instancia o objeto de ferramenta vazio
     }
 
     @SuppressWarnings("unchecked")
@@ -142,7 +142,7 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
 
             // inserindo amigo novo na BD
             if (this.objetoAmigo.inserirAmigoBD(idAmigo, nome, telefone, emprestimosTotais, emprestimosAtivos)) {
-                JOptionPane.showMessageDialog(null, "Aluno Cadastrado com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
                 // limpa campos da interface
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");

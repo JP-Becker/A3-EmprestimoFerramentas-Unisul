@@ -1,11 +1,16 @@
 
 package visao;
+import javax.swing.JOptionPane;
+import modelo.Ferramenta;
 
 public class FrmCadastroFerramenta extends javax.swing.JFrame {
 
+    private Ferramenta objetoFerramenta; //Criando o vínculo com a classe Ferramenta
    
     public FrmCadastroFerramenta() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.objetoFerramenta = new Ferramenta(); // instancia o objeto de ferramenta vazio
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +49,11 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         });
 
         JBCadastrar.setText("Cadastrar");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,14 +110,54 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
-    public static void main(String args[]) {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCadastroFerramenta().setVisible(true);
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        // TODO add your handling code here:
+        // iniciando as variáveis 
+        int idFerramenta = objetoFerramenta.maiorID() + 1; // atribuindo a ID automáticamente
+        String nomeFerramenta = "";
+        String marca = "";
+        double custo = 0.0;
+        boolean emprestada = false;
+
+        // Loop para que caso algum dos campos sejam inválidos o programa pare de rodar e não insira campos vazios na BD
+        while (true) {
+            if (this.JTFNomeFerramenta.getText().length() < 3) {
+                JOptionPane.showMessageDialog(null, "O nome deve ter ao menos 3 caracteres");
+                break;
+            } else {
+                nomeFerramenta = this.JTFNomeFerramenta.getText();
             }
-        });
-    }
+
+            if (this.JTFMarca.getText().length() < 3) {
+                JOptionPane.showMessageDialog(null, "A marca deve ter ao menos 3 caracteres");
+                break;
+            } else {
+                marca = this.JTFMarca.getText();
+            }
+            
+            if (Double.parseDouble(this.JTFCusto.getText()) <= 0.0) {
+                JOptionPane.showMessageDialog(null, "O custo não pode ser 0 ou negativo!");
+                break;
+            } else {
+                marca = this.JTFCusto.getText();
+            }
+
+            // inserindo Ferramenta novo na BD
+            if (this.objetoFerramenta.inserirFerramentaBD(idFerramenta, nomeFerramenta, marca, custo, emprestada)) {
+                JOptionPane.showMessageDialog(null, "Ferramenta cadastrada com Sucesso!");
+                // limpa campos da interface
+                this.JTFNomeFerramenta.setText("");
+                this.JTFMarca.setText("");
+                this.JTFCusto.setText("");
+                break;
+            }
+
+        }
+
+        // printando no console a lista de Ferramentas que está na BD
+        System.out.println(this.objetoFerramenta.getMinhaLista().toString());
+    }//GEN-LAST:event_JBCadastrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrar;
