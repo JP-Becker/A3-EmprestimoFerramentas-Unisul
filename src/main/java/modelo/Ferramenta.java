@@ -11,7 +11,7 @@ public class Ferramenta {
 	private double custo;
 	private boolean emprestada;
 
-	private FerramentaDAO dao;
+	private FerramentaDAO dao = new FerramentaDAO(); // instanciando a classe FerramentaDAO para usar seus metodos
 
 	public Ferramenta() {
 		this(0, "", "", 0.0, false);
@@ -82,11 +82,13 @@ public class Ferramenta {
 	// Os métodos a seguir referenciam implementacoes futuras da classe DAO
 	// Pro netbeans não reclamar, mantenha esse trecho comentado por enquanto
 	
-	/*
+	
 	public ArrayList<Ferramenta> getMinhaLista() {
 		return dao.getMinhaLista();
 	}
-
+        
+        
+        /*
 	public boolean insertFerramentaBD(String nome, String marca, int custo, boolean emprestada) {
 		int id = this.maiorID() + 1;
 		Ferramenta objeto = new Ferramenta(id, nome, marca, custo, emprestada);

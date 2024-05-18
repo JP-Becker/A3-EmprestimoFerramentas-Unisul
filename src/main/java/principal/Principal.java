@@ -1,6 +1,6 @@
 package principal;
 
-import modelo.Amigo;
+import modelo.Ferramenta;
 import visao.FrmMenuPrincipal;
 
 public class Principal {
@@ -9,7 +9,7 @@ public class Principal {
         FrmMenuPrincipal objetoTela = new FrmMenuPrincipal();
         objetoTela.setVisible(true);
         
-        Amigo objetoAmigo = new Amigo();
-        System.out.println(objetoAmigo.getMinhaLista().toString());
+        Ferramenta objetoFerramenta = new Ferramenta();
+        System.out.println(objetoFerramenta.getMinhaLista().toString());
     }
 }
