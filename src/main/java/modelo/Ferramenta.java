@@ -91,33 +91,27 @@ public class Ferramenta {
 		return dao.carregaFerramentaPorId(id);
 	}
         
-        public boolean inserirFerramentaBD(String nome, String marca, int custo, boolean emprestada) {
+        public boolean inserirFerramentaBD(String nomeFerramenta, String marca, double custo, boolean emprestada) {
 		int id = dao.maiorID() + 1;
-		Ferramenta objeto = new Ferramenta(id, nome, marca, custo, emprestada);
+		Ferramenta objeto = new Ferramenta(id, nomeFerramenta, marca, custo, emprestada);
 		dao.inserirFerramentaBD(objeto);
 		return true;
 	}
         
-        /*
-	
-
-	public boolean deleteFerramentaBD(int id) {
-		dao.deleteFerramentaBD(id);
+        public boolean deletarFerrmanetaBD(int id) {
+		dao.deletarFerrmanetaBD(id);
 		return true;
 	}
-
-	public boolean updateFerramentaBD(int id, String nome, String marca, int custo, boolean emprestada) {
-		Ferramenta objeto = new Ferramenta(id, nome, marca, custo, emprestada);
-		dao.updateFerramentaBD(objeto);
+        
+	public boolean atualizarFerramentaBD(int idFerramenta, String nomeFerramenta, String marca ,double custo, boolean emprestada) {
+		Ferramenta objeto = new Ferramenta(idFerramenta, nomeFerramenta, marca, custo, emprestada);
+		dao.atualizarFerramentaBD(objeto);
 		return true;
 	}
-
-	
-
+        
 	public int maiorID() {
 		return dao.maiorID();
 	}
-	
-	*/
+
 	
 }

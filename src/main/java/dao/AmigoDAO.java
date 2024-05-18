@@ -138,7 +138,7 @@ public class AmigoDAO {
     
     // método para alterar dados de algum amigo
     public boolean atualizarAmigoBD (Amigo objeto) {
-        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? ,emprestimosTotais = ? ,emprestimosAtivos = ? WHERE id = ?";
+        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? ,emprestimosTotais = ? ,emprestimosAtivos = ? WHERE idAmigo = ?";
         
         try {
             //objeto que representa uma instrução SQL a ser executada

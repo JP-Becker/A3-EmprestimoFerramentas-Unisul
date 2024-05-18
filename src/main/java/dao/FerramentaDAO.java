@@ -117,5 +117,45 @@ public class FerramentaDAO {
         
         return maiorID;
     }
+    
+    //Método para deletar Ferrmaneta da BD
+    public boolean deletarFerrmanetaBD (int id) {
+         try {
+            Statement stmt = Utils.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_ferrmanetas WHERE idFerrmaneta = " +  id);
+            stmt.close();
+            
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Erro:" + e);
+            throw new RuntimeException(e);
+        }
+    }
+    
+     // método para alterar dados de alguma Ferramenta
+    public boolean atualizarFerramentaBD (Ferramenta objeto) {
+        String sql = "UPDATE tb_ferramentas set nomeFerramenta = ? ,marca = ? ,custo = ? ,emprestada = ? WHERE idFerramenta = ?";
+        
+        try {
+            //objeto que representa uma instrução SQL a ser executada
+            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            
+            
+            stmt.setString(1, objeto.getNomeFerramenta());
+            stmt.setString(2, objeto.getMarca());
+            stmt.setDouble(3, objeto.getCusto());
+            stmt.setBoolean(4, objeto.getEmprestada());
+            stmt.setInt(5, objeto.getIdFerramenta());
+            stmt.execute(); // Executando a operação
+            
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Erro:" + e);
+            throw new RuntimeException(e);
+        }
+    }
 
 }
