@@ -1,35 +1,27 @@
 package modelo;
 
+import java.util.Date;
+
 public class Emprestimo {
 
     private int idEmprestimo;
-    private int dataEmprestimo;
-    private int dataDevolucao;
+    private Date dataEmprestimo;
+    private Date dataDevolucao;
     private boolean pendente;
     private Ferramenta ferramenta;
     private Amigo amigo;
 
     public Emprestimo() {
-        this(0, 0, 0, true, null, null);
-    }
-    
-    //O Professor recomendou a criação de um construtor sem os objetos
-    public Emprestimo(int idEmprestimo, int dataEmprestimo, int dataDevolucao, boolean pendente) {
-        this.idEmprestimo = idEmprestimo;
-        this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolucao = dataDevolucao;
-        this.pendente = pendente;
-        this.ferramenta = null;
-        this.amigo = null;
+        this(0, new Date(), new Date(), true, null, null);
     }
 
-    public Emprestimo(int idEmprestimo, int dataEmprestimo, int dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+    public Emprestimo(int idEmprestimo, Date dataEmprestimo,Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         this.idEmprestimo = idEmprestimo;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.pendente = pendente;
-        this.ferramenta = ferramenta;
-        this.amigo = amigo;
+        this.ferramenta = new Ferramenta();
+        this.amigo = new Amigo();
     }
 
     public int getIdEmprestimo() {
@@ -40,19 +32,19 @@ public class Emprestimo {
         this.idEmprestimo = idEmprestimo;
     }
 
-    public int getDataEmprestimo() {
+    public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(int dataEmprestimo) {
+    public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public int getDataDevolucao() {
+    public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(int dataDevolucao) {
+    public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
