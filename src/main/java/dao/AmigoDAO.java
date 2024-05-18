@@ -59,7 +59,7 @@ public class AmigoDAO {
             Statement stmt = Utils.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_alunos WHERE id = " + id);
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos WHERE idAmigo = " + id);
             res.next();
 
             objeto.setNomeAmigo(res.getString("nome"));

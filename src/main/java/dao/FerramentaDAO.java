@@ -46,4 +46,76 @@ public class FerramentaDAO {
         }
         return minhaLista;
     }
+    
+    // retorna o Ferramenta procurado pela id
+    public Ferramenta carregaFerramentaPorId(int id) {
+        Ferramenta objeto = new Ferramenta();
+        objeto.setIdFerramenta(id);
+
+         // usando o bloco try catch para tratar possíveis erros
+        try {
+            Statement stmt = Utils.getConexao().createStatement();
+
+            // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE idFerramenta = " + id);
+            res.next();
+
+            objeto.setNomeFerramenta(res.getString("nome"));
+            objeto.setMarca(res.getString("marca"));
+            objeto.setCusto(res.getDouble("custo"));
+            objeto.setEmprestada(res.getBoolean("emprestada"));
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e);
+        }
+
+        return objeto;
+    }
+    
+     // Método para cadastrar novo Ferramenta
+    public boolean inserirFerramentaBD(Ferramenta objeto) {
+        // variável para guardar o comando SQL a ser executado pelo método
+        String sql = "INSERT INTO tb_ferramentas(idFerramenta, nomeFerramenta, marca, custo, emprestada) VALUES (?,?,?,?,?)";
+
+        // usando o bloco try catch para tratar possíveis erros
+        try {
+            //objeto que representa uma instrução SQL a ser executada
+            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+
+            stmt.setInt(1, objeto.getIdFerramenta());
+            stmt.setString(2, objeto.getNomeFerramenta());
+            stmt.setString(3, objeto.getMarca());
+            stmt.setDouble(4, objeto.getCusto());
+            stmt.setBoolean(5, objeto.getEmprestada());
+
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e);
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public int maiorID() {
+        int maiorID = 0;
+
+        try {
+            Statement stmt = Utils.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT MAX(idFerramenta) idFerramenta FROM tb_ferramentas");
+
+            res.next();
+            maiorID = res.getInt("idFerramenta");
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e);
+        }
+        
+        return maiorID;
+    }
+
 }

@@ -66,7 +66,7 @@ public class Ferramenta {
 		this.custo = custo;
 	}
 
-	public boolean isEmprestada() {
+	public boolean getEmprestada() {
 		return emprestada;
 	}
 
@@ -87,14 +87,19 @@ public class Ferramenta {
 		return dao.getMinhaLista();
 	}
         
+        public Ferramenta carregaFerramentaPorId(int id) {
+		return dao.carregaFerramentaPorId(id);
+	}
         
-        /*
-	public boolean insertFerramentaBD(String nome, String marca, int custo, boolean emprestada) {
-		int id = this.maiorID() + 1;
+        public boolean inserirFerramentaBD(String nome, String marca, int custo, boolean emprestada) {
+		int id = dao.maiorID() + 1;
 		Ferramenta objeto = new Ferramenta(id, nome, marca, custo, emprestada);
-		dao.insertFerramentaBD(objeto);
+		dao.inserirFerramentaBD(objeto);
 		return true;
 	}
+        
+        /*
+	
 
 	public boolean deleteFerramentaBD(int id) {
 		dao.deleteFerramentaBD(id);
@@ -107,9 +112,7 @@ public class Ferramenta {
 		return true;
 	}
 
-	public Ferramenta carregaFerramenta(int id) {
-		return dao.carregaFerramenta(id);
-	}
+	
 
 	public int maiorID() {
 		return dao.maiorID();
