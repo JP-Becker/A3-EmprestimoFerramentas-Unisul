@@ -7,7 +7,14 @@ dessas ferramentas para esses amigos, com tudo sendo registrado em um banco de d
 ## 🧭Status do Projeto
 - ⏳Em andamento.
 
-  ### Funcionalidades
+## 💻Tecnologias utilizadas
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![JavaFX](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
+
+
+  ### Principais funcionalidades
 ```bash
 . CRUD de amigos: Criar, ler, atualizar ou deletar amigos da BD.
 . CRUD de ferramentas: Criar, ler, atualizar ou deletar ferramentas da BD.
@@ -37,13 +44,8 @@ ferramenta não devolvida.
 
 ## Configurando BD
 Usuário: root
-Senha: root
 
-## 💻Tecnologias utilizadas
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![JavaFX](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
+Senha: root
 
 ## 💡IDE utilizada:
 - NetBeans
