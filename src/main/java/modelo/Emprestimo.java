@@ -1,7 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-import dao.FerramentaDAO;
+import dao.EmprestimoDAO;
 import java.util.Date;
 
 public class Emprestimo {
@@ -12,6 +12,9 @@ public class Emprestimo {
     private boolean pendente;
     private Ferramenta ferramenta;
     private Amigo amigo;
+    
+    public EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
+    
     
     //Mantenha a linha abaixo comentada enquanto o EmprestimoDAO nao tiver sido implementado
     
@@ -98,11 +101,12 @@ public class Emprestimo {
     // Os métodos a seguir referenciam implementacoes futuras da classe DAO
     // Pro netbeans não reclamar, mantenha esse trecho comentado até EmprestimoDAO ser implementado
     
-    /*
+    
     public ArrayList<Emprestimo> getMinhaLista() {
         return dao.getMinhaLista();
     }
 
+    /*
     public Emprestimo carregaEmprestimoPorId(int id) {
         return dao.carregaEmprestimoPorId(id);
     }
