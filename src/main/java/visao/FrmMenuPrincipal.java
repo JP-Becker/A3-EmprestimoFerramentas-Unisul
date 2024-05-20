@@ -15,104 +15,197 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        JMenuCadastroAmigo = new javax.swing.JMenuItem();
-        JMenuCadastroFerramenta = new javax.swing.JMenuItem();
-        JMenuCadastroEmpretimo = new javax.swing.JMenuItem();
-        JMenuRelatorioEmprestimo = new javax.swing.JMenuItem();
-        JMenuSair = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
+        JBcadastrarAluno = new javax.swing.JButton();
+        JBCadastrarFerramentas = new javax.swing.JButton();
+        JBGerenciarAmigo = new javax.swing.JButton();
+        JBEmitirRelatorio = new javax.swing.JButton();
+        JBGerenciarFerramentas = new javax.swing.JButton();
+        JBCadastrarEmprestimo = new javax.swing.JButton();
+        JBGerenciarEmprestimo = new javax.swing.JButton();
+        JBRelatorioEmprestimo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
 
-        jMenu1.setText("arquivo");
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        JMenuCadastroAmigo.setText("Cadastro Amigo");
-        JMenuCadastroAmigo.addActionListener(new java.awt.event.ActionListener() {
+        JBcadastrarAluno.setText("Cadastrar Amigo");
+        JBcadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuCadastroAmigoActionPerformed(evt);
+                JBcadastrarAlunoActionPerformed(evt);
             }
         });
-        jMenu1.add(JMenuCadastroAmigo);
 
-        JMenuCadastroFerramenta.setText("Cadastro Ferramenta");
-        JMenuCadastroFerramenta.addActionListener(new java.awt.event.ActionListener() {
+        JBCadastrarFerramentas.setText("Cadastrar Ferramenta");
+        JBCadastrarFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuCadastroFerramentaActionPerformed(evt);
+                JBCadastrarFerramentasActionPerformed(evt);
             }
         });
-        jMenu1.add(JMenuCadastroFerramenta);
 
-        JMenuCadastroEmpretimo.setText("Cadastro De Emprestimo");
-        JMenuCadastroEmpretimo.addActionListener(new java.awt.event.ActionListener() {
+        JBGerenciarAmigo.setText("Gerenciar Amigo");
+        JBGerenciarAmigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuCadastroEmpretimoActionPerformed(evt);
+                JBGerenciarAmigoActionPerformed(evt);
             }
         });
-        jMenu1.add(JMenuCadastroEmpretimo);
 
-        JMenuRelatorioEmprestimo.setText("Relatorio De Emprestimo");
-        JMenuRelatorioEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+        JBEmitirRelatorio.setText("Emitir Relatorio");
+        JBEmitirRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuRelatorioEmprestimoActionPerformed(evt);
+                JBEmitirRelatorioActionPerformed(evt);
             }
         });
-        jMenu1.add(JMenuRelatorioEmprestimo);
 
-        JMenuSair.setText("Sair");
-        JMenuSair.addActionListener(new java.awt.event.ActionListener() {
+        JBGerenciarFerramentas.setText("Gerenciar Ferramentas");
+
+        JBCadastrarEmprestimo.setText("Cadastras Emprestimo");
+        JBCadastrarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuSairActionPerformed(evt);
+                JBCadastrarEmprestimoActionPerformed(evt);
             }
         });
-        jMenu1.add(JMenuSair);
 
-        jMenuBar1.add(jMenu1);
+        JBGerenciarEmprestimo.setText("Gerenciar Emprestimos");
+        JBGerenciarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBGerenciarEmprestimoActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("sobre");
-        jMenuBar1.add(jMenu2);
+        JBRelatorioEmprestimo.setText("Relatorio Emprestimo");
+        JBRelatorioEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBRelatorioEmprestimoActionPerformed(evt);
+            }
+        });
 
-        setJMenuBar(jMenuBar1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JBcadastrarAluno)
+                    .addComponent(JBEmitirRelatorio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JBCadastrarFerramentas)
+                                .addGap(77, 77, 77))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JBRelatorioEmprestimo)
+                                    .addComponent(JBGerenciarFerramentas))
+                                .addGap(56, 56, 56)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBGerenciarAmigo)
+                            .addComponent(JBCadastrarEmprestimo))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(JBGerenciarEmprestimo)
+                        .addGap(71, 71, 71))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBcadastrarAluno)
+                    .addComponent(JBCadastrarFerramentas)
+                    .addComponent(JBGerenciarAmigo))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(JBCadastrarEmprestimo)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(JBEmitirRelatorio)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(JBGerenciarEmprestimo)
+                                .addGap(62, 62, 62))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(JBGerenciarFerramentas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBRelatorioEmprestimo)
+                        .addGap(37, 37, 37))))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Bem Vindo!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JMenuCadastroAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroAmigoActionPerformed
+    private void JBGerenciarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarAmigoActionPerformed
+        // TODO add your handling code here:
+         FrmGerenciarAmigo objetoTela = new FrmGerenciarAmigo();
+        objetoTela.setVisible(true);
+    }//GEN-LAST:event_JBGerenciarAmigoActionPerformed
+
+    private void JBEmitirRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmitirRelatorioActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_JBEmitirRelatorioActionPerformed
+
+    private void JBCadastrarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarEmprestimoActionPerformed
+        // TODO add your handling code here:
+         FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
+        objetoTela.setVisible(true);
+    }//GEN-LAST:event_JBCadastrarEmprestimoActionPerformed
+
+    private void JBGerenciarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarEmprestimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBGerenciarEmprestimoActionPerformed
+
+    private void JBcadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcadastrarAlunoActionPerformed
         FrmCadastroAmigo objetoTela = new FrmCadastroAmigo();
-            objetoTela.setVisible(true);
-    }//GEN-LAST:event_JMenuCadastroAmigoActionPerformed
+        objetoTela.setVisible(true);
+    }//GEN-LAST:event_JBcadastrarAlunoActionPerformed
 
-    private void JMenuRelatorioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuRelatorioEmprestimoActionPerformed
-       FrmRelatorioEmprestimo objetoTela = new FrmRelatorioEmprestimo();
-            objetoTela.setVisible(true);
-    }//GEN-LAST:event_JMenuRelatorioEmprestimoActionPerformed
+    private void JBCadastrarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarFerramentasActionPerformed
+        // TODO add your handling code here:
+         FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
+        objetoTela.setVisible(true);
+    }//GEN-LAST:event_JBCadastrarFerramentasActionPerformed
 
-    private void JMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_JMenuSairActionPerformed
-
-    private void JMenuCadastroFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroFerramentaActionPerformed
-        FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
-            objetoTela.setVisible(true);
-    }//GEN-LAST:event_JMenuCadastroFerramentaActionPerformed
-
-    private void JMenuCadastroEmpretimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastroEmpretimoActionPerformed
-        FrmCadastroEmprestimo objetoTela = new FrmCadastroEmprestimo();
-            objetoTela.setVisible(true);
-    }//GEN-LAST:event_JMenuCadastroEmpretimoActionPerformed
+    private void JBRelatorioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioEmprestimoActionPerformed
+        // TODO add your handling code here:
+         FrmRelatorioEmprestimo objetoTela = new FrmRelatorioEmprestimo();
+        objetoTela.setVisible(true); 
+    }//GEN-LAST:event_JBRelatorioEmprestimoActionPerformed
 
     public static void main(String args[]) {
        
@@ -124,13 +217,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem JMenuCadastroAmigo;
-    private javax.swing.JMenuItem JMenuCadastroEmpretimo;
-    private javax.swing.JMenuItem JMenuCadastroFerramenta;
-    private javax.swing.JMenuItem JMenuRelatorioEmprestimo;
-    private javax.swing.JMenuItem JMenuSair;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton JBCadastrarEmprestimo;
+    private javax.swing.JButton JBCadastrarFerramentas;
+    private javax.swing.JButton JBEmitirRelatorio;
+    private javax.swing.JButton JBGerenciarAmigo;
+    private javax.swing.JButton JBGerenciarEmprestimo;
+    private javax.swing.JButton JBGerenciarFerramentas;
+    private javax.swing.JButton JBRelatorioEmprestimo;
+    private javax.swing.JButton JBcadastrarAluno;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
