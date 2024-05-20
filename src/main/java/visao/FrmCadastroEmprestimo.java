@@ -1,6 +1,11 @@
 
 package visao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
    
@@ -16,7 +21,6 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         JBCancelar = new javax.swing.JButton();
         JBPegar = new javax.swing.JButton();
-        JBDevolver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTFNomeAmigo = new javax.swing.JTextPane();
@@ -40,8 +44,11 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         });
 
         JBPegar.setText("Pegar");
-
-        JBDevolver.setText("Devolver");
+        JBPegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBPegarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Data:");
 
@@ -56,24 +63,23 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(JBCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBPegar)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBDevolver)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
+                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(JBPegar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,17 +99,42 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
-                    .addComponent(JBPegar)
-                    .addComponent(JBDevolver))
+                    .addComponent(JBPegar))
                 .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JTFNomeAmigoActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }
+    
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
+
+    private void JBPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBPegarActionPerformed
+         {
+            String nome = "";
+            int id = 0;
+
+            
+            if (this.JTFNomeAmigo.getText().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Nome deve conter no minimo 3 caracteres.");
+            } else {
+                nome = this.JTFNomeAmigo.getText();
+            }
+            
+            if (this.JTFIdFerramenta.getText().length() <= 0) {
+                JOptionPane.showMessageDialog(null, "Digite um valor válido!");
+            } else {
+                id = Integer.parseInt(this.JTFIdFerramenta.getText());
+            }
+            
+            JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
+        }
+    }//GEN-LAST:event_JBPegarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -139,7 +170,6 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
-    private javax.swing.JButton JBDevolver;
     private javax.swing.JButton JBPegar;
     private javax.swing.JTextPane JTFData;
     private javax.swing.JTextPane JTFIdFerramenta;
