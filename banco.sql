@@ -4,6 +4,8 @@ CREATE DATABASE IF NOT EXISTS db_a3;
 USE db_a3;
 
 DROP TABLE IF EXISTS tb_amigos;
+DROP TABLE IF EXISTS tb_ferramentas;
+DROP TABLE IF EXISTS tb_emprestimos;
 
 
 # criando tabela dos amigos
