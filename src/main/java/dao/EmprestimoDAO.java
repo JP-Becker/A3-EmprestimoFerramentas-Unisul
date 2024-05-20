@@ -43,4 +43,30 @@ public class EmprestimoDAO {
         }
         return minhaLista;
     }
+    
+     // retorna o Emprestimo procurado pela id
+    public Emprestimo carregaEmprestimoPorId(int id) {
+        Emprestimo objeto = new Emprestimo();
+        objeto.setIdEmprestimo(id);
+
+         // usando o bloco try catch para tratar possíveis erros
+        try {
+            Statement stmt = Utils.getConexao().createStatement();
+
+            // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE idEmprestimo = " + id);
+            res.next();
+
+            objeto.setDataEmprestimo(res.getDate("dataEmprestimo"));
+            objeto.setDataDevolucao(res.getDate("dataDevolucao"));
+            objeto.setPendente(res.getBoolean("pendente"));
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e);
+        }
+
+        return objeto;
+    }
 }

@@ -60,7 +60,7 @@ public class FerramentaDAO {
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE idFerramenta = " + id);
             res.next();
 
-            objeto.setNomeFerramenta(res.getString("nome"));
+            objeto.setNomeFerramenta(res.getString("nomeFerramenta"));
             objeto.setMarca(res.getString("marca"));
             objeto.setCusto(res.getDouble("custo"));
             objeto.setEmprestada(res.getBoolean("emprestada"));

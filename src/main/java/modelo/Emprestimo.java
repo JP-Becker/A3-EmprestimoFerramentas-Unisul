@@ -47,7 +47,7 @@ public class Emprestimo {
         return idEmprestimo;
     }
 
-    public void setId(int idEmprestimo) {
+    public void setIdEmprestimo(int idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
@@ -106,11 +106,12 @@ public class Emprestimo {
         return dao.getMinhaLista();
     }
 
-    /*
+    
     public Emprestimo carregaEmprestimoPorId(int id) {
         return dao.carregaEmprestimoPorId(id);
     }
 
+    /*
     public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         id = dao.maiorID() + 1;
         Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
