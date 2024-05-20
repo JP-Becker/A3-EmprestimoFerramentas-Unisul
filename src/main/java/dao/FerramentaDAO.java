@@ -119,7 +119,7 @@ public class FerramentaDAO {
     }
     
     //Método para deletar Ferrmaneta da BD
-    public boolean deletarFerrmanetaBD (int id) {
+    public boolean deletarFerramentaBD (int id) {
          try {
             Statement stmt = Utils.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_ferrmanetas WHERE idFerrmaneta = " +  id);

@@ -96,8 +96,8 @@ public class Ferramenta {
         return true;
     }
 
-    public boolean deletarFerrmanetaBD(int id) {
-        dao.deletarFerrmanetaBD(id);
+    public boolean deletarFerramentaBD(int id) {
+        dao.deletarFerramentaBD(id);
         return true;
     }
 

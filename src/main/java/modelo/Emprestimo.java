@@ -67,7 +67,7 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public boolean isPendente() {
+    public boolean getPendente() {
         return pendente;
     }
 
@@ -111,14 +111,17 @@ public class Emprestimo {
         return dao.carregaEmprestimoPorId(id);
     }
 
-    /*
+     public int maiorID() {
+        return dao.maiorID();
+    }
+    
     public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         id = dao.maiorID() + 1;
         Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
         dao.inserirEmprestimoBD(objeto);
         return true;
     }
-
+    
     public boolean deletarEmprestimoBD(int id) {
         dao.deletarEmprestimoBD(id);
         return true;
@@ -129,10 +132,5 @@ public class Emprestimo {
         dao.atualizarEmprestimoBD(objeto);
         return true;
     }
-
-    public int maiorID() {
-        return dao.maiorID();
-    }
-    */
     
 }
