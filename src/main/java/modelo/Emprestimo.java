@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+import dao.FerramentaDAO;
 import java.util.Date;
 
 public class Emprestimo {
@@ -10,12 +12,26 @@ public class Emprestimo {
     private boolean pendente;
     private Ferramenta ferramenta;
     private Amigo amigo;
+    
+    //Mantenha a linha abaixo comentada enquanto o EmprestimoDAO nao tiver sido implementado
+    
+    //private EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe FerramentaDAO para usar seus metodos
 
     public Emprestimo() {
         this(0, new Date(), new Date(), true, null, null);
     }
+    
+    //Construtor sem os objetos Amigo e Ferramenta como recomendado pelo professor. Por favor não apagar de novo
+    public Emprestimo(int idEmprestimo, Date dataEmprestimo, Date dataDevolucao, boolean pendente) {
+        this.idEmprestimo = idEmprestimo;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.pendente = pendente;
+        this.ferramenta = new Ferramenta();
+        this.amigo = new Amigo();
+    }
 
-    public Emprestimo(int idEmprestimo, Date dataEmprestimo,Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+    public Emprestimo(int idEmprestimo, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         this.idEmprestimo = idEmprestimo;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
@@ -78,5 +94,40 @@ public class Emprestimo {
     public String toString() {
         return "idEmprestimo=" + idEmprestimo + ", dataEmprestimo=" + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", pendente=" + pendente;
     }
+
+    // Os métodos a seguir referenciam implementacoes futuras da classe DAO
+    // Pro netbeans não reclamar, mantenha esse trecho comentado até EmprestimoDAO ser implementado
+    
+    /*
+    public ArrayList<Emprestimo> getMinhaLista() {
+        return dao.getMinhaLista();
+    }
+
+    public Emprestimo carregaEmprestimoPorId(int id) {
+        return dao.carregaEmprestimoPorId(id);
+    }
+
+    public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+        id = dao.maiorID() + 1;
+        Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
+        dao.inserirEmprestimoBD(objeto);
+        return true;
+    }
+
+    public boolean deletarEmprestimoBD(int id) {
+        dao.deletarEmprestimoBD(id);
+        return true;
+    }
+
+    public boolean atualizarEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+        Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
+        dao.atualizarEmprestimoBD(objeto);
+        return true;
+    }
+
+    public int maiorID() {
+        return dao.maiorID();
+    }
+    */
     
 }
