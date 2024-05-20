@@ -25,23 +25,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -63,74 +62,53 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="JBcadastrarAluno" min="-2" max="-2" attributes="0"/>
-                      <Component id="JBEmitirRelatorio" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="JBcadastrarAluno" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="JBGerenciarAmigo" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="JBEmitirRelatorio" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="JBCadastrarFerramentas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="JBRelatorioEmprestimo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JBGerenciarFerramentas" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="JBGerenciarAmigo" min="-2" max="-2" attributes="0"/>
-                              <Component id="JBCadastrarEmprestimo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="JBSair" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="JBGerenciarFerramentas" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="JBRelatorioEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="JBGerenciarEmprestimo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="JBGerenciarEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="JBCadastrarFerramentas" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="JBCadastrarEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JBcadastrarAluno" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JBCadastrarFerramentas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JBGerenciarAmigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JBcadastrarAluno" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="JBCadastrarFerramentas" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="JBCadastrarEmprestimo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="JBCadastrarEmprestimo" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="JBEmitirRelatorio" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="39" max="32767" attributes="0"/>
-                                  <Component id="JBGerenciarEmprestimo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="JBGerenciarFerramentas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="JBRelatorioEmprestimo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JBGerenciarAmigo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="JBGerenciarFerramentas" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="JBRelatorioEmprestimo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JBGerenciarEmprestimo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="JBEmitirRelatorio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <Component id="JBSair" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -146,7 +124,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="JBCadastrarFerramentas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastrar Ferramenta"/>
+            <Property name="text" type="java.lang.String" value="Cadastro Ferramenta"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCadastrarFerramentasActionPerformed"/>
@@ -172,10 +150,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Gerenciar Ferramentas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBGerenciarFerramentasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBCadastrarEmprestimo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastras Emprestimo"/>
+            <Property name="text" type="java.lang.String" value="Cadastro Emprestimo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCadastrarEmprestimoActionPerformed"/>
@@ -183,7 +164,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="JBGerenciarEmprestimo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gerenciar Emprestimos"/>
+            <Property name="text" type="java.lang.String" value="Gerenciar Emprestimo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBGerenciarEmprestimoActionPerformed"/>
@@ -195,6 +176,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBRelatorioEmprestimoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="JBSair">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sair"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBSairActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
