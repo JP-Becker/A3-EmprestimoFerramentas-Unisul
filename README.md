@@ -47,5 +47,7 @@ Usuário: root
 
 Senha: root
 
+Scripts usados no mySQL estão no arquivo banco.sql
+
 ## 💡IDE utilizada:
 - NetBeans
