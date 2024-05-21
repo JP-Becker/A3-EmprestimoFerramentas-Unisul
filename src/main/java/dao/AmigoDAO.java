@@ -60,7 +60,7 @@ public class AmigoDAO {
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos WHERE idAmigo = " + id);
             res.next();
 
-            objeto.setNomeAmigo(res.getString("nome"));
+            objeto.setNomeAmigo(res.getString("nomeAmigo"));
             objeto.setTelefone(res.getString("telefone"));
 
             stmt.close();

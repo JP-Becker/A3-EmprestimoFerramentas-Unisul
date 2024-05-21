@@ -15,6 +15,7 @@ public class Emprestimo {
     
     public EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
     
+    
     public Emprestimo() {
         this(0, new Date(), null, true, null, null);
     }

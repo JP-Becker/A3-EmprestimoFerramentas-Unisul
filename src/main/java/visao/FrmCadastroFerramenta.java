@@ -123,8 +123,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         String nomeFerramenta = "";
         String marca = "";
         double custo = 0.0;
-        boolean emprestada = false;
-
+        
         // Loop para que caso algum dos campos sejam inválidos o programa pare de rodar e não insira campos vazios na BD
         while (true) {
             if (this.JTFNomeFerramenta.getText().length() < 3) {
@@ -149,7 +148,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
             }
 
             // inserindo Ferramenta novo na BD
-            if (this.objetoFerramenta.inserirFerramentaBD(idFerramenta, nomeFerramenta, marca, custo, emprestada)) {
+            if (this.objetoFerramenta.inserirFerramentaBD(idFerramenta, nomeFerramenta, marca, custo)) {
                 JOptionPane.showMessageDialog(null, "Ferramenta cadastrada com Sucesso!");
                 // limpa campos da interface
                 this.JTFNomeFerramenta.setText("");

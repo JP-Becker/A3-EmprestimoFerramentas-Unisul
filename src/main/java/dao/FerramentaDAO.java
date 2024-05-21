@@ -30,9 +30,8 @@ public class FerramentaDAO {
                 String nomeFerramenta = res.getString("nomeFerramenta");
                 String marca = res.getString("marca");
                 double custo = res.getInt("custo");
-                boolean emprestada = res.getBoolean("emprestada");
 
-                Ferramenta objeto = new Ferramenta(idFerramenta, nomeFerramenta, marca, custo, emprestada);
+                Ferramenta objeto = new Ferramenta(idFerramenta, nomeFerramenta, marca, custo);
                 minhaLista.add(objeto);
 
                 
@@ -63,7 +62,6 @@ public class FerramentaDAO {
             objeto.setNomeFerramenta(res.getString("nomeFerramenta"));
             objeto.setMarca(res.getString("marca"));
             objeto.setCusto(res.getDouble("custo"));
-            objeto.setEmprestada(res.getBoolean("emprestada"));
 
             stmt.close();
 
@@ -77,7 +75,7 @@ public class FerramentaDAO {
      // Método para cadastrar novo Ferramenta
     public boolean inserirFerramentaBD(Ferramenta objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
-        String sql = "INSERT INTO tb_ferramentas(idFerramenta, nomeFerramenta, marca, custo, emprestada) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tb_ferramentas(idFerramenta, nomeFerramenta, marca, custo) VALUES (?,?,?,?)";
 
         // usando o bloco try catch para tratar possíveis erros
         try {
@@ -88,7 +86,6 @@ public class FerramentaDAO {
             stmt.setString(2, objeto.getNomeFerramenta());
             stmt.setString(3, objeto.getMarca());
             stmt.setDouble(4, objeto.getCusto());
-            stmt.setBoolean(5, objeto.getEmprestada());
 
             stmt.execute();
             stmt.close();
@@ -135,7 +132,7 @@ public class FerramentaDAO {
     
      // método para alterar dados de alguma Ferramenta
     public boolean atualizarFerramentaBD (Ferramenta objeto) {
-        String sql = "UPDATE tb_ferramentas set nomeFerramenta = ? ,marca = ? ,custo = ? ,emprestada = ? WHERE idFerramenta = ?";
+        String sql = "UPDATE tb_ferramentas set nomeFerramenta = ? ,marca = ? ,custo = ? WHERE idFerramenta = ?";
         
         try {
             //objeto que representa uma instrução SQL a ser executada
@@ -145,7 +142,6 @@ public class FerramentaDAO {
             stmt.setString(1, objeto.getNomeFerramenta());
             stmt.setString(2, objeto.getMarca());
             stmt.setDouble(3, objeto.getCusto());
-            stmt.setBoolean(4, objeto.getEmprestada());
             stmt.setInt(5, objeto.getIdFerramenta());
             stmt.execute(); // Executando a operação
             

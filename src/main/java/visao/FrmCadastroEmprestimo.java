@@ -31,13 +31,10 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         JBCancelar = new javax.swing.JButton();
         JBPegar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTFIdAmigo = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTFIdFerramenta = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        JTFData = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Emprestimo");
@@ -60,13 +57,9 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Data:");
-
         jScrollPane1.setViewportView(JTFIdAmigo);
 
         jScrollPane2.setViewportView(JTFIdFerramenta);
-
-        jScrollPane3.setViewportView(JTFData);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,8 +73,6 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -102,11 +93,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBPegar))
@@ -130,27 +117,36 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             int idFerramenta = 0;
             int idEmprestimo = objetoEmprestimo.maiorID()+1; // definindo a ID do emprestimo automaticamente 
             Date dataEmprestimo = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime());
 
             
-            if (this.JTFIdAmigo.getText().length() < 3) {
+            if (Integer.parseInt(this.JTFIdAmigo.getText()) < 1) {
                 JOptionPane.showMessageDialog(null, "Nome deve conter no minimo 3 caracteres.");
             } else {
                 idAmigo = Integer.parseInt(this.JTFIdAmigo.getText());
             }
             
-            if (this.JTFIdFerramenta.getText().length() <= 0) {
+            if (Integer.parseInt(this.JTFIdFerramenta.getText()) < 1) {
                 JOptionPane.showMessageDialog(null, "Digite um valor válido!");
             } else {
                 idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
             
-            if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, dataEmprestimo, true, 
+            if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, sqlDate, true, 
                     objetoFerramenta.carregaFerramentaPorId(idFerramenta), objetoAmigo.carregaAmigoPorId(idAmigo))) {
                 JOptionPane.showMessageDialog(null, "Emprestimo Cadastrado com Sucesso!");
                 // limpa campos da interface
                 this.JTFIdAmigo.setText("");
                 this.JTFIdFerramenta.setText("");
             }
+            
+            JOptionPane.showMessageDialog(null,this.objetoAmigo.carregaAmigoPorId(idAmigo).getNomeAmigo() + " Pegou um(a) " + 
+                    this.objetoFerramenta.carregaFerramentaPorId(idAmigo).getNomeFerramenta() +" emprestado(a)." + " na data: " + dataEmprestimo);
+            
+            System.out.println(this.objetoEmprestimo.getMinhaLista().toString());
+            
+            System.out.println(this.objetoAmigo.carregaAmigoPorId(idAmigo).getNomeAmigo());
+            
     }//GEN-LAST:event_JBPegarActionPerformed
 
     public static void main(String args[]) {
@@ -188,14 +184,11 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBPegar;
-    private javax.swing.JTextPane JTFData;
     private javax.swing.JTextPane JTFIdAmigo;
     private javax.swing.JTextPane JTFIdFerramenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
