@@ -15,13 +15,8 @@ public class Emprestimo {
     
     public EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
     
-    
-    //Mantenha a linha abaixo comentada enquanto o EmprestimoDAO nao tiver sido implementado
-    
-    //private EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe FerramentaDAO para usar seus metodos
-
     public Emprestimo() {
-        this(0, new Date(), new Date(), true, null, null);
+        this(0, new Date(), null, true, null, null);
     }
     
     //Construtor sem os objetos Amigo e Ferramenta como recomendado pelo professor. Por favor não apagar de novo
@@ -115,7 +110,7 @@ public class Emprestimo {
         return dao.maiorID();
     }
     
-    public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+    public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         id = dao.maiorID() + 1;
         Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
         dao.inserirEmprestimoBD(objeto);

@@ -5,12 +5,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Emprestimo;
+import modelo.Ferramenta;
+import modelo.Amigo;
 
 public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
-   
+    private Emprestimo objetoEmprestimo;
+    private Ferramenta objetoFerramenta;
+    private Amigo objetoAmigo;
+    
     public FrmCadastroEmprestimo() {
         initComponents();
+        
+        this.objetoEmprestimo = new Emprestimo();
+        this.objetoFerramenta = new Ferramenta();
+        this.objetoAmigo = new Amigo();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +33,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         JBPegar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTFNomeAmigo = new javax.swing.JTextPane();
+        JTFIdAmigo = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTFIdFerramenta = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -32,7 +42,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Emprestimo");
 
-        jLabel1.setText("Nome do Amigo:");
+        jLabel1.setText("ID do amigo");
 
         jLabel2.setText("ID Ferramenta:");
 
@@ -52,7 +62,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
         jLabel3.setText("Data:");
 
-        jScrollPane1.setViewportView(JTFNomeAmigo);
+        jScrollPane1.setViewportView(JTFIdAmigo);
 
         jScrollPane2.setViewportView(JTFIdFerramenta);
 
@@ -106,7 +116,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFNomeAmigoActionPerformed(java.awt.event.ActionEvent evt) {
+    private void JTFNomeEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {
         
     }
     
@@ -115,25 +125,32 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBPegarActionPerformed
-         {
-            String nome = "";
-            int id = 0;
+
+            int idAmigo = 0;
+            int idFerramenta = 0;
+            int idEmprestimo = objetoEmprestimo.maiorID()+1; // definindo a ID do emprestimo automaticamente 
+            Date dataEmprestimo = new Date();
 
             
-            if (this.JTFNomeAmigo.getText().length() < 3) {
+            if (this.JTFIdAmigo.getText().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Nome deve conter no minimo 3 caracteres.");
             } else {
-                nome = this.JTFNomeAmigo.getText();
+                idAmigo = Integer.parseInt(this.JTFIdAmigo.getText());
             }
             
             if (this.JTFIdFerramenta.getText().length() <= 0) {
                 JOptionPane.showMessageDialog(null, "Digite um valor válido!");
             } else {
-                id = Integer.parseInt(this.JTFIdFerramenta.getText());
+                idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
             
-            JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
-        }
+            if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, dataEmprestimo, true, 
+                    objetoFerramenta.carregaFerramentaPorId(idFerramenta), objetoAmigo.carregaAmigoPorId(idAmigo))) {
+                JOptionPane.showMessageDialog(null, "Emprestimo Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.JTFIdAmigo.setText("");
+                this.JTFIdFerramenta.setText("");
+            }
     }//GEN-LAST:event_JBPegarActionPerformed
 
     public static void main(String args[]) {
@@ -172,8 +189,8 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBPegar;
     private javax.swing.JTextPane JTFData;
+    private javax.swing.JTextPane JTFIdAmigo;
     private javax.swing.JTextPane JTFIdFerramenta;
-    private javax.swing.JTextPane JTFNomeAmigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

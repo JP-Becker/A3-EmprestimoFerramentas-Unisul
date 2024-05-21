@@ -31,10 +31,8 @@ public class AmigoDAO {
                 int idAmigo = res.getInt("idAmigo");
                 String nomeAmigo = res.getString("nomeAmigo");
                 String telefone = res.getString("telefone");
-                int emprestimosTotais = res.getInt("emprestimosTotais");
-                int emprestimosAtivos = res.getInt("emprestimosAtivos");
 
-                Amigo objeto = new Amigo(idAmigo, nomeAmigo, telefone, emprestimosTotais, emprestimosAtivos);
+                Amigo objeto = new Amigo(idAmigo, nomeAmigo, telefone);
                 minhaLista.add(objeto);
 
                 
@@ -64,8 +62,6 @@ public class AmigoDAO {
 
             objeto.setNomeAmigo(res.getString("nome"));
             objeto.setTelefone(res.getString("telefone"));
-            objeto.setEmprestimosTotais(res.getInt("emprestimosTotais"));
-            objeto.setEmprestimosAtivos(res.getInt("emprestimosAtivos"));
 
             stmt.close();
 
@@ -79,7 +75,7 @@ public class AmigoDAO {
      // Método para cadastrar novo amigo
     public boolean inserirAmigoBD(Amigo objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
-        String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, telefone, emprestimosTotais, emprestimosAtivos) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tb_amigos(idAmigo, nomeAmigo, telefone) VALUES (?,?,?)";
 
         // usando o bloco try catch para tratar possíveis erros
         try {
@@ -89,8 +85,6 @@ public class AmigoDAO {
             stmt.setInt(1, objeto.getIdAmigo());
             stmt.setString(2, objeto.getNomeAmigo());
             stmt.setString(3, objeto.getTelefone());
-            stmt.setInt(4, objeto.getEmprestimosTotais());
-            stmt.setInt(5, objeto.getEmprestimosAtivos());
 
             stmt.execute();
             stmt.close();
@@ -138,7 +132,7 @@ public class AmigoDAO {
     
     // método para alterar dados de algum amigo
     public boolean atualizarAmigoBD (Amigo objeto) {
-        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? ,emprestimosTotais = ? ,emprestimosAtivos = ? WHERE idAmigo = ?";
+        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? WHERE idAmigo = ?";
         
         try {
             //objeto que representa uma instrução SQL a ser executada
@@ -147,9 +141,7 @@ public class AmigoDAO {
             
             stmt.setString(1, objeto.getNomeAmigo());
             stmt.setString(2, objeto.getTelefone());
-            stmt.setInt(3, objeto.getEmprestimosTotais());
-            stmt.setInt(4, objeto.getEmprestimosAtivos());
-            stmt.setInt(5, objeto.getIdAmigo());
+            stmt.setInt(3, objeto.getIdAmigo());
             stmt.execute(); // Executando a operação
             
             stmt.close();

@@ -8,13 +8,11 @@ public class Amigo {
     private int idAmigo;
     private String nomeAmigo;
     private String telefone;
-    private int emprestimosTotais;
-    private int emprestimosAtivos;
 
     public AmigoDAO dao = new AmigoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
 
     public Amigo() {
-        this(0, "", "", 0, 0);
+        this(0, "", "");
     }
 
     // Construtor com valor 0 nos emprestimos já que todo amigo começa sem emprestimos
@@ -22,16 +20,6 @@ public class Amigo {
         this.idAmigo = idAmigo;
         this.nomeAmigo = nomeAmigo;
         this.telefone = telefone;
-        emprestimosTotais = 0;
-        emprestimosAtivos = 0;
-    }
-
-    public Amigo(int idAmigo, String nomeAmigo, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-        this.idAmigo = idAmigo;
-        this.nomeAmigo = nomeAmigo;
-        this.telefone = telefone;
-        this.emprestimosTotais = emprestimosTotais;
-        this.emprestimosAtivos = emprestimosAtivos;
     }
 
     public int getIdAmigo() {
@@ -58,25 +46,9 @@ public class Amigo {
         this.telefone = telefone;
     }
 
-    public int getEmprestimosTotais() {
-        return emprestimosTotais;
-    }
-
-    public void setEmprestimosTotais(int emprestimosTotais) {
-        this.emprestimosTotais = emprestimosTotais;
-    }
-
-    public int getEmprestimosAtivos() {
-        return emprestimosAtivos;
-    }
-
-    public void setEmprestimosAtivos(int emprestimosAtivos) {
-        this.emprestimosAtivos = emprestimosAtivos;
-    }
-
     @Override
     public String toString() {
-        return "idAmigo=" + idAmigo + ", nomeAmigo=" + nomeAmigo + ", telefone=" + telefone + ", emprestimosTotais=" + emprestimosTotais;
+        return "idAmigo=" + idAmigo + ", nomeAmigo=" + nomeAmigo + ", telefone=" + telefone;
     }
 
     public String limparTelefone(String telefone) {
@@ -99,7 +71,7 @@ public class Amigo {
 
     public boolean inserirAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
         id = dao.maiorID() + 1;
-        Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
+        Amigo objeto = new Amigo(id, nome, telefone);
         dao.inserirAmigoBD(objeto);
         return true;
     }
@@ -113,8 +85,8 @@ public class Amigo {
         return true;
     }
 
-    public boolean atualizarAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-        Amigo objeto = new Amigo(id, nome, telefone, emprestimosTotais, emprestimosAtivos);
+    public boolean atualizarAmigoBD(int id, String nome, String telefone) {
+        Amigo objeto = new Amigo(id, nome, telefone);
         dao.atualizarAmigoBD(objeto);
         return true;
     }
