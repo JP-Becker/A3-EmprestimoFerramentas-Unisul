@@ -188,6 +188,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void JBGerenciarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarEmprestimoActionPerformed
         // TODO add your handling code here:
+        FrmGerenciarEmprestimo objetoTela = new FrmGerenciarEmprestimo();
+        objetoTela.setVisible(true);
         
     }//GEN-LAST:event_JBGerenciarEmprestimoActionPerformed
 
