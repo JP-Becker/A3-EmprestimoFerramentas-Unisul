@@ -58,13 +58,13 @@ public class Ferramenta {
 
     @Override
     public String toString() {
-        return "idFerramenta=" + idFerramenta + ", nomeFerramenta=" + nomeFerramenta + ", marca=" + marca + ", custo=" + custo;
+        return "idFerramenta=" + idFerramenta + "nomeFerramenta= " + nomeFerramenta + ", marca=" + marca + ", custo=" + custo;
     }
 
     //Metodos de DAO:
     
-    public ArrayList<Ferramenta> getMinhaLista() {
-        return dao.getMinhaLista();
+    public ArrayList<Ferramenta> getListaFerramenta() {
+        return dao.getListaFerramenta();
     }
 
     public Ferramenta carregaFerramentaPorId(int id) {

@@ -61,8 +61,8 @@ public class Amigo {
 
     //Metodos de DAO:
     
-    public ArrayList<Amigo> getMinhaLista() {
-        return dao.getMinhaLista();
+    public ArrayList<Amigo> getListaAmigo() {
+        return dao.getListaAmigo();
     }
 
     public Amigo carregaAmigoPorId(int id) {
@@ -90,5 +90,7 @@ public class Amigo {
         dao.atualizarAmigoBD(objeto);
         return true;
     }
+    
+    
 
 }

@@ -160,7 +160,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         }
 
         // printando no console a lista de Ferramentas que está na BD
-        System.out.println(this.objetoFerramenta.getMinhaLista().toString());
+        System.out.println(this.objetoFerramenta.getListaFerramenta().toString());
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed

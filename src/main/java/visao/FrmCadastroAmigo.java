@@ -152,7 +152,7 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
         }
 
         // printando no console a lista de amigos que está na BD
-        System.out.println(this.objetoAmigo.getMinhaLista().toString());
+        System.out.println(this.objetoAmigo.getListaAmigo().toString());
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     public static void main(String args[]) {

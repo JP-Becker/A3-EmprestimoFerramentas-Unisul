@@ -7,6 +7,9 @@ import java.util.Date;
 public class Emprestimo {
 
     private int idEmprestimo;
+
+    private int idAmigo;
+    private int idFerramenta;
     private Date dataEmprestimo;
     private Date dataDevolucao;
     private boolean pendente;
@@ -17,12 +20,14 @@ public class Emprestimo {
     
     
     public Emprestimo() {
-        this(0, new Date(), null, true, null, null);
+        this(0, 0, 0, new Date(), null, true, null, null);
     }
     
     //Construtor sem os objetos Amigo e Ferramenta como recomendado pelo professor. Por favor não apagar de novo
-    public Emprestimo(int idEmprestimo, Date dataEmprestimo, Date dataDevolucao, boolean pendente) {
+    public Emprestimo(int idEmprestimo, int idAmigo, int idFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean pendente) {
         this.idEmprestimo = idEmprestimo;
+        this.idAmigo = idAmigo;
+        this.idFerramenta = idFerramenta;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.pendente = pendente;
@@ -30,8 +35,10 @@ public class Emprestimo {
         this.amigo = new Amigo();
     }
 
-    public Emprestimo(int idEmprestimo, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+    public Emprestimo(int idEmprestimo, int idAmigo, int idFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         this.idEmprestimo = idEmprestimo;
+        this.idAmigo = idAmigo;
+        this.idFerramenta = idFerramenta;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.pendente = pendente;
@@ -45,6 +52,23 @@ public class Emprestimo {
 
     public void setIdEmprestimo(int idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
+    }
+    
+    
+    public int getIdAmigo() {
+        return idAmigo;
+    }
+
+    public void setIdAmigo(int idAmigo) {
+        this.idAmigo = idAmigo;
+    }
+
+    public int getIdFerramenta() {
+        return idFerramenta;
+    }
+
+    public void setIdFerramenta(int idFerramenta) {
+        this.idFerramenta = idFerramenta;
     }
 
     public Date getDataEmprestimo() {
@@ -91,7 +115,7 @@ public class Emprestimo {
     //se acharem que é interessante podem adicionar o toString dos objetos nesse
     @Override
     public String toString() {
-        return "idEmprestimo=" + idEmprestimo + ", dataEmprestimo=" + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", pendente=" + pendente;
+        return "idEmprestimo=" + idEmprestimo + "idAmigo= " + idAmigo + "idFerramenta= " + idFerramenta + "dataEmprestimo=" + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", pendente=" + pendente;
     }
 
     // Os métodos a seguir referenciam implementacoes futuras da classe DAO
@@ -111,9 +135,9 @@ public class Emprestimo {
         return dao.maiorID();
     }
     
-    public boolean inserirEmprestimoBD(int id, Date dataEmprestimo, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+    public boolean inserirEmprestimoBD(int id, int idAmigo, int idFerramenta, Date dataEmprestimo, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         id = dao.maiorID() + 1;
-        Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
+        Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
         dao.inserirEmprestimoBD(objeto);
         return true;
     }
@@ -123,8 +147,8 @@ public class Emprestimo {
         return true;
     }
 
-    public boolean atualizarEmprestimoBD(int id, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
-        Emprestimo objeto = new Emprestimo(id, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
+    public boolean atualizarEmprestimoBD(int id, int idAmigo, int idFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
+        Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta,dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
         dao.atualizarEmprestimoBD(objeto);
         return true;
     }

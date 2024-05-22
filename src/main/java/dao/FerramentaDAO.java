@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import modelo.Ferramenta;
 import utils.Utils;
 
+// FEITO POR JOÃO
 public class FerramentaDAO {
-     public static ArrayList<Ferramenta> minhaLista = new ArrayList<>();
-   
+
+    public static ArrayList<Ferramenta> listaFerramenta = new ArrayList<>();
+
     // retorna a lista com todas as Ferramentas cadastrados 
-    public ArrayList<Ferramenta> getMinhaLista() {
-        minhaLista.clear();
-        
-         // usando o bloco try catch para tratar possíveis erros
+    public ArrayList<Ferramenta> getListaFerramenta() {
+        listaFerramenta.clear();
+
+        // usando o bloco try catch para tratar possíveis erros
         try {
             // instanciando interface Statement para utilizar métodos SQL
             Statement stmt = Utils.getConexao().createStatement();
@@ -32,9 +34,8 @@ public class FerramentaDAO {
                 double custo = res.getInt("custo");
 
                 Ferramenta objeto = new Ferramenta(idFerramenta, nomeFerramenta, marca, custo);
-                minhaLista.add(objeto);
+                listaFerramenta.add(objeto);
 
-                
             }
             res.close();
             stmt.close();
@@ -43,15 +44,15 @@ public class FerramentaDAO {
             e.printStackTrace();
             return null;
         }
-        return minhaLista;
+        return listaFerramenta;
     }
-    
+
     // retorna o Ferramenta procurado pela id
     public Ferramenta carregaFerramentaPorId(int id) {
         Ferramenta objeto = new Ferramenta();
         objeto.setIdFerramenta(id);
 
-         // usando o bloco try catch para tratar possíveis erros
+        // usando o bloco try catch para tratar possíveis erros
         try {
             Statement stmt = Utils.getConexao().createStatement();
 
@@ -71,8 +72,8 @@ public class FerramentaDAO {
 
         return objeto;
     }
-    
-     // Método para cadastrar novo Ferramenta
+
+    // Método para cadastrar novo Ferramenta
     public boolean inserirFerramentaBD(Ferramenta objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
         String sql = "INSERT INTO tb_ferramentas(idFerramenta, nomeFerramenta, marca, custo) VALUES (?,?,?,?)";
@@ -97,7 +98,7 @@ public class FerramentaDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public int maiorID() {
         int maiorID = 0;
 
@@ -111,17 +112,17 @@ public class FerramentaDAO {
         } catch (SQLException e) {
             System.out.println("Erro: " + e);
         }
-        
+
         return maiorID;
     }
-    
+
     //Método para deletar Ferrmaneta da BD
-    public boolean deletarFerramentaBD (int id) {
-         try {
+    public boolean deletarFerramentaBD(int id) {
+        try {
             Statement stmt = Utils.getConexao().createStatement();
-            stmt.executeUpdate("DELETE FROM tb_ferrmanetas WHERE idFerrmaneta = " +  id);
+            stmt.executeUpdate("DELETE FROM tb_ferrmanetas WHERE idFerrmaneta = " + id);
             stmt.close();
-            
+
             return true;
 
         } catch (SQLException e) {
@@ -129,22 +130,21 @@ public class FerramentaDAO {
             throw new RuntimeException(e);
         }
     }
-    
-     // método para alterar dados de alguma Ferramenta
-    public boolean atualizarFerramentaBD (Ferramenta objeto) {
+
+    // método para alterar dados de alguma Ferramenta
+    public boolean atualizarFerramentaBD(Ferramenta objeto) {
         String sql = "UPDATE tb_ferramentas set nomeFerramenta = ? ,marca = ? ,custo = ? WHERE idFerramenta = ?";
-        
+
         try {
             //objeto que representa uma instrução SQL a ser executada
             PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
-            
-            
+
             stmt.setString(1, objeto.getNomeFerramenta());
             stmt.setString(2, objeto.getMarca());
             stmt.setDouble(3, objeto.getCusto());
             stmt.setInt(5, objeto.getIdFerramenta());
             stmt.execute(); // Executando a operação
-            
+
             stmt.close();
             return true;
 
@@ -154,4 +154,21 @@ public class FerramentaDAO {
         }
     }
 
+    // método para verificar se a ferramenta está emprestada
+    public static boolean verificaDisponibilidade(int idFerramenta) {
+        String sql = "SELECT COUNT(*) FROM tb_emprestimos "
+                + "WHERE idFerramenta = ?";
+        try (PreparedStatement stmt = Utils.getConexao().prepareStatement(sql)) {
+            stmt.setInt(1, idFerramenta);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                return false; // Não está disponível (possui empréstimo pendente)
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true; // Disponível para empréstimo
+    }
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 import modelo.Emprestimo;
 import utils.Utils;
 
+// FEITO POR JOÃO
 public class EmprestimoDAO {
     public static ArrayList<Emprestimo> minhaLista = new ArrayList<>();
     
@@ -27,11 +28,13 @@ public class EmprestimoDAO {
             while (res.next()) {
                 // vai buscar e retornar a lista com todos os objetos 'Emprestimo'
                 int idEmprestimo = res.getInt("idEmprestimo");
+                int idAmigo = res.getInt("idAmigo");
+                int idFerramenta = res.getInt("idFerramenta");
                 Date dataEmprestimo = res.getDate("dataEmprestimo");
                 Date dataDevolucao = res.getDate("dataDevolucao");
                 boolean pendente = res.getBoolean("pendente");
 
-                Emprestimo objeto = new Emprestimo(idEmprestimo, dataEmprestimo, dataDevolucao, pendente);
+                Emprestimo objeto = new Emprestimo(idEmprestimo, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, pendente);
                 minhaLista.add(objeto);
 
             }
@@ -58,6 +61,8 @@ public class EmprestimoDAO {
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE idEmprestimo = " + id);
             res.next();
 
+            objeto.setIdAmigo(res.getInt("idAmigo"));
+            objeto.setIdFerramenta(res.getInt("idFerramenta"));
             objeto.setDataEmprestimo(res.getDate("dataEmprestimo"));
             objeto.setDataDevolucao(res.getDate("dataDevolucao"));
             objeto.setPendente(res.getBoolean("pendente"));
@@ -74,7 +79,7 @@ public class EmprestimoDAO {
      // Método para cadastrar novo Emprestimo
     public boolean inserirEmprestimoBD(Emprestimo objeto) {
         // variável para guardar o comando SQL a ser executado pelo método
-        String sql = "INSERT INTO tb_emprestimos(idEmprestimo, dataEmprestimo, dataDevolucao, pendente) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO tb_emprestimos(idEmprestimo, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, pendente) VALUES (?,?,?,?,?,?)";
 
         // usando o bloco try catch para tratar possíveis erros
         try {
@@ -82,9 +87,11 @@ public class EmprestimoDAO {
             PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
 
             stmt.setInt(1, objeto.getIdEmprestimo());
-            stmt.setDate(2, (java.sql.Date) objeto.getDataEmprestimo());
-            stmt.setDate(3, (java.sql.Date) objeto.getDataDevolucao());
-            stmt.setBoolean(4, objeto.getPendente());
+            stmt.setInt(2, objeto.getIdAmigo());
+            stmt.setInt(3, objeto.getIdFerramenta());
+            stmt.setDate(4, (java.sql.Date) objeto.getDataEmprestimo());
+            stmt.setDate(5, (java.sql.Date) objeto.getDataDevolucao());
+            stmt.setBoolean(6, objeto.getPendente());
 
             stmt.execute();
             stmt.close();
@@ -140,7 +147,7 @@ public class EmprestimoDAO {
             stmt.setDate(1,(java.sql.Date) objeto.getDataEmprestimo());
             stmt.setDate(2,(java.sql.Date) objeto.getDataDevolucao());
             stmt.setBoolean(3, objeto.getPendente());
-            stmt.setInt(5, objeto.getIdEmprestimo());
+            stmt.setInt(4, objeto.getIdEmprestimo());
             stmt.execute(); // Executando a operação
             
             stmt.close();

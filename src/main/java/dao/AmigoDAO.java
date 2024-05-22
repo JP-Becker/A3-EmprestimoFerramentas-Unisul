@@ -11,11 +11,11 @@ import utils.Utils;
 // FEITO POR JOÃO
 public class AmigoDAO {
 
-    public static ArrayList<Amigo> minhaLista = new ArrayList<>();
+    public static ArrayList<Amigo> listaAmigo = new ArrayList<>();
    
     // retorna a lista com todos os amigos cadastrados 
-    public ArrayList<Amigo> getMinhaLista() {
-        minhaLista.clear();
+    public ArrayList<Amigo> getListaAmigo() {
+        listaAmigo.clear();
         
          // usando o bloco try catch para tratar possíveis erros
         try {
@@ -33,7 +33,7 @@ public class AmigoDAO {
                 String telefone = res.getString("telefone");
 
                 Amigo objeto = new Amigo(idAmigo, nomeAmigo, telefone);
-                minhaLista.add(objeto);
+                listaAmigo.add(objeto);
 
                 
             }
@@ -44,7 +44,7 @@ public class AmigoDAO {
             e.printStackTrace();
             return null;
         }
-        return minhaLista;
+        return listaAmigo;
     }
     
     // retorna o amigo procurado pela id
@@ -152,4 +152,26 @@ public class AmigoDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    // método para verificar se o amigo possui algum empréstimo pendente
+    public static boolean verificaEmprestimoPendente(int idAmigo) {
+        String sql = "SELECT COUNT(*) FROM tb_emprestimos e "
+            + "JOIN tb_amigos a ON e.idAmigo = a.idAmigo "
+            + "WHERE a.idAmigo = ?";
+        try (PreparedStatement stmt = Utils.getConexao().prepareStatement(sql)) {
+          stmt.setInt(1, idAmigo);
+          ResultSet rs = stmt.executeQuery();
+
+          if (rs.next() && rs.getInt(1) > 0) {
+            return true; // Possui empréstimo pendente
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+
+        return false; // Não possui empréstimo pendente
+    }
+
+  
 }
+

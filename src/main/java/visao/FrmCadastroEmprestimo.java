@@ -1,5 +1,5 @@
-
 package visao;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,16 +8,19 @@ import javax.swing.JOptionPane;
 import modelo.Emprestimo;
 import modelo.Ferramenta;
 import modelo.Amigo;
+import static dao.AmigoDAO.verificaEmprestimoPendente;
+import static dao.FerramentaDAO.verificaDisponibilidade;
 
+// FEITO POR JOÃO
 public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoEmprestimo;
     private Ferramenta objetoFerramenta;
     private Amigo objetoAmigo;
-    
+
     public FrmCadastroEmprestimo() {
         initComponents();
-        
+
         this.objetoEmprestimo = new Emprestimo();
         this.objetoFerramenta = new Ferramenta();
         this.objetoAmigo = new Amigo();
@@ -104,76 +107,75 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTFNomeEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {
-        
+
     }
-    
+
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBPegarActionPerformed
 
-            int idAmigo = 0;
-            int idFerramenta = 0;
-            int idEmprestimo = objetoEmprestimo.maiorID()+1; // definindo a ID do emprestimo automaticamente 
-            Date dataEmprestimo = new Date();
-            java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime());
+        // inicializando as variáveis que serão utilizadas
+        int idAmigo = 0;
+        int idFerramenta = 0;
+        int idEmprestimo = objetoEmprestimo.maiorID() + 1; // definindo a ID do emprestimo automaticamente 
+        Date dataEmprestimo = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime());
 
-            
-            if (Integer.parseInt(this.JTFIdAmigo.getText()) < 1) {
-                JOptionPane.showMessageDialog(null, "Nome deve conter no minimo 3 caracteres.");
+        // Loop while para caso alguma das condições nao sejam atendidas o código pare de rodar e não insira nada no BD
+        while (true) {
+            // condicional para checar se a ID inserida não é 0 e se existe de fato na lista(não é maior do que maior Id dela).
+            if (Integer.parseInt(this.JTFIdAmigo.getText()) < 1 || Integer.parseInt(this.JTFIdAmigo.getText()) > objetoAmigo.maiorID()) {
+                JOptionPane.showMessageDialog(null, "insira uma ID de amigo válida.");
+                break;
             } else {
                 idAmigo = Integer.parseInt(this.JTFIdAmigo.getText());
             }
             
-            if (Integer.parseInt(this.JTFIdFerramenta.getText()) < 1) {
-                JOptionPane.showMessageDialog(null, "Digite um valor válido!");
+            // condicional para checar se a ID inserida não é 0 e se existe de fato na lista(não é maior do que maior Id dela).
+            if (Integer.parseInt(this.JTFIdFerramenta.getText()) < 1 || Integer.parseInt(this.JTFIdFerramenta.getText()) > objetoFerramenta.maiorID()) {
+                JOptionPane.showMessageDialog(null, "Insira uma ID de ferramenta válida.!");
+                break;
             } else {
                 idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
-            
-            if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, sqlDate, true, 
-                    objetoFerramenta.carregaFerramentaPorId(idFerramenta), objetoAmigo.carregaAmigoPorId(idAmigo))) {
-                JOptionPane.showMessageDialog(null, "Emprestimo Cadastrado com Sucesso!");
+
+            Ferramenta ferramentaEscolhida = objetoFerramenta.carregaFerramentaPorId(idFerramenta); // variável para guardar a ferramenta escolhida
+            Amigo amigoEscolhido = objetoAmigo.carregaAmigoPorId(idAmigo);// variável para guardar o amigo escolhido
+
+            if (verificaEmprestimoPendente(amigoEscolhido.getIdAmigo())) {
+                JOptionPane.showMessageDialog(null, "O amigo " + amigoEscolhido.getNomeAmigo() + " já possui um empréstimo ativo.");
+                break;
+            } else if (verificaDisponibilidade(ferramentaEscolhida.getIdFerramenta())) {
+                JOptionPane.showMessageDialog(null, "A ferramenta " + ferramentaEscolhida.getNomeFerramenta() + " está indisponível no momento.");
+                break;
+            } else {
+                if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, amigoEscolhido.getIdAmigo(), ferramentaEscolhida.getIdFerramenta(), sqlDate, true,
+                    ferramentaEscolhida, amigoEscolhido)) {
                 // limpa campos da interface
                 this.JTFIdAmigo.setText("");
                 this.JTFIdFerramenta.setText("");
+
+                // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
+                JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
+                        + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
+                break;
             }
+            }
+               
             
-            JOptionPane.showMessageDialog(null,this.objetoAmigo.carregaAmigoPorId(idAmigo).getNomeAmigo() + " Pegou um(a) " + 
-                    this.objetoFerramenta.carregaFerramentaPorId(idAmigo).getNomeFerramenta() +" emprestado(a)." + " na data: " + dataEmprestimo);
+           
             
-            System.out.println(this.objetoEmprestimo.getMinhaLista().toString());
-            
-            System.out.println(this.objetoAmigo.carregaAmigoPorId(idAmigo).getNomeAmigo());
-            
+
+        }
+
+        System.out.println(this.objetoEmprestimo.getMinhaLista().toString());
+        System.out.println(this.objetoAmigo.carregaAmigoPorId(idAmigo).getNomeAmigo());
+
     }//GEN-LAST:event_JBPegarActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmCadastroEmprestimo().setVisible(true);

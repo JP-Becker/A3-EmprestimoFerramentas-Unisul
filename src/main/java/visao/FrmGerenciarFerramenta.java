@@ -236,7 +236,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
                 //}
             }
             // atualiza a tabela.
-            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+            System.out.println(this.objetoferramenta.getListaFerramenta().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
@@ -288,7 +288,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             //}
             
             // Exibe no console o aluno cadastrado
-            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+            System.out.println(this.objetoferramenta.getListaFerramenta().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
@@ -303,8 +303,8 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos aluno
-        ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaLista();
-        for (Ferramenta a : minhaLista) {
+        ArrayList<Ferramenta> listaFerramenta = objetoferramenta.getListaFerramenta();
+        for (Ferramenta a : listaFerramenta) {
             modelo.addRow(new Object[]{
                 a.getIdFerramenta(),
                 a.getNomeFerramenta(),
