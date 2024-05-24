@@ -163,12 +163,12 @@ public class FerramentaDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() && rs.getInt(1) > 0) {
-                return false; // Não está disponível (possui empréstimo pendente)
+                return true; // Não está disponível (possui empréstimo pendente)
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return true; // Disponível para empréstimo
+        return false; // Disponível para empréstimo
     }
 }
