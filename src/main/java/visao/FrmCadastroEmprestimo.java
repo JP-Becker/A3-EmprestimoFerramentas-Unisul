@@ -1,6 +1,5 @@
 package visao;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -132,7 +131,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             } else {
                 idAmigo = Integer.parseInt(this.JTFIdAmigo.getText());
             }
-            
+
             // condicional para checar se a ID inserida não é 0 e se existe de fato na lista(não é maior do que maior Id dela).
             if (Integer.parseInt(this.JTFIdFerramenta.getText()) < 1 || Integer.parseInt(this.JTFIdFerramenta.getText()) > objetoFerramenta.maiorID()) {
                 JOptionPane.showMessageDialog(null, "Insira uma ID de ferramenta válida.!");
@@ -143,30 +142,43 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
             Ferramenta ferramentaEscolhida = objetoFerramenta.carregaFerramentaPorId(idFerramenta); // variável para guardar a ferramenta escolhida
             Amigo amigoEscolhido = objetoAmigo.carregaAmigoPorId(idAmigo);// variável para guardar o amigo escolhido
+            int confirmEmprestimo = JOptionPane.showConfirmDialog(null, "O amigo " + amigoEscolhido.getNomeAmigo() + " já possui um empréstimo ativo. Deseja conceder mesmo assim?");
 
-            if (verificaEmprestimoPendente(amigoEscolhido.getIdAmigo())) {
-                JOptionPane.showMessageDialog(null, "O amigo " + amigoEscolhido.getNomeAmigo() + " já possui um empréstimo ativo.");
-                break;
+            // condicional para verificar se o amigo já possui empréstimo e se a ferramenta está disponviel´para avisar o tio-avô
+            if (verificaEmprestimoPendente(amigoEscolhido.getIdAmigo()) && !verificaDisponibilidade(ferramentaEscolhida.getIdFerramenta())) {
+                // condicional para ver se o usuário quer emprestar mesmo com o amigo ainda tendo pendencias
+                if (confirmEmprestimo == JOptionPane.YES_OPTION) {
+                    this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, amigoEscolhido.getIdAmigo(), ferramentaEscolhida.getIdFerramenta(), sqlDate, true,
+                        ferramentaEscolhida, amigoEscolhido); 
+                    // limpa campos da interface
+                    this.JTFIdAmigo.setText("");
+                    this.JTFIdFerramenta.setText("");
+
+                    // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
+                    JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
+                            + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
+                    break;
+                } else {
+                    // caso o usuário clique em NO
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                }
             } else if (verificaDisponibilidade(ferramentaEscolhida.getIdFerramenta())) {
                 JOptionPane.showMessageDialog(null, "A ferramenta " + ferramentaEscolhida.getNomeFerramenta() + " está indisponível no momento.");
                 break;
-            } else {
+            } else { // se o amigo escolhido nao tiver pendencia e a ferramenta estiver disponível ele insere o emprestimo direto na BD
                 if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, amigoEscolhido.getIdAmigo(), ferramentaEscolhida.getIdFerramenta(), sqlDate, true,
-                    ferramentaEscolhida, amigoEscolhido)) {
-                // limpa campos da interface
-                this.JTFIdAmigo.setText("");
-                this.JTFIdFerramenta.setText("");
+                        ferramentaEscolhida, amigoEscolhido)) {
+                    // limpa campos da interface
+                    this.JTFIdAmigo.setText("");
+                    this.JTFIdFerramenta.setText("");
 
-                // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
-                JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
-                        + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
-                break;
+                    // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
+                    JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
+                            + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
+                    break;
+                }
             }
-            }
-               
-            
-           
-            
 
         }
 
