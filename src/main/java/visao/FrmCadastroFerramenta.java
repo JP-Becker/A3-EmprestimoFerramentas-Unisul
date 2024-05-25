@@ -140,11 +140,11 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                 marca = this.JTFMarca.getText();
             }
             
-            if (Double.parseDouble(this.JTFCusto.getText()) <= 0.0) {
-                JOptionPane.showMessageDialog(null, "O custo não pode ser 0 ou negativo!");
+            if (Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
+                JOptionPane.showMessageDialog(null, "O custo não pode ser negativo!");
                 break;
             } else {
-                marca = this.JTFCusto.getText();
+                custo = Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText()));
             }
 
             // inserindo Ferramenta novo na BD

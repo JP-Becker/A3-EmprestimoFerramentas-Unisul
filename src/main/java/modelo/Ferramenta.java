@@ -55,6 +55,10 @@ public class Ferramenta {
     public void setCusto(double custo) {
         this.custo = custo;
     }
+	
+    public String corrigirVirgula(String valor) {
+        return valor.replace(",", ".");
+    }
 
     @Override
     public String toString() {
