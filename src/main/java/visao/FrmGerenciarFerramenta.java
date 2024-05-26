@@ -224,17 +224,14 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             if (respostaUsuario == 0) {// clicou em SIM
                 // envia os dados para o Aluno processar
 
-                // ATENCAO: if abaixo comentado por não haver deleteFerramentaBD ainda
-                // NAO ESQUECER DE DESCOMENTAR DEPOIS
-
-                //if (this.objetoferramenta.deleteFerramentaBD(id)) {
-                // limpa os campos
-                this.JTFNome.setText("");
-                this.JTFCusto.setText("");
-                this.JTFMarca.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com Sucesso!");
-                //}
-            }
+                if (this.objetoferramenta.deletarFerramentaBD(id)) {
+					// limpa os campos
+					this.JTFNome.setText("");
+					this.JTFCusto.setText("");
+					this.JTFMarca.setText("");
+					JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com Sucesso!");
+                }
+            }	
             // atualiza a tabela.
             System.out.println(this.objetoferramenta.getListaFerramenta().toString());
         } catch (Mensagem erro) {

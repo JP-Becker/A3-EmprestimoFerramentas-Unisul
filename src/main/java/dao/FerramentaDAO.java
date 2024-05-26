@@ -120,7 +120,7 @@ public class FerramentaDAO {
     public boolean deletarFerramentaBD(int id) {
         try {
             Statement stmt = Utils.getConexao().createStatement();
-            stmt.executeUpdate("DELETE FROM tb_ferrmanetas WHERE idFerrmaneta = " + id);
+            stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE idFerramenta = " + id);
             stmt.close();
 
             return true;
