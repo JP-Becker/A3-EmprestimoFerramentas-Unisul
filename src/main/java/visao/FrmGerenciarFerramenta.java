@@ -255,7 +255,11 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
                 marca = this.JTFMarca.getText();
             }
 
-            custo = Double.parseDouble(this.JTFCusto.getText());
+            if (Double.parseDouble(objetoferramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
+                JOptionPane.showMessageDialog(null, "O custo não pode ser negativo!");
+            } else {
+                custo = Double.parseDouble(objetoferramenta.corrigirVirgula(this.JTFCusto.getText()));
+            }
 
             if (this.jTable.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Aluno para Alterar");

@@ -1,7 +1,7 @@
 
 package visao;
 
-import java.awt.GraphicsConfiguration;
+
 import java.awt.HeadlessException;
 import java.awt.TextField;
 import javax.swing.JButton;
@@ -26,9 +26,10 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         JBApagar = new javax.swing.JButton();
         JBAlterar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        JPGerenciarAmigos = new javax.swing.JPanel();
         JBSalvar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jvAlteraTela = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         textField1.setText("textField1");
 
@@ -44,6 +45,8 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gereciador de amigos");
+        setResizable(false);
 
         JBApagar.setText("Apagar");
         JBApagar.addActionListener(new java.awt.event.ActionListener() {
@@ -66,26 +69,6 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Gerência Amigos");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        JPGerenciarAmigos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout JPGerenciarAmigosLayout = new javax.swing.GroupLayout(JPGerenciarAmigos);
-        JPGerenciarAmigos.setLayout(JPGerenciarAmigosLayout);
-        JPGerenciarAmigosLayout.setHorizontalGroup(
-            JPGerenciarAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
-        JPGerenciarAmigosLayout.setVerticalGroup(
-            JPGerenciarAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-
         JBSalvar.setText("Salvar");
         JBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,45 +76,59 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             }
         });
 
+        jvAlteraTela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Telefone"
+            }
+        ));
+        jScrollPane1.setViewportView(jvAlteraTela);
+
+        jLabel1.setText("Gerencia Amigo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(JBApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(18, 18, 18)
-                            .addComponent(JBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(JBSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(JPGerenciarAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JBApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JPGerenciarAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(JBAlterar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBApagar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBAlterar)
+                    .addComponent(JBSalvar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBApagar)
                     .addComponent(JBCancelar))
-                .addGap(57, 57, 57))
+                .addGap(95, 95, 95))
         );
 
         pack();
@@ -143,62 +140,37 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         this.JBCancelar = JBCancelar;
         this.JBSalvar = JBSalvar;
         this.jPanel1 = jPanel1;
-        this.jTextField1 = jTextField1;
-        this.textField1 = textField1;
-    }
-
-    public FrmGerenciarAmigo(JButton JBAlterar, JButton JBApagar, JButton JBCancelar, JButton JBSalvar, JPanel jPanel1, JTextField jTextField1, TextField textField1, GraphicsConfiguration gc) {
-        super(gc);
-        this.JBAlterar = JBAlterar;
-        this.JBApagar = JBApagar;
-        this.JBCancelar = JBCancelar;
-        this.JBSalvar = JBSalvar;
-        this.jPanel1 = jPanel1;
-        this.jTextField1 = jTextField1;
-        this.textField1 = textField1;
-    }
-
-    public FrmGerenciarAmigo(JButton JBAlterar, JButton JBApagar, JButton JBCancelar, JButton JBSalvar, JPanel jPanel1, JTextField jTextField1, TextField textField1, String title) throws HeadlessException {
-        super(title);
-        this.JBAlterar = JBAlterar;
-        this.JBApagar = JBApagar;
-        this.JBCancelar = JBCancelar;
-        this.JBSalvar = JBSalvar;
-        this.jPanel1 = jPanel1;
-        this.jTextField1 = jTextField1;
-        this.textField1 = textField1;
-    }
-
-    public FrmGerenciarAmigo(JButton JBAlterar, JButton JBApagar, JButton JBCancelar, JButton JBSalvar, JPanel jPanel1, JTextField jTextField1, TextField textField1, String title, GraphicsConfiguration gc) {
-        super(title, gc);
-        this.JBAlterar = JBAlterar;
-        this.JBApagar = JBApagar;
-        this.JBCancelar = JBCancelar;
-        this.JBSalvar = JBSalvar;
-        this.jPanel1 = jPanel1;
-        this.jTextField1 = jTextField1;
         this.textField1 = textField1;
     }
 
     private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("");
+        int selectedRow = jvAlteraTela.getSelectedRow();
+    if (selectedRow != -1) {
+        // Excluir o amigo correspondente aos dados da linha selecionada
+        // Exemplo: amigoTableModel.removeAmigo(selectedRow);
+        // AmigoTableModel é a classe que contém os dados da tabela.
+    }
+        
     }//GEN-LAST:event_JBApagarActionPerformed
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
         // TODO add your handling code here:
-        JBAlterarAmigo editarAmigo = new JBAlterarAmigo();
-    editarAmigo.setVisible(true);
+     int selectedRow = jvAlteraTela.getSelectedRow();
+    if (selectedRow != -1) {
+        // Obter os dados do amigo selecionado
+        // Exemplo: Amigo amigo = amigoTableModel.getAmigo(selectedRow);
+        // AmigoTableModel é a classe que contém os dados da tabela.
+
+        // Abrir uma janela ou diálogo para editar os detalhes do amigo
+        // Exemplo: new EditarAmigoDialog(amigo).setVisible(true);
+    }
     }//GEN-LAST:event_JBAlterarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void JBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSalvarActionPerformed
         // TODO add your handling code here:
@@ -216,7 +188,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -243,9 +215,10 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBApagar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBSalvar;
-    private javax.swing.JPanel JPGerenciarAmigos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jvAlteraTela;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }

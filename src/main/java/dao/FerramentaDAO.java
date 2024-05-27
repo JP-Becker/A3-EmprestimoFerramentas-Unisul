@@ -31,7 +31,7 @@ public class FerramentaDAO {
                 int idFerramenta = res.getInt("idFerramenta");
                 String nomeFerramenta = res.getString("nomeFerramenta");
                 String marca = res.getString("marca");
-                double custo = res.getInt("custo");
+                double custo = res.getDouble("custo");
 
                 Ferramenta objeto = new Ferramenta(idFerramenta, nomeFerramenta, marca, custo);
                 listaFerramenta.add(objeto);
