@@ -142,7 +142,7 @@ public class FerramentaDAO {
             stmt.setString(1, objeto.getNomeFerramenta());
             stmt.setString(2, objeto.getMarca());
             stmt.setDouble(3, objeto.getCusto());
-            stmt.setInt(5, objeto.getIdFerramenta());
+            stmt.setInt(4, objeto.getIdFerramenta());
             stmt.execute(); // Executando a operação
 
             stmt.close();

@@ -259,7 +259,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             if (this.JTFMarca.getText().length() <= 0) {
                 throw new Mensagem("Marca não pode estar vazia.");
             } else {
-                nome = this.JTFMarca.getText();
+                marca = this.JTFMarca.getText();
             }
 
             custo = Double.parseDouble(this.JTFCusto.getText());
@@ -272,17 +272,13 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
 
             // envia os dados para o Aluno processar
             
-            // ATENCAO: if abaixo comentado por não haver deleteFerramentaBD ainda
-            // NAO ESQUECER DE DESCOMENTAR DEPOIS
-
-            //if (this.objetoferramenta.updateAlunoBD(id, nome, marca, custo)) {
+            if (this.objetoferramenta.atualizarFerramentaBD(id, nome, marca, custo)) {
                 // limpa os campos
                 this.JTFNome.setText("");
                 this.JTFMarca.setText("");
                 this.JTFCusto.setText("");
                 JOptionPane.showMessageDialog(null, "Ferramenta alterada com sucesso!");
-
-            //}
+            }
             
             // Exibe no console o aluno cadastrado
             System.out.println(this.objetoferramenta.getListaFerramenta().toString());
