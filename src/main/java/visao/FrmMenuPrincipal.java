@@ -194,8 +194,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBGerenciarEmprestimoActionPerformed
 
     private void JBcadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcadastrarAlunoActionPerformed
-        FrmCadastroAmigo objetoTela = new FrmCadastroAmigo();
-        objetoTela.setVisible(true);
+//        FrmCadastroAmigo objetoTela = new FrmCadastroAmigo();
+//        objetoTela.setVisible(true);
     }//GEN-LAST:event_JBcadastrarAlunoActionPerformed
 
     private void JBCadastrarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarFerramentasActionPerformed

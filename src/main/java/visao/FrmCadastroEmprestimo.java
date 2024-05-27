@@ -9,6 +9,8 @@ import modelo.Ferramenta;
 import modelo.Amigo;
 import static dao.AmigoDAO.verificaEmprestimoPendente;
 import static dao.FerramentaDAO.verificaDisponibilidade;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // FEITO POR JOÃO
 public class FrmCadastroEmprestimo extends javax.swing.JFrame {
@@ -23,6 +25,11 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         this.objetoEmprestimo = new Emprestimo();
         this.objetoFerramenta = new Ferramenta();
         this.objetoAmigo = new Amigo();
+        
+        Date data = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // Define o formato de saída desejado
+        String dataFormatada = formato.format(data);
+        this.JTFData.setText(dataFormatada);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +44,9 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         JTFIdAmigo = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTFIdFerramenta = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        JTFData = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Emprestimo");
@@ -63,6 +73,10 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(JTFIdFerramenta);
 
+        jLabel3.setText("Data do empréstimo");
+
+        jScrollPane3.setViewportView(JTFData);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,7 +96,12 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                         .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(JBPegar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
+                        .addGap(65, 65, 65))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +114,11 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBPegar))
@@ -120,7 +143,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         int idFerramenta = 0;
         int idEmprestimo = objetoEmprestimo.maiorID() + 1; // definindo a ID do emprestimo automaticamente 
         Date dataEmprestimo = new Date();
-        java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime());
+        
 
         // Loop while para caso alguma das condições nao sejam atendidas o código pare de rodar e não insira nada no BD
         while (true) {
@@ -139,7 +162,17 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             } else {
                 idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
+            
+            if (JTFData != null) {
+                try {
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    dataEmprestimo = formato.parse(JTFData.getText());
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Data de empréstimo inválida. Digite no formato yyyy-MM-dd.", "Erro de formato", JOptionPane.ERROR_MESSAGE);
+                }
+            }
 
+            java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime());
             Ferramenta ferramentaEscolhida = objetoFerramenta.carregaFerramentaPorId(idFerramenta); // variável para guardar a ferramenta escolhida
             Amigo amigoEscolhido = objetoAmigo.carregaAmigoPorId(idAmigo);// variável para guardar o amigo escolhido
             int confirmEmprestimo = JOptionPane.showConfirmDialog(null, "O amigo " + amigoEscolhido.getNomeAmigo() + " já possui um empréstimo ativo. Deseja conceder mesmo assim?");
@@ -198,11 +231,14 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBPegar;
+    private javax.swing.JTextPane JTFData;
     private javax.swing.JTextPane JTFIdAmigo;
     private javax.swing.JTextPane JTFIdFerramenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
