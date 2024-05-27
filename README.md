@@ -38,8 +38,8 @@ nelas.
 ferramenta não devolvida.
 ------------------------------------------------------------------------------------
 . RNF001 - O programa deve rodar localmente em um computador pessoal.
-. RNF002 - O programa deve ser desenvolvido em Java.
-. RNF002 - O programa deve ser conectado a uma base de dados usando mySQL.
+. RNF002 - O programa deve ser desenvolvido em Java 22.0.1.
+. RNF002 - O programa deve ser conectado a uma base de dados usando mySQL 8.4.0.
 ```
 
 ## Configurando BD
