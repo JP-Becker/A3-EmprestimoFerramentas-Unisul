@@ -8,8 +8,7 @@ public class Amigo {
     private int idAmigo;
     private String nomeAmigo;
     private String telefone;
-
-    public AmigoDAO dao = new AmigoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
+    public AmigoDAO dao; // instanciando a classe amigoDAO para ter acesso aos seus métodos.
 
     public Amigo() {
         this(0, "", "");
@@ -20,6 +19,7 @@ public class Amigo {
         this.idAmigo = idAmigo;
         this.nomeAmigo = nomeAmigo;
         this.telefone = telefone;
+        this.dao = new AmigoDAO();
     }
 
     public int getIdAmigo() {

@@ -15,8 +15,7 @@ public class Emprestimo {
     private boolean pendente;
     private Ferramenta ferramenta;
     private Amigo amigo;
-    
-    public EmprestimoDAO dao = new EmprestimoDAO(); // instanciando a classe amigoDAO para ter acesso aos seus métodos.
+    public EmprestimoDAO dao; // instanciando a classe emprestimoDAO para ter acesso aos seus métodos.
     
     
     public Emprestimo() {
@@ -33,6 +32,7 @@ public class Emprestimo {
         this.pendente = pendente;
         this.ferramenta = new Ferramenta();
         this.amigo = new Amigo();
+        this.dao = new EmprestimoDAO();
     }
 
     public Emprestimo(int idEmprestimo, int idAmigo, int idFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
@@ -44,6 +44,7 @@ public class Emprestimo {
         this.pendente = pendente;
         this.ferramenta = new Ferramenta();
         this.amigo = new Amigo();
+        this.dao = new EmprestimoDAO();
     }
 
     public int getIdEmprestimo() {

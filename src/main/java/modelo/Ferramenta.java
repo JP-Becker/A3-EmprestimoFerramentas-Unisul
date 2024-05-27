@@ -9,8 +9,7 @@ public class Ferramenta {
     private String nomeFerramenta;
     private String marca;
     private double custo;
-
-    private FerramentaDAO dao = new FerramentaDAO(); // instanciando a classe FerramentaDAO para usar seus metodos
+    private FerramentaDAO dao;// instanciando a classe FerramentaDAO para usar seus metodos
 
     public Ferramenta() {
         this(0, "", "", 0.0);
@@ -22,6 +21,7 @@ public class Ferramenta {
         this.nomeFerramenta = nomeFerramenta;
         this.marca = marca;
         this.custo = custo;
+        this.dao  = new FerramentaDAO(); 
     }
 
     public int getIdFerramenta() {
