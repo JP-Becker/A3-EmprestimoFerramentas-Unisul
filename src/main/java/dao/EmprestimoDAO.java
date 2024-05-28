@@ -148,7 +148,7 @@ public class EmprestimoDAO {
             stmt.setDate(3,(java.sql.Date) objeto.getDataEmprestimo());
             stmt.setDate(4,(java.sql.Date) objeto.getDataDevolucao());
             stmt.setBoolean(5, objeto.getPendente());
-            stmt.setInt(4, objeto.getIdEmprestimo());
+            stmt.setInt(6, objeto.getIdEmprestimo());
             stmt.execute(); // Executando a operação
             
             stmt.close();

@@ -74,7 +74,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        JBGerenciarEmprestimo.setText("Gerenciar Emprestimo");
+        JBGerenciarEmprestimo.setText("Devolução de empréstimos");
         JBGerenciarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBGerenciarEmprestimoActionPerformed(evt);
@@ -112,11 +112,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(JBGerenciarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JBRelatorioEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JBGerenciarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JBCadastrarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(JBCadastrarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JBCadastrarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JBGerenciarEmprestimo))
                 .addGap(0, 27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
