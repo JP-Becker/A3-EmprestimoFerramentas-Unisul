@@ -1,7 +1,8 @@
-
 package visao;
 
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Emprestimo;
 
@@ -9,11 +10,12 @@ import modelo.Emprestimo;
 public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoEmprestimo;
-    
+
     public FrmGerenciarEmprestimo() {
         initComponents();
-        
+
         this.objetoEmprestimo = new Emprestimo();
+        this.carregaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -51,20 +53,20 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Amigo", "Ferramenta", "Data"
+                "ID emprestimo", "Amigo", "Ferramenta", "Data"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -117,7 +119,40 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
-        // TODO add your handling code here:
+        try {
+            // validando dados da interface gráfica.
+            int id = 0;
+            int idAmigo = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 1).toString());
+            int idFerramenta = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 2).toString());
+            java.sql.Date dataEmprestimo = (java.sql.Date) objetoEmprestimo.carregaEmprestimoPorId(id).getDataEmprestimo();
+            
+            java.sql.Date dataDevolucao = new java.sql.Date(new Date().getTime());
+
+            if (this.jTable.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um empréstimo para DEVOLVER");
+            } else {
+                id = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
+            }
+
+            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta ferramenta ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para o objeto emprestimo processar
+
+                if (this.objetoEmprestimo.atualizarEmprestimoBD(id, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, false)) {
+
+                    JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoEmprestimo.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
     }//GEN-LAST:event_JBDevolucaoActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
@@ -148,13 +183,13 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
         ArrayList<Emprestimo> listaEmprestimo = objetoEmprestimo.getMinhaLista();
         for (Emprestimo e : listaEmprestimo) {
             modelo.addRow(new Object[]{
+                e.getIdEmprestimo(),
                 e.getIdAmigo(),
                 e.getIdFerramenta(),
                 e.getDataEmprestimo(),});
         }
     }
-    
-        
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

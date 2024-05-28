@@ -30,8 +30,8 @@ public class EmprestimoDAO {
                 int idEmprestimo = res.getInt("idEmprestimo");
                 int idAmigo = res.getInt("idAmigo");
                 int idFerramenta = res.getInt("idFerramenta");
-                Date dataEmprestimo = res.getDate("dataEmprestimo");
-                Date dataDevolucao = res.getDate("dataDevolucao");
+                java.sql.Date dataEmprestimo = res.getDate("dataEmprestimo");
+                java.sql.Date dataDevolucao = res.getDate("dataDevolucao");
                 boolean pendente = res.getBoolean("pendente");
 
                 Emprestimo objeto = new Emprestimo(idEmprestimo, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, pendente);
@@ -137,16 +137,17 @@ public class EmprestimoDAO {
     }
     
     public boolean atualizarEmprestimoBD (Emprestimo objeto) {
-        String sql = "UPDATE tb_emprestimos set dataEmprestimo = ? ,dataDevolucao = ? ,pendente = ? WHERE idEmprestimo = ?";
+        String sql = "UPDATE tb_emprestimos set idAmigo = ?, idFerramenta = ?, dataEmprestimo = ? , dataDevolucao = ? ,pendente = ? WHERE idEmprestimo = ?";
         
         try {
             //objeto que representa uma instrução SQL a ser executada
             PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
             
-            
-            stmt.setDate(1,(java.sql.Date) objeto.getDataEmprestimo());
-            stmt.setDate(2,(java.sql.Date) objeto.getDataDevolucao());
-            stmt.setBoolean(3, objeto.getPendente());
+            stmt.setInt(1, objeto.getIdAmigo());
+            stmt.setInt(2, objeto.getIdFerramenta());
+            stmt.setDate(3,(java.sql.Date) objeto.getDataEmprestimo());
+            stmt.setDate(4,(java.sql.Date) objeto.getDataDevolucao());
+            stmt.setBoolean(5, objeto.getPendente());
             stmt.setInt(4, objeto.getIdEmprestimo());
             stmt.execute(); // Executando a operação
             

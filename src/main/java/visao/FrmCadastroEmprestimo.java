@@ -143,14 +143,14 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         int idFerramenta = 0;
         int idEmprestimo = objetoEmprestimo.maiorID() + 1; // definindo a ID do emprestimo automaticamente 
         Date dataEmprestimo = new Date();
-        
+        Boolean sair = true;
 
         // Loop while para caso alguma das condições nao sejam atendidas o código pare de rodar e não insira nada no BD
-        while (true) {
+        while (sair) {
             // condicional para checar se a ID inserida não é 0 e se existe de fato na lista(não é maior do que maior Id dela).
             if (Integer.parseInt(this.JTFIdAmigo.getText()) < 1 || Integer.parseInt(this.JTFIdAmigo.getText()) > objetoAmigo.maiorID()) {
                 JOptionPane.showMessageDialog(null, "insira uma ID de amigo válida.");
-                break;
+                sair = false;
             } else {
                 idAmigo = Integer.parseInt(this.JTFIdAmigo.getText());
             }
@@ -158,7 +158,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             // condicional para checar se a ID inserida não é 0 e se existe de fato na lista(não é maior do que maior Id dela).
             if (Integer.parseInt(this.JTFIdFerramenta.getText()) < 1 || Integer.parseInt(this.JTFIdFerramenta.getText()) > objetoFerramenta.maiorID()) {
                 JOptionPane.showMessageDialog(null, "Insira uma ID de ferramenta válida.!");
-                break;
+                sair = false;
             } else {
                 idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
@@ -190,15 +190,15 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                     // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
                     JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
                             + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
-                    break;
-                } else {
-                    // caso o usuário clique em NO
+                    sair = false;
+                } else if (confirmEmprestimo == JOptionPane.CANCEL_OPTION || confirmEmprestimo == JOptionPane.NO_OPTION) {
+                    // caso o usuário clique em NO ou Cancel
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                    break;
+                    sair = false;
                 }
             } else if (verificaDisponibilidade(ferramentaEscolhida.getIdFerramenta())) {
                 JOptionPane.showMessageDialog(null, "A ferramenta " + ferramentaEscolhida.getNomeFerramenta() + " está indisponível no momento.");
-                break;
+                sair = false;
             } else { // se o amigo escolhido nao tiver pendencia e a ferramenta estiver disponível ele insere o emprestimo direto na BD
                 if (this.objetoEmprestimo.inserirEmprestimoBD(idEmprestimo, amigoEscolhido.getIdAmigo(), ferramentaEscolhida.getIdFerramenta(), sqlDate, true,
                         ferramentaEscolhida, amigoEscolhido)) {
@@ -209,7 +209,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                     // mostrando mensagem confirmando que o empréstimo foi cadastrado, para quem e quando
                     JOptionPane.showMessageDialog(null, amigoEscolhido.getNomeAmigo() + " Pegou um(a) "
                             + ferramentaEscolhida.getNomeFerramenta() + " emprestado(a)." + " na data: " + dataEmprestimo);
-                    break;
+                    sair = false;
                 }
             }
 
