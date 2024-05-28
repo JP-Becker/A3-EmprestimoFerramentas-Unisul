@@ -2,19 +2,23 @@
 package visao;
 
 
-import java.awt.HeadlessException;
-import java.awt.TextField;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import dao.AmigoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Amigo;
 
 
 public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
-    
+     private AmigoDAO amigoDAO;
+
     public FrmGerenciarAmigo() {
         initComponents();
+        this.amigoDAO = new AmigoDAO(); // initialize AmigoDAO
+        this.carregaTabela();
     }
+
 
     
     @SuppressWarnings("unchecked")
@@ -28,8 +32,12 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         JBCancelar = new javax.swing.JButton();
         JBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jvAlteraTela = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        JTFNome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        JTFTelefone = new javax.swing.JTextField();
 
         textField1.setText("textField1");
 
@@ -76,7 +84,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             }
         });
 
-        jvAlteraTela.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,24 +92,41 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                 "Nome", "Telefone"
             }
         ));
-        jScrollPane1.setViewportView(jvAlteraTela);
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable);
 
         jLabel1.setText("Gerencia Amigo");
+
+        jLabel2.setText("Nome:");
+
+        JTFNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFNomeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Telefone:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 97, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel1)))
+                .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addGap(132, 132, 132)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,17 +135,32 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JBApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(JTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBAlterar)
                     .addComponent(JBSalvar))
@@ -128,54 +168,147 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBApagar)
                     .addComponent(JBCancelar))
-                .addGap(95, 95, 95))
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public FrmGerenciarAmigo(JButton JBAlterar, JButton JBApagar, JButton JBCancelar, JButton JBSalvar, JPanel jPanel1, JTextField jTextField1, TextField textField1) throws HeadlessException {
-        this.JBAlterar = JBAlterar;
-        this.JBApagar = JBApagar;
-        this.JBCancelar = JBCancelar;
-        this.JBSalvar = JBSalvar;
-        this.jPanel1 = jPanel1;
-        this.textField1 = textField1;
-    }
+ 
 
     private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = jvAlteraTela.getSelectedRow();
-    if (selectedRow != -1) {
-        // Excluir o amigo correspondente aos dados da linha selecionada
-        // Exemplo: amigoTableModel.removeAmigo(selectedRow);
-        // AmigoTableModel é a classe que contém os dados da tabela.
-    }
-        
+   try {
+            if (this.jTable.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Amigo para APAGAR");
+            }
+
+            int amigoId = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
+
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esse Amigo?");
+            if (respostaUsuario == 0) {
+                if (this.amigoDAO.deletarAmigoBD(amigoId)) {
+                    this.JTFNome.setText("");
+                    this.JTFTelefone.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Amigo apagado com Sucesso!");
+                }
+            }
+
+            carregaTabela();
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            carregaTabela();
+        }
+
     }//GEN-LAST:event_JBApagarActionPerformed
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
-        // TODO add your handling code here:
-     int selectedRow = jvAlteraTela.getSelectedRow();
-    if (selectedRow != -1) {
-        // Obter os dados do amigo selecionado
-        // Exemplo: Amigo amigo = amigoTableModel.getAmigo(selectedRow);
-        // AmigoTableModel é a classe que contém os dados da tabela.
+  // TODO add your handling code here:
+        try {
+            String nome = "";
+            String telefone = "";
 
-        // Abrir uma janela ou diálogo para editar os detalhes do amigo
-        // Exemplo: new EditarAmigoDialog(amigo).setVisible(true);
-    }
+            if (this.JTFNome.getText().length() <= 0) {
+                throw new Mensagem("Nome não pode estar vazio.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFTelefone.getText().length() <= 0) {
+                throw new Mensagem("Telefone não pode estar vazio.");
+            } else {
+                telefone = this.JTFTelefone.getText();
+            }
+
+            if (this.jTable.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Amigo para Alterar");
+            } else {
+                int amigoId = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
+                Amigo amigo = new Amigo(amigoId, nome, telefone);
+
+                if (this.amigoDAO.atualizarAmigoBD(amigo)) {
+                    this.JTFNome.setText("");
+                    this.JTFTelefone.setText("");
+                    JOptionPane.showMessageDialog(null, "Amigo alterado com sucesso!");
+                }
+            }
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um Telefone válido.");
+        } finally {
+            carregaTabela();
+        }
     }//GEN-LAST:event_JBAlterarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+     this.dispose();
+
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSalvarActionPerformed
-        // TODO add your handling code here:
-         System.out.println("Dados salvos com sucesso!");
+       try {
+            String nome = "";
+            String telefone = "";
+
+            if (this.JTFNome.getText().length() <= 0) {
+                throw new Mensagem("Nome não pode estar vazio.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFTelefone.getText().length() <= 0) {
+                throw new Mensagem("Telefone não pode estar vazio.");
+            } else {
+                telefone = this.JTFTelefone.getText();
+            }
+
+            int maiorID = amigoDAO.maiorID() + 1;
+            Amigo amigo = new Amigo(maiorID, nome, telefone);
+
+            if (amigoDAO.inserirAmigoBD(amigo)) {
+                this.JTFNome.setText("");
+                this.JTFTelefone.setText("");
+                JOptionPane.showMessageDialog(null, "Amigo salvo com sucesso!");
+            }
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            carregaTabela();
+        }
+
     }//GEN-LAST:event_JBSalvarActionPerformed
+
+    private void jTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMousePressed
+        // TODO add your handling code here:
+        if (this.jTable.getSelectedRow() != -1) {
+            String nome = this.jTable.getValueAt(this.jTable.getSelectedRow(), 1).toString();
+            String telefone = this.jTable.getValueAt(this.jTable.getSelectedRow(), 2).toString();
+
+            this.JTFNome.setText(nome);
+            this.JTFTelefone.setText(telefone);
+        }
+    }//GEN-LAST:event_jTableMousePressed
+
+    private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNomeActionPerformed
+    // TODO add your handling code here:
+
+
+    public void carregaTabela() {
+
+        DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel();
+        modelo.setNumRows(0);
+
+        ArrayList<Amigo> listaAmigo = amigoDAO.getListaAmigo();
+        for (Amigo a : listaAmigo) {
+            modelo.addRow(new Object[]{
+                a.getNomeAmigo(),
+                a.getTelefone()
+            });
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -205,8 +338,10 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new FrmGerenciarAmigo().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmGerenciarAmigo().setVisible(true);
+            }
         });
     }
 
@@ -215,10 +350,14 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBApagar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBSalvar;
+    private javax.swing.JTextField JTFNome;
+    private javax.swing.JTextField JTFTelefone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jvAlteraTela;
+    private javax.swing.JTable jTable;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
