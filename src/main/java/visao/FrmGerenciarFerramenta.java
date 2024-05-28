@@ -206,7 +206,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             // validando dados da interface gráfica.
             int id = 0;
             if (this.jTable.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Aluno para APAGAR");
+                throw new Mensagem("Primeiro Selecione uma Ferramenta para APAGAR");
             } else {
                 id = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
             }
@@ -215,7 +215,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta ferramenta ?");
 
             if (respostaUsuario == 0) {// clicou em SIM
-                // envia os dados para o Aluno processar
+                // envia os dados para a Ferramenta processar
 
                 if (this.objetoferramenta.deletarFerramentaBD(id)) {
 					// limpa os campos
@@ -262,12 +262,12 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             }
 
             if (this.jTable.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Aluno para Alterar");
+                throw new Mensagem("Primeiro Selecione uma Ferramenta para Alterar");
             } else {
                 id = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
             }
 
-            // envia os dados para o Aluno processar
+            // envia os dados para a Ferramenta processar
             
             if (this.objetoferramenta.atualizarFerramentaBD(id, nome, marca, custo)) {
                 // limpa os campos
@@ -277,7 +277,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ferramenta alterada com sucesso!");
             }
             
-            // Exibe no console o aluno cadastrado
+            // Exibe no console a ferramenta cadastrada
             System.out.println(this.objetoferramenta.getListaFerramenta().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
@@ -292,7 +292,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
+        // Carrega a lista de objetos ferramenta
         ArrayList<Ferramenta> listaFerramenta = objetoferramenta.getListaFerramenta();
         for (Ferramenta a : listaFerramenta) {
             modelo.addRow(new Object[]{
