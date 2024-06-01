@@ -22,7 +22,7 @@ dessas ferramentas para esses amigos, com tudo sendo registrado em um banco de d
 . Interface gráfica: Possui uma interface gráfica feita com JavaFX para ser possível realizar cada uma das funcionalidades.
 ```
 
-  ### Requisitos Funcionais e não funcionais
+  ### Requisitos Funcionais
 ```bash
 . RF001 - Cadastrar ferramentas com nome, marca e custo.
 . RF002 - Cadastrar amigo com nome, telefone e e-mail.
@@ -36,7 +36,9 @@ nelas.
 . RF008 - Mostrar se algum amigo nunca devolveu uma ferramenta.
 . RF009 - Ao fazer um novo empréstimo, mostrar se o amigo tem alguma
 ferramenta não devolvida.
-------------------------------------------------------------------------------------
+```
+  ### Requisitos não funcionais
+```bash
 . RNF001 - O programa deve rodar localmente em um computador pessoal com o Windows 11.
 . RNF002 - O programa deve ser desenvolvido em Java 22.0.1.
 . RNF002 - O programa deve ser conectado a uma base de dados usando mySQL 8.4.0.
