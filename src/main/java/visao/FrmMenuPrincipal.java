@@ -171,7 +171,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void JBGerenciarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarAmigoActionPerformed
         // TODO add your handling code here:
-         FrmGerenciarAmigo objetoTela = new FrmGerenciarAmigo();
+        FrmGerenciarAmigo objetoTela = new FrmGerenciarAmigo();
         objetoTela.setVisible(true);
     }//GEN-LAST:event_JBGerenciarAmigoActionPerformed
 
@@ -182,7 +182,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void JBCadastrarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarEmprestimoActionPerformed
         // TODO add your handling code here:
-         FrmCadastroEmprestimo objetoTela = new FrmCadastroEmprestimo();
+        FrmCadastroEmprestimo objetoTela = new FrmCadastroEmprestimo();
         objetoTela.setVisible(true);
     }//GEN-LAST:event_JBCadastrarEmprestimoActionPerformed
 
@@ -200,13 +200,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void JBCadastrarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarFerramentasActionPerformed
         // TODO add your handling code here:
-         FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
+        FrmCadastroFerramenta objetoTela = new FrmCadastroFerramenta();
         objetoTela.setVisible(true);
     }//GEN-LAST:event_JBCadastrarFerramentasActionPerformed
 
     private void JBRelatorioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioEmprestimoActionPerformed
         // TODO add your handling code here:
-         FrmRelatorioEmprestimo objetoTela = new FrmRelatorioEmprestimo();
+        FrmRelatorioEmprestimo objetoTela = new FrmRelatorioEmprestimo();
         objetoTela.setVisible(true); 
     }//GEN-LAST:event_JBRelatorioEmprestimoActionPerformed
 
