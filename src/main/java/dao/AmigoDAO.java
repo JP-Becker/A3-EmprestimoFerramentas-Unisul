@@ -154,12 +154,12 @@ public class AmigoDAO {
     }
     
     // método para verificar se o amigo possui algum empréstimo pendente
-    public static boolean verificaEmprestimoPendente(int idAmigo) {
+    public static boolean verificaEmprestimoPendente(int id) {
         String sql = "SELECT COUNT(*) FROM tb_emprestimos e "
             + "JOIN tb_amigos a ON e.idAmigo = a.idAmigo "
             + "WHERE a.idAmigo = ?";
         try (PreparedStatement stmt = Utils.getConexao().prepareStatement(sql)) {
-          stmt.setInt(1, idAmigo);
+          stmt.setInt(1, id);
           ResultSet rs = stmt.executeQuery();
 
           if (rs.next() && rs.getInt(1) > 0) {

@@ -90,7 +90,7 @@ public class Amigo {
         dao.atualizarAmigoBD(objeto);
         return true;
     }
-    
+   
     
 
 }
