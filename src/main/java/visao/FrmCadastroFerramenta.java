@@ -23,7 +23,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         JTFMarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         JTFCusto = new javax.swing.JTextField();
-        JBCancelar = new javax.swing.JButton();
+        JBVoltar = new javax.swing.JButton();
         JBCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,10 +47,10 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
             }
         });
 
-        JBCancelar.setText("Cancelar");
-        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        JBVoltar.setText("Voltar");
+        JBVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCancelarActionPerformed(evt);
+                JBVoltarActionPerformed(evt);
             }
         });
 
@@ -69,7 +69,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(JBCancelar)
+                        .addComponent(JBVoltar)
                         .addGap(60, 60, 60)
                         .addComponent(JBCadastrar))
                     .addGroup(layout.createSequentialGroup()
@@ -81,7 +81,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                             .addComponent(JTFNomeFerramenta, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                             .addComponent(JTFMarca)
                             .addComponent(JTFCusto))))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +100,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                 .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCancelar)
+                    .addComponent(JBVoltar)
                     .addComponent(JBCadastrar))
                 .addGap(20, 20, 20))
         );
@@ -112,9 +112,9 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFCustoActionPerformed
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+    private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
         // TODO add your handling code here:
@@ -170,7 +170,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrar;
-    private javax.swing.JButton JBCancelar;
+    private javax.swing.JButton JBVoltar;
     private javax.swing.JTextField JTFCusto;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JTextField JTFNomeFerramenta;

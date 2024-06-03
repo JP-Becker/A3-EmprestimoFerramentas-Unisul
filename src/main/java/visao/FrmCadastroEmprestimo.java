@@ -43,7 +43,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JBCancelar = new javax.swing.JButton();
+        JBVoltar = new javax.swing.JButton();
         JBPegar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -58,10 +58,10 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
         jLabel2.setText("Ferramenta");
 
-        JBCancelar.setText("Cancelar");
-        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        JBVoltar.setText("Voltar");
+        JBVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCancelarActionPerformed(evt);
+                JBVoltarActionPerformed(evt);
             }
         });
 
@@ -99,7 +99,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                         .addContainerGap(419, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addComponent(JBPegar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))
@@ -128,7 +128,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCancelar)
+                    .addComponent(JBVoltar)
                     .addComponent(JBPegar))
                 .addGap(36, 36, 36))
         );
@@ -140,9 +140,9 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
 
     }
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+    private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBPegarActionPerformed
 
@@ -248,8 +248,8 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBAmigo;
     private javax.swing.JComboBox<String> CBFerramenta;
-    private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBPegar;
+    private javax.swing.JButton JBVoltar;
     private javax.swing.JTextPane JTFData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

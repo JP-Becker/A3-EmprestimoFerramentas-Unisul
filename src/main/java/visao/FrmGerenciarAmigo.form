@@ -71,7 +71,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="JBApagar" min="-2" pref="85" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="JBCancelar" min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="JBVoltar" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -112,7 +112,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBApagar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
@@ -136,12 +136,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBAlterarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="JBCancelar">
+    <Component class="javax.swing.JButton" name="JBVoltar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBVoltarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBSalvar">
