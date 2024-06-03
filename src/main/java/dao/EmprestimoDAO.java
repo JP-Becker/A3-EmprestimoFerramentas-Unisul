@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Emprestimo;
-import utils.Utils;
+import conexao.Conexao;
 
 // FEITO POR JOÃO
 public class EmprestimoDAO {
@@ -19,7 +19,7 @@ public class EmprestimoDAO {
          // usando o bloco try catch para tratar possíveis erros
         try {
             // instanciando interface Statement para utilizar métodos SQL
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos");
@@ -55,7 +55,7 @@ public class EmprestimoDAO {
 
          // usando o bloco try catch para tratar possíveis erros
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE idEmprestimo = " + id);
@@ -84,7 +84,7 @@ public class EmprestimoDAO {
         // usando o bloco try catch para tratar possíveis erros
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 
             stmt.setInt(1, objeto.getIdEmprestimo());
             stmt.setInt(2, objeto.getIdAmigo());
@@ -104,11 +104,12 @@ public class EmprestimoDAO {
         }
     }
     
+    // método que retorna a maior ID da lista de empréstimos
     public int maiorID() {
         int maiorID = 0;
 
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(idEmprestimo) idEmprestimo FROM tb_emprestimos");
 
             res.next();
@@ -124,7 +125,7 @@ public class EmprestimoDAO {
      //Método para deletar Emprestimo da BD
     public boolean deletarEmprestimoBD (int id) {
          try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_emprestimos WHERE idEmprestimo = " +  id);
             stmt.close();
             
@@ -136,12 +137,13 @@ public class EmprestimoDAO {
         }
     }
     
+    // método para alterar algum emprestimo existente
     public boolean atualizarEmprestimoBD (Emprestimo objeto) {
         String sql = "UPDATE tb_emprestimos set idAmigo = ?, idFerramenta = ?, dataEmprestimo = ? , dataDevolucao = ? ,pendente = ? WHERE idEmprestimo = ?";
         
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
             
             stmt.setInt(1, objeto.getIdAmigo());
             stmt.setInt(2, objeto.getIdFerramenta());

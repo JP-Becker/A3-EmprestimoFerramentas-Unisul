@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Amigo;
-import utils.Utils;
+import conexao.Conexao;
 
 // FEITO POR JOÃO
 public class AmigoDAO {
@@ -20,7 +20,7 @@ public class AmigoDAO {
          // usando o bloco try catch para tratar possíveis erros
         try {
             // instanciando interface Statement para utilizar métodos SQL
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos");
@@ -54,7 +54,7 @@ public class AmigoDAO {
 
          // usando o blocm try catch para tratar possíveis erros
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos WHERE idAmigo = " + id);
@@ -80,7 +80,7 @@ public class AmigoDAO {
         // usando o bloco try catch para tratar possíveis erros
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 
             stmt.setInt(1, objeto.getIdAmigo());
             stmt.setString(2, objeto.getNomeAmigo());
@@ -102,7 +102,7 @@ public class AmigoDAO {
         int maiorID = 0;
 
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(idAmigo) idAmigo FROM tb_amigos");
 
             res.next();
@@ -118,7 +118,7 @@ public class AmigoDAO {
     //Método para deletar amigo da BD
     public boolean deletarAmigoBD (int idAmigo) {
          try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_amigos WHERE idAmigo = " +  idAmigo);
             stmt.close();
             
@@ -132,11 +132,11 @@ public class AmigoDAO {
     
     // método para alterar dados de algum amigo
     public boolean atualizarAmigoBD (Amigo objeto) {
-        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? WHERE idAmigo = ?";
+        String sql = "UPDATE tb_amigos set nomeAmigo = ? ,telefone = ? WHERE idAmigo = ?"; // script SQL a ser executado
         
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
             
             
             stmt.setString(1, objeto.getNomeAmigo());
@@ -158,7 +158,7 @@ public class AmigoDAO {
         String sql = "SELECT COUNT(*) FROM tb_emprestimos e "
             + "JOIN tb_amigos a ON e.idAmigo = a.idAmigo "
             + "WHERE a.idAmigo = ?";
-        try (PreparedStatement stmt = Utils.getConexao().prepareStatement(sql)) {
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
           stmt.setInt(1, id);
           ResultSet rs = stmt.executeQuery();
 

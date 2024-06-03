@@ -1,11 +1,12 @@
 
-package utils;
+package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Utils {
+public class Conexao {
+    // Método para fazer a conexão com o BD mySQL para ser usado nas classes DAO
     public static Connection getConexao() {
         Connection connection = null;
         

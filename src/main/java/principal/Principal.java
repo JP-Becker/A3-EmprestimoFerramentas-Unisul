@@ -8,8 +8,5 @@ public class Principal {
         // instanciando o objeto FrmMenuPrincipal e setando visible como true para aparecer
         FrmMenuPrincipal objetoTela = new FrmMenuPrincipal();
         objetoTela.setVisible(true);
-        
-        Emprestimo objetoEmprestimo = new Emprestimo();
-        System.out.println(objetoEmprestimo.getMinhaLista().toString());
     }
 }

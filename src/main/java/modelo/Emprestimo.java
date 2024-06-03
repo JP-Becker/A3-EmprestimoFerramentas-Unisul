@@ -112,15 +112,13 @@ public class Emprestimo {
         this.amigo = amigo;
     }
 
-    //esse toString() não mostra o valor dos objetos, que puxaria o toString() deles e deixaria a linha muito extensa
-    //se acharem que é interessante podem adicionar o toString dos objetos nesse
     @Override
+    // retornando todos os atributos em String
     public String toString() {
         return "idEmprestimo=" + idEmprestimo + "idAmigo= " + idAmigo + "idFerramenta= " + idFerramenta + "dataEmprestimo=" + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", pendente=" + pendente;
     }
 
     // Os métodos a seguir referenciam implementacoes futuras da classe DAO
-    // Pro netbeans não reclamar, mantenha esse trecho comentado até EmprestimoDAO ser implementado
     
     
     public ArrayList<Emprestimo> getMinhaLista() {
@@ -136,6 +134,7 @@ public class Emprestimo {
         return dao.maiorID();
     }
     
+     // insere empréstimo
     public boolean inserirEmprestimoBD(int id, int idAmigo, int idFerramenta, java.sql.Date dataEmprestimo, boolean pendente, Ferramenta ferramenta, Amigo amigo) {
         id = dao.maiorID() + 1;
         Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
@@ -143,11 +142,13 @@ public class Emprestimo {
         return true;
     }
     
+    // deletando um empréstimo
     public boolean deletarEmprestimoBD(int id) {
         dao.deletarEmprestimoBD(id);
         return true;
     }
-
+    
+    // alterando algum empréstimo existente
     public boolean atualizarEmprestimoBD(int id, int idAmigo, int idFerramenta, java.sql.Date dataEmprestimo, java.sql.Date dataDevolucao, boolean pendente) {
         Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta,dataEmprestimo, dataDevolucao, pendente, ferramenta, amigo);
         dao.atualizarEmprestimoBD(objeto);

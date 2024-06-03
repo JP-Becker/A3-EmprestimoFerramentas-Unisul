@@ -7,7 +7,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
  
     public FrmMenuPrincipal() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);// para a janela ficar no meio da tela
     }
 
    

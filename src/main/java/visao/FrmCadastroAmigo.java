@@ -9,7 +9,7 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
 
     public FrmCadastroAmigo() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // para a janela aparecer no meio da tela
         this.objetoAmigo = new Amigo(); // instancia o objeto de ferramenta vazio
     }
 

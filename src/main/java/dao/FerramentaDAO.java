@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Ferramenta;
-import utils.Utils;
+import conexao.Conexao;
 
 // FEITO POR JOÃO
 public class FerramentaDAO {
@@ -20,7 +20,7 @@ public class FerramentaDAO {
         // usando o bloco try catch para tratar possíveis erros
         try {
             // instanciando interface Statement para utilizar métodos SQL
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas");
@@ -54,7 +54,7 @@ public class FerramentaDAO {
 
         // usando o bloco try catch para tratar possíveis erros
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
 
             // usando a classe resultSet para utilizar métodos getters referentes a tipos de dado do SQL
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE idFerramenta = " + id);
@@ -81,7 +81,7 @@ public class FerramentaDAO {
         // usando o bloco try catch para tratar possíveis erros
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 
             stmt.setInt(1, objeto.getIdFerramenta());
             stmt.setString(2, objeto.getNomeFerramenta());
@@ -99,11 +99,12 @@ public class FerramentaDAO {
         }
     }
 
+    // método para retornar maior ID da lista de ferramentas
     public int maiorID() {
         int maiorID = 0;
 
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(idFerramenta) idFerramenta FROM tb_ferramentas");
 
             res.next();
@@ -119,7 +120,7 @@ public class FerramentaDAO {
     //Método para deletar Ferrmaneta da BD
     public boolean deletarFerramentaBD(int id) {
         try {
-            Statement stmt = Utils.getConexao().createStatement();
+            Statement stmt = Conexao.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE idFerramenta = " + id);
             stmt.close();
 
@@ -137,7 +138,7 @@ public class FerramentaDAO {
 
         try {
             //objeto que representa uma instrução SQL a ser executada
-            PreparedStatement stmt = Utils.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 
             stmt.setString(1, objeto.getNomeFerramenta());
             stmt.setString(2, objeto.getMarca());
@@ -158,7 +159,7 @@ public class FerramentaDAO {
     public static boolean verificaDisponibilidade(int idFerramenta) {
         String sql = "SELECT COUNT(*) FROM tb_emprestimos "
                 + "WHERE idFerramenta = ?";
-        try (PreparedStatement stmt = Utils.getConexao().prepareStatement(sql)) {
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
             stmt.setInt(1, idFerramenta);
             ResultSet rs = stmt.executeQuery();
 
