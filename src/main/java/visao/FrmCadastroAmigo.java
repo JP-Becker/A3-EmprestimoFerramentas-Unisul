@@ -141,7 +141,7 @@ public class FrmCadastroAmigo extends javax.swing.JFrame {
             }
 
             // inserindo amigo novo na BD
-            if (this.objetoAmigo.inserirAmigoBD(idAmigo, nome, telefone, emprestimosTotais, emprestimosAtivos)) {
+            if (this.objetoAmigo.inserirAmigoBD(nome, telefone)) {
                 JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
                 // limpa campos da interface
                 this.JTFNome.setText("");

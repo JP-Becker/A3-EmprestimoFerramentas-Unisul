@@ -11,11 +11,11 @@ import modelo.Amigo;
 
 public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
-     private AmigoDAO amigoDAO;
+     private Amigo amigo;
 
     public FrmGerenciarAmigo() {
         initComponents();
-        this.amigoDAO = new AmigoDAO(); // initialize AmigoDAO
+        this.amigo = new Amigo(); // initialize AmigoDAO
         this.carregaTabela();
     }
 
@@ -177,16 +177,16 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
  
 
     private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
-   try {
+    try {
             if (this.jTable.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Amigo para APAGAR");
+                throw new Exception("Primeiro Selecione um Amigo para APAGAR");
             }
 
-            int amigoId = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
+            int amigoId = this.amigo.getListaAmigo().get(this.jTable.getSelectedRow()).getIdAmigo();
 
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esse Amigo?");
             if (respostaUsuario == 0) {
-                if (this.amigoDAO.deletarAmigoBD(amigoId)) {
+                if (this.amigo.deletarAmigoBD(amigoId)) {
                     this.JTFNome.setText("");
                     this.JTFTelefone.setText("");
                     JOptionPane.showMessageDialog(rootPane, "Amigo apagado com Sucesso!");
@@ -194,7 +194,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             }
 
             carregaTabela();
-        } catch (Mensagem erro) {
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             carregaTabela();
@@ -204,41 +204,38 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
   // TODO add your handling code here:
-        try {
+     try {
             String nome = "";
             String telefone = "";
 
             if (this.JTFNome.getText().length() <= 0) {
-                throw new Mensagem("Nome não pode estar vazio.");
+                throw new Exception("Nome não pode estar vazio.");
             } else {
                 nome = this.JTFNome.getText();
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {
-                throw new Mensagem("Telefone não pode estar vazio.");
+                throw new Exception("Telefone não pode estar vazio.");
             } else {
                 telefone = this.JTFTelefone.getText();
             }
 
             if (this.jTable.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Amigo para Alterar");
+                throw new Exception("Primeiro Selecione um Amigo para Alterar");
             } else {
-                int amigoId = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
-                Amigo amigo = new Amigo(amigoId, nome, telefone);
-
-                if (this.amigoDAO.atualizarAmigoBD(amigo)) {
+                int amigoId = this.amigo.getListaAmigo().get(this.jTable.getSelectedRow()).getIdAmigo();
+                if (this.amigo.atualizarAmigoBD(amigoId, nome, telefone)) {
                     this.JTFNome.setText("");
                     this.JTFTelefone.setText("");
                     JOptionPane.showMessageDialog(null, "Amigo alterado com sucesso!");
                 }
             }
-        } catch (Mensagem erro) {
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um Telefone válido.");
         } finally {
             carregaTabela();
         }
+    
     }//GEN-LAST:event_JBAlterarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
@@ -252,26 +249,27 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             String telefone = "";
 
             if (this.JTFNome.getText().length() <= 0) {
-                throw new Mensagem("Nome não pode estar vazio.");
+                throw new Exception("Nome não pode estar vazio.");
             } else {
                 nome = this.JTFNome.getText();
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {
-                throw new Mensagem("Telefone não pode estar vazio.");
+                throw new Exception("Telefone não pode estar vazio.");
             } else {
                 telefone = this.JTFTelefone.getText();
             }
 
-            int maiorID = amigoDAO.maiorID() + 1;
-            Amigo amigo = new Amigo(maiorID, nome, telefone);
+            int id = amigo.maiorID() + 1;
 
-            if (amigoDAO.inserirAmigoBD(amigo)) {
+            if (this.amigo.inserirAmigoBD( nome, telefone)) {
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
-                JOptionPane.showMessageDialog(null, "Amigo salvo com sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Amigo salvo com Sucesso!");
             }
-        } catch (Mensagem erro) {
+
+            carregaTabela();
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             carregaTabela();
@@ -301,7 +299,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel();
         modelo.setNumRows(0);
 
-        ArrayList<Amigo> listaAmigo = amigoDAO.getListaAmigo();
+        ArrayList<Amigo> listaAmigo = amigo.getListaAmigo();
         for (Amigo a : listaAmigo) {
             modelo.addRow(new Object[]{
                 a.getNomeAmigo(),

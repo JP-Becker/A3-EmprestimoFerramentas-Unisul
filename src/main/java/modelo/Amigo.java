@@ -69,8 +69,8 @@ public class Amigo {
         return dao.carregaAmigoPorId(id);
     }
 
-    public boolean inserirAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
-        id = dao.maiorID() + 1;
+    public boolean inserirAmigoBD(String nome, String telefone) {
+        int id = dao.maiorID() + 1;
         Amigo objeto = new Amigo(id, nome, telefone);
         dao.inserirAmigoBD(objeto);
         return true;
