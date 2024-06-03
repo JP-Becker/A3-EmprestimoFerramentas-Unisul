@@ -124,8 +124,9 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
         String marca = "";
         double custo = 0.0;
         
-        // Loop para que caso algum dos campos sejam inválidos o programa pare de rodar e não insira campos vazios na BD
+        // Loop while para que caso algum dos campos sejam inválidos o programa pare de rodar e não insira campos vazios na BD
         while (true) {
+            // caso a ferramenta tenha menos de 3 caracteres
             if (this.JTFNomeFerramenta.getText().length() < 3) {
                 JOptionPane.showMessageDialog(null, "O nome deve ter ao menos 3 caracteres");
                 break;
@@ -133,6 +134,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                 nomeFerramenta = this.JTFNomeFerramenta.getText();
             }
 
+            // caso a marca tenha menos do que 3 caracteres
             if (this.JTFMarca.getText().length() < 3) {
                 JOptionPane.showMessageDialog(null, "A marca deve ter ao menos 3 caracteres");
                 break;
@@ -140,6 +142,7 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
                 marca = this.JTFMarca.getText();
             }
             
+            // caso o valor seja menor que 0
             if (Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
                 JOptionPane.showMessageDialog(null, "O custo não pode ser negativo!");
                 break;

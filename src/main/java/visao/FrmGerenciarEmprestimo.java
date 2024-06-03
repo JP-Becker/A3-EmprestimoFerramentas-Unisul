@@ -121,13 +121,15 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
     private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
         try {
             // validando dados da interface gráfica.
+            // inicializando as variáveis
             int id = 0;
             int idAmigo = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 1).toString());
             int idFerramenta = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 2).toString());
             java.sql.Date dataEmprestimo = (java.sql.Date) objetoEmprestimo.carregaEmprestimoPorId(id).getDataEmprestimo();
             
-            java.sql.Date dataDevolucao = new java.sql.Date(new Date().getTime());
+            java.sql.Date dataDevolucao = new java.sql.Date(new Date().getTime());// data no formato SQL
 
+            // caso não tenha selecionado nenhuma linha
             if (this.jTable.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um empréstimo para DEVOLVER");
             } else {
@@ -165,19 +167,11 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMousePressed
-//        if (this.jTable.getSelectedRow() != -1) {
-//            String nome = this.jTable.getValueAt(this.jTable.getSelectedRow(), 1).toString();
-//            String marca = this.jTable.getValueAt(this.jTable.getSelectedRow(), 2).toString();
-//            String custo = this.jTable.getValueAt(this.jTable.getSelectedRow(), 3).toString();
-//
-//            this.JTFNome.setText(nome);
-//            this.JTFCusto.setText(custo);
-//            this.JTFMarca.setText(marca);
-//        }
+
     }//GEN-LAST:event_jTableMousePressed
 
     public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) this.jTable.getModel(); // definindo o modelo da tabela
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos emprestimo
         ArrayList<Emprestimo> listaEmprestimo = objetoEmprestimo.getMinhaLista();

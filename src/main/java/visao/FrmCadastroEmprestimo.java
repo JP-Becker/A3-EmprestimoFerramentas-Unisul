@@ -24,13 +24,15 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     public FrmCadastroEmprestimo() {
         initComponents();
 
+        // inicializando os objetos
         this.objetoEmprestimo = new Emprestimo();
         this.objetoFerramenta = new Ferramenta();
         this.objetoAmigo = new Amigo();
 
-        carregaCBAmigo();
-        carregaCBFerramenta();
+        carregaCBAmigo(); // carregando a combo box de amigo
+        carregaCBFerramenta(); // carregando o combo box de ferramenta
 
+        // formatando a data para o formato do mySQL
         Date data = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // Define o formato de saída desejado
         String dataFormatada = formato.format(data);
@@ -226,7 +228,6 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         ArrayList<Ferramenta> listaFerramenta = objetoFerramenta.getListaFerramenta();
         for (Ferramenta objeto : listaFerramenta) {
-            // condicional para mostrar apenas as ferramentas que estão disponíveis para serem emprestadas
             model.addElement(objeto.getNomeFerramenta());
             CBFerramenta.setModel(model);
 

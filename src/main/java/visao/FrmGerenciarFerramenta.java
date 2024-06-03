@@ -243,6 +243,7 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
             String marca = "";
             double custo = 0.0;
 
+            // vendo se o campo nome não está vazio
             if (this.JTFNome.getText().length() <= 0) {
                 throw new Mensagem("Nome não pode estar vazio.");
             } else {
@@ -255,12 +256,14 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
                 marca = this.JTFMarca.getText();
             }
 
+            // vendo se o valor não é 0 ou menor
             if (Double.parseDouble(objetoferramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
                 JOptionPane.showMessageDialog(null, "O custo não pode ser negativo!");
             } else {
                 custo = Double.parseDouble(objetoferramenta.corrigirVirgula(this.JTFCusto.getText()));
             }
 
+            // vendo se algo realmente foi selecionado
             if (this.jTable.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione uma Ferramenta para Alterar");
             } else {
@@ -303,34 +306,9 @@ public class FrmGerenciarFerramenta extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmGerenciarFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmGerenciarFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmGerenciarFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmGerenciarFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmGerenciarFerramenta().setVisible(true);
