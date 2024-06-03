@@ -29,7 +29,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JBApagar = new javax.swing.JButton();
         JBAlterar = new javax.swing.JButton();
-        JBCancelar = new javax.swing.JButton();
+        JBVoltar = new javax.swing.JButton();
         JBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
@@ -70,10 +70,10 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
             }
         });
 
-        JBCancelar.setText("Cancelar");
-        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        JBVoltar.setText("Cancelar");
+        JBVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCancelarActionPerformed(evt);
+                JBVoltarActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JBApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +167,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBApagar)
-                    .addComponent(JBCancelar))
+                    .addComponent(JBVoltar))
                 .addGap(42, 42, 42))
         );
 
@@ -241,10 +241,10 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JBAlterarActionPerformed
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+    private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
      this.dispose();
 
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSalvarActionPerformed
        try {
@@ -348,8 +348,8 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBAlterar;
     private javax.swing.JButton JBApagar;
-    private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBSalvar;
+    private javax.swing.JButton JBVoltar;
     private javax.swing.JTextField JTFNome;
     private javax.swing.JTextField JTFTelefone;
     private javax.swing.JLabel jLabel1;

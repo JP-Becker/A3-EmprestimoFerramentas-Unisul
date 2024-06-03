@@ -3,6 +3,8 @@ package visao;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Emprestimo;
+import dao.AmigoDAO;
+import dao.FerramentaDAO;
 
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
@@ -95,7 +97,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
         jLabel2.setText("Emprestimos Ativos:");
 
-        jLabel3.setText("Empréstimos passados");
+        jLabel3.setText("Empréstimos passados:");
 
         JBVoltar.setText("Voltar");
         JBVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,33 +113,32 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGap(206, 206, 206)
+                        .addComponent(JBVoltar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(JBVoltar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel2))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(14, 14, 14)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(JBVoltar)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,17 +185,15 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         // Carrega a lista de objetos ferramenta
         ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
         
-        //sendo completamente honesto, eu não sei se o trecho abaixo funciona
-        //mas até a gente ter emprestimos com objetos dentro vou ficar sem saber
-        
-        //eu poderia fazer ele buscar pelo id do amigo e ferramenta,
-        //mas aí eu vou ter que fazer uma bagunca generalizada em outras classes
-        
         for (Emprestimo a : listaEmprestimo) {
+            AmigoDAO objetoamigo = new AmigoDAO();
+            FerramentaDAO objetoferramenta = new FerramentaDAO();
+            
             modelo.addRow(new Object[]{
-                a.getFerramenta().getNomeFerramenta(),
+                objetoferramenta.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
                 a.getDataEmprestimo(),
-                a.getAmigo().getNomeAmigo(),});
+                a.getDataDevolucao(),
+                objetoamigo.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
         }
     }
         
@@ -204,15 +203,14 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         // Carrega a lista de objetos ferramenta
         ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
         
-        //mesma coisa de antes:
-        //não sei se funciona, esperando pra ver se vai precisar de baguncinha
-        
         for (Emprestimo a : listaEmprestimo) {
+            AmigoDAO objetoamigo = new AmigoDAO();
+            FerramentaDAO objetoferramenta = new FerramentaDAO();
+            
             modelo.addRow(new Object[]{
-                a.getFerramenta().getNomeFerramenta(),
+                objetoferramenta.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
                 a.getDataEmprestimo(),
-                a.getDataDevolucao(),
-                a.getAmigo().getNomeAmigo(),});
+                objetoamigo.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
         }
     }
 
