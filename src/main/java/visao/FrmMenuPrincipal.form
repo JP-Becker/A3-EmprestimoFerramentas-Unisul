@@ -65,24 +65,25 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="JBcadastrarAluno" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
                       <Component id="JBGerenciarAmigo" min="-2" pref="165" max="-2" attributes="0"/>
-                      <Component id="JBEmitirRelatorio" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JBSair" min="-2" pref="165" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="JBGerenciarFerramentas" min="-2" pref="165" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="JBRelatorioEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="JBCadastrarFerramentas" min="-2" pref="165" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="JBCadastrarEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="JBGerenciarEmprestimo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="JBGerenciarFerramentas" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="JBGerenciarEmprestimo" min="-2" max="-2" attributes="0"/>
+                              <Component id="JBRelatorioEmprestimo" min="-2" pref="165" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,12 +102,9 @@
                       <Component id="JBGerenciarFerramentas" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="JBRelatorioEmprestimo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JBGerenciarEmprestimo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="JBEmitirRelatorio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="JBGerenciarEmprestimo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
                   <Component id="JBSair" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
@@ -136,14 +134,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBGerenciarAmigoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="JBEmitirRelatorio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Emitir Relatorio"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBEmitirRelatorioActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBGerenciarFerramentas">

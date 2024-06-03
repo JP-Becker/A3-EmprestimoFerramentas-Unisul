@@ -19,7 +19,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         JBcadastrarAluno = new javax.swing.JButton();
         JBCadastrarFerramentas = new javax.swing.JButton();
         JBGerenciarAmigo = new javax.swing.JButton();
-        JBEmitirRelatorio = new javax.swing.JButton();
         JBGerenciarFerramentas = new javax.swing.JButton();
         JBCadastrarEmprestimo = new javax.swing.JButton();
         JBGerenciarEmprestimo = new javax.swing.JButton();
@@ -50,13 +49,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         JBGerenciarAmigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBGerenciarAmigoActionPerformed(evt);
-            }
-        });
-
-        JBEmitirRelatorio.setText("Emitir Relatorio");
-        JBEmitirRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBEmitirRelatorioActionPerformed(evt);
             }
         });
 
@@ -103,21 +95,21 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(JBcadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBGerenciarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBEmitirRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JBGerenciarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JBGerenciarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBRelatorioEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JBCadastrarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JBCadastrarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JBGerenciarEmprestimo))
-                .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(JBGerenciarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBGerenciarEmprestimo)
+                            .addComponent(JBRelatorioEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +124,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(JBGerenciarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBGerenciarFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBRelatorioEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBGerenciarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBEmitirRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(JBGerenciarEmprestimo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(JBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -174,11 +164,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         FrmGerenciarAmigo objetoTela = new FrmGerenciarAmigo();
         objetoTela.setVisible(true);
     }//GEN-LAST:event_JBGerenciarAmigoActionPerformed
-
-    private void JBEmitirRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmitirRelatorioActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_JBEmitirRelatorioActionPerformed
 
     private void JBCadastrarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarEmprestimoActionPerformed
         // TODO add your handling code here:
@@ -233,7 +218,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrarEmprestimo;
     private javax.swing.JButton JBCadastrarFerramentas;
-    private javax.swing.JButton JBEmitirRelatorio;
     private javax.swing.JButton JBGerenciarAmigo;
     private javax.swing.JButton JBGerenciarEmprestimo;
     private javax.swing.JButton JBGerenciarFerramentas;
