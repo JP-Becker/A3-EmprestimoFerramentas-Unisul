@@ -211,6 +211,7 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
             }
         }
         System.out.println(objetoEmprestimo.getMinhaLista().toString());
+        this.dispose();
     }//GEN-LAST:event_JBPegarActionPerformed
 
     // método para carregar os amigos na lista do combo box
