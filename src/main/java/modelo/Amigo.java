@@ -73,7 +73,7 @@ public class Amigo {
     }
 
     // método para inserir um novo amigo
-    public boolean inserirAmigoBD(int id, String nome, String telefone, int emprestimosTotais, int emprestimosAtivos) {
+    public boolean inserirAmigoBD(int id, String nome, String telefone) {
         id = dao.maiorID() + 1;// ID atribuída automaticamene
         Amigo objeto = new Amigo(id, nome, telefone);
         dao.inserirAmigoBD(objeto);
