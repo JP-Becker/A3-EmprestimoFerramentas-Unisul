@@ -13,6 +13,10 @@ dessas ferramentas para esses amigos, com tudo sendo registrado em um banco de d
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
 
+## Telas
+
+<img src="./FrmMenuPrincipal.png" height=300 width=300>  | <img src="./FrmCadastroAmigo.png" height=300  width=300>  |  <img src="./FrmCadastroEmprestimo.png" height=300  width=300>  |  <img src="./FrmGerenciaAmigo.png" height=300  width=300>  |  <img src="./FrmGerenciaFerramenta.png" height=300  width=300>  |  <img src="./FrmGerenciaEmprestimo.png" height=300  width=300>  
+
 
   ### Principais funcionalidades
 ```bash
