@@ -6,6 +6,7 @@ import modelo.Emprestimo;
 import dao.AmigoDAO;
 import dao.FerramentaDAO;
 import modelo.Ferramenta;
+import java.text.DecimalFormat;
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
@@ -36,9 +37,12 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         JBVoltar = new javax.swing.JButton();
         JLValorTotalFerramentas = new javax.swing.JLabel();
         JLAmigoMaisEmprestimos = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        JLIndicadorAmigoEmprestimos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatorio Emprestimo");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Relatorio de Emprestimos");
@@ -87,9 +91,16 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(JTEmprestimosAtivos);
@@ -114,6 +125,10 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
         JLAmigoMaisEmprestimos.setText("teste2");
 
+        jLabel4.setText("Preço total das ferramentas:");
+
+        JLIndicadorAmigoEmprestimos.setText("teste1.2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,8 +137,6 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
                         .addComponent(JBVoltar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -132,32 +145,41 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(JLValorTotalFerramentas)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLValorTotalFerramentas)
+                            .addComponent(jLabel4)
+                            .addComponent(JLIndicadorAmigoEmprestimos))
+                        .addGap(0, 30, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(JLValorTotalFerramentas)
-                        .addGap(73, 73, 73))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBVoltar)
-                    .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addComponent(JBVoltar)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JLValorTotalFerramentas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JLIndicadorAmigoEmprestimos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JLAmigoMaisEmprestimos)
+                .addGap(100, 100, 100))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,7 +191,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(320, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
         );
@@ -209,8 +231,10 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         for (Ferramenta a : listaFerramenta) {
             valorTotal += a.getCusto();
         }
+        
+        DecimalFormat form = new DecimalFormat("0.00");
 
-        this.JLValorTotalFerramentas.setText(Double.toString(valorTotal));
+        this.JLValorTotalFerramentas.setText("R$ " + form.format(valorTotal));
 
     }
 
@@ -272,17 +296,20 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         for (int y = 0; y < maioresEmprestadosID.size(); y++) {
             System.out.println((objetoamigoDAO.carregaAmigoPorId(maioresEmprestadosID.get(y)).getNomeAmigo()));
         }
-
-        StringBuilder str = new StringBuilder();
-
+        
         if (maioresEmprestadosID.size() > 1) {
-            str.append("Maiores emprestadores:");
+            this.JLIndicadorAmigoEmprestimos.setText("Amigos com mais empréstimos:");
         } else {
-            str.append("Maior emprestador:");
+            this.JLIndicadorAmigoEmprestimos.setText("Amigo com mais empréstimos");
         }
-
+        
+        StringBuilder str = new StringBuilder();
+        
         for (int y = 0; y < maioresEmprestadosID.size(); y++) {
-            str.append(" ").append(objetoamigoDAO.carregaAmigoPorId(maioresEmprestadosID.get(y)).getNomeAmigo());
+            str.append(objetoamigoDAO.carregaAmigoPorId(maioresEmprestadosID.get(y)).getNomeAmigo());
+            if (y < maioresEmprestadosID.size() - 1) {
+                str.append(", ");
+            }
         }
         
         this.JLAmigoMaisEmprestimos.setText(str.toString());
@@ -333,12 +360,14 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBVoltar;
     private javax.swing.JLabel JLAmigoMaisEmprestimos;
+    private javax.swing.JLabel JLIndicadorAmigoEmprestimos;
     private javax.swing.JLabel JLValorTotalFerramentas;
     private javax.swing.JTable JTEmprestimosAtivos;
     private javax.swing.JTable JTTodosEmprestimosRealizados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
