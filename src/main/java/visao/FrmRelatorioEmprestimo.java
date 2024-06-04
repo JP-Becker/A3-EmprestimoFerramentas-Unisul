@@ -5,21 +5,23 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Emprestimo;
 import dao.AmigoDAO;
 import dao.FerramentaDAO;
-
+import modelo.Ferramenta;
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
-    
-    private Emprestimo objetoemprestimo;
 
-    public FrmRelatorioEmprestimo() {
-        initComponents();
-        this.objetoemprestimo = new Emprestimo(); // carrega objetoemprestimo de emprestimo
-        this.carregaTabelaAtiva();
-        this.carregaTabelaPassada();
-    }
+	private Emprestimo objetoemprestimo = new Emprestimo();
+	private AmigoDAO objetoamigoDAO = new AmigoDAO();
+	private FerramentaDAO objetoferramentaDAO = new FerramentaDAO();
 
-   
-    @SuppressWarnings("unchecked")
+	public FrmRelatorioEmprestimo() {
+		initComponents();
+		this.carregaTabelaAtiva();
+		this.carregaTabelaPassada();
+		somaValorFerramentas();
+		amigoMaisEmprestimos();
+	}
+
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -32,6 +34,8 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         JBVoltar = new javax.swing.JButton();
+        JLValorTotalFerramentas = new javax.swing.JLabel();
+        JLAmigoMaisEmprestimos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatorio Emprestimo");
@@ -39,8 +43,9 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Relatorio de Emprestimos");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        JTTodosEmprestimosRealizados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         JTTodosEmprestimosRealizados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -66,6 +71,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             JTTodosEmprestimosRealizados.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        JTEmprestimosAtivos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         JTEmprestimosAtivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -106,32 +112,49 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             }
         });
 
+        JLValorTotalFerramentas.setText("teste");
+
+        JLAmigoMaisEmprestimos.setText("teste2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(JBVoltar)
+                .addContainerGap(212, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(JBVoltar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLValorTotalFerramentas)
+                        .addGap(19, 19, 19))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel2))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(JLValorTotalFerramentas)
+                        .addGap(37, 37, 37)
+                        .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -150,7 +173,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
         );
@@ -168,54 +191,121 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
-        this.dispose();
+		this.dispose();
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmRelatorioEmprestimo().setVisible(true);
-            }
-        });
-    }
-    
-        public void carregaTabelaAtiva() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JTEmprestimosAtivos.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos ferramenta
-        ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
-        
-        for (Emprestimo a : listaEmprestimo) {
-            AmigoDAO objetoamigo = new AmigoDAO();
-            FerramentaDAO objetoferramenta = new FerramentaDAO();
-            
-            modelo.addRow(new Object[]{
-                objetoferramenta.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
-                a.getDataEmprestimo(),
-                a.getDataDevolucao(),
-                objetoamigo.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
-        }
-    }
-        
-        public void carregaTabelaPassada() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JTEmprestimosAtivos.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos ferramenta
-        ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
-        
-        for (Emprestimo a : listaEmprestimo) {
-            AmigoDAO objetoamigo = new AmigoDAO();
-            FerramentaDAO objetoferramenta = new FerramentaDAO();
-            
-            modelo.addRow(new Object[]{
-                objetoferramenta.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
-                a.getDataEmprestimo(),
-                objetoamigo.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
-        }
-    }
+	public static void main(String args[]) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new FrmRelatorioEmprestimo().setVisible(true);
+			}
+		});
+	}
+
+	//possivelmente poderia ser criado um método na classe de ferramenta
+	//mas por ora vou deixar
+	public void somaValorFerramentas() {
+
+		double valorTotal = 0;
+
+		ArrayList<Ferramenta> listaFerramenta = objetoferramentaDAO.getListaFerramenta();
+
+		for (Ferramenta a : listaFerramenta) {
+			valorTotal += a.getCusto();
+		}
+
+		this.JLValorTotalFerramentas.setText(Double.toString(valorTotal));
+
+	}
+///*
+
+	//mesma coisa de cima, mas acho que não tanko exportar essa pra outra classe não
+	public void amigoMaisEmprestimos() {
+
+		ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
+
+		int[][] valores = new int[2][objetoamigoDAO.getListaAmigo().size()];
+
+		for (Emprestimo a : listaEmprestimo) {
+			boolean novoAmigo = true;
+			for (int i = 0; i < valores[1].length; i++) {
+				if (valores[0][i] == a.getIdAmigo()) {
+					valores[1][i] += 1;
+					novoAmigo = false;
+					break;
+				}
+			}
+			if (novoAmigo == true) {
+				for (int i = 0; i < valores[1].length; i++) {
+					if (valores[0][i] == 0) {
+						valores[0][i] = a.getIdAmigo();
+						valores[1][i] = 1;
+						break;
+					}
+				}
+			}
+		}
+		
+		int maiorEmprestadorId = 0;
+		
+		for (int i = 0; i < valores[1].length; i++) {
+			if (valores[1][i] > maiorEmprestadorId) {
+				maiorEmprestadorId = valores[0][i];
+			}
+		}
+		
+		System.out.println((objetoamigoDAO.carregaAmigoPorId(maiorEmprestadorId).getNomeAmigo()));
+		
+		this.JLAmigoMaisEmprestimos.setText(objetoamigoDAO.carregaAmigoPorId(maiorEmprestadorId).getNomeAmigo());
+
+	}
+//*/
+
+	public void carregaTabelaPassada() {
+		DefaultTableModel modelo = (DefaultTableModel) this.JTTodosEmprestimosRealizados.getModel();
+		modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+		// Carrega a lista de objetos ferramenta
+		ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
+
+		for (Emprestimo a : listaEmprestimo) {
+
+			//deselegante, mas vai segurar as pontas até eu arrumar
+			if (a.getPendente() == true) {
+				continue;
+			}
+
+			modelo.addRow(new Object[]{
+				objetoferramentaDAO.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
+				a.getDataEmprestimo(),
+				a.getDataDevolucao(),
+				objetoamigoDAO.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
+		}
+	}
+
+	public void carregaTabelaAtiva() {
+		DefaultTableModel modelo = (DefaultTableModel) this.JTEmprestimosAtivos.getModel();
+		modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+		// Carrega a lista de objetos ferramenta
+		ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
+
+		for (Emprestimo a : listaEmprestimo) {
+
+			//mesmo de cima: feio, mas funciona até eu arrumar
+			if (a.getPendente() == false) {
+				continue;
+			}
+
+			modelo.addRow(new Object[]{
+				objetoferramentaDAO.carregaFerramentaPorId(a.getIdFerramenta()).getNomeFerramenta(),
+				a.getDataEmprestimo(),
+				objetoamigoDAO.carregaAmigoPorId(a.getIdAmigo()).getNomeAmigo(),});
+		}
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBVoltar;
+    private javax.swing.JLabel JLAmigoMaisEmprestimos;
+    private javax.swing.JLabel JLValorTotalFerramentas;
     private javax.swing.JTable JTEmprestimosAtivos;
     private javax.swing.JTable JTTodosEmprestimosRealizados;
     private javax.swing.JLabel jLabel1;
