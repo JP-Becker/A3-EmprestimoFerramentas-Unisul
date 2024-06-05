@@ -8,6 +8,7 @@ import dao.FerramentaDAO;
 import modelo.Ferramenta;
 import java.text.DecimalFormat;
 
+// FEITO POR HIAGO
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoemprestimo = new Emprestimo();

@@ -24,9 +24,9 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
 
         JBDevolucao = new javax.swing.JButton();
         JBVoltar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,29 +44,22 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Gerência Emprestimos");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID emprestimo", "ID Amigo", "ID Ferramenta", "Data"
+                "ID emprestimo", "ID Amigo", "ID Ferramenta", "Nome Amigo", "Nome Ferramenta", "null"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -85,28 +78,33 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable);
 
+        jLabel1.setText("Devolução de empréstimos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JBDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61)
+                .addComponent(JBDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -130,21 +128,23 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
             java.sql.Date dataDevolucao = new java.sql.Date(new Date().getTime());// data no formato SQL
 
             // caso não tenha selecionado nenhuma linha
+            
             if (this.jTable.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um empréstimo para DEVOLVER");
             } else {
                 id = Integer.parseInt(this.jTable.getValueAt(this.jTable.getSelectedRow(), 0).toString());
             }
 
+
             // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
-            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta ferramenta ?");
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja realizar a devolução do empréstimo?");
 
             if (respostaUsuario == 0) {// clicou em SIM
                 // envia os dados para o objeto emprestimo processar
 
                 if (this.objetoEmprestimo.atualizarEmprestimoBD(id, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, false)) {
 
-                    JOptionPane.showMessageDialog(rootPane, "O amigo de ID " + idAmigo + " devolveu a ferramenta de ID " + idFerramenta);
+                    JOptionPane.showMessageDialog(rootPane, "O amigo " + objetoEmprestimo.getAmigo().carregaAmigoPorId(idAmigo).getNomeAmigo() + " devolveu a ferramenta de ID " + objetoEmprestimo.getFerramenta().carregaFerramentaPorId(idFerramenta).getNomeFerramenta());
                 }
             }
             // atualiza a tabela.
@@ -162,10 +162,6 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMousePressed
 
     }//GEN-LAST:event_jTableMousePressed
@@ -181,6 +177,8 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
                 e.getIdEmprestimo(),
                 e.getIdAmigo(),
                 e.getIdFerramenta(),
+                e.getAmigo().carregaAmigoPorId(e.getIdAmigo()).getNomeAmigo(),
+                e.getFerramenta().carregaFerramentaPorId(e.getIdFerramenta()).getNomeFerramenta(),
                 e.getDataEmprestimo(),});
             }
             
@@ -222,8 +220,8 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBDevolucao;
     private javax.swing.JButton JBVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
