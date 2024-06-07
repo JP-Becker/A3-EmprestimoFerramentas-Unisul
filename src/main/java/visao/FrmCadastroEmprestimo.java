@@ -154,9 +154,12 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
         int idEmprestimo = objetoEmprestimo.maiorID() + 1; // definindo a ID do emprestimo automaticamente 
         Date dataEmprestimo = new Date();
         Boolean sair = false;
+        
+        ArrayList<Amigo> listaAmigo = objetoAmigo.getListaAmigo();
+        ArrayList<Ferramenta> listaFerramenta = objetoFerramenta.getListaFerramenta();
 
-        idAmigo = CBAmigo.getSelectedIndex() + 1; // atribuindo a ID do amigo como sendo o index da combo box mais 1, pq a combo box começa com index 0
-        idFerramenta = CBFerramenta.getSelectedIndex() + 1; // atribuindo a ID da ferramenta como sendo o index da combo box mais 1
+        idAmigo = listaAmigo.get(CBAmigo.getSelectedIndex()).getIdAmigo(); // atribuindo a ID do amigo como sendo o index da combo box mais 1, pq a combo box começa com index 0
+        idFerramenta = listaFerramenta.get(CBFerramenta.getSelectedIndex()).getIdFerramenta(); // atribuindo a ID da ferramenta como sendo o index da combo box mais 1
         Amigo amigoEscolhido = objetoAmigo.carregaAmigoPorId(idAmigo);// variável para guardar o amigo escolhido
         Ferramenta ferramentaEscolhida = objetoFerramenta.carregaFerramentaPorId(idFerramenta);// variável para guardar a ferramenta escolhido
         java.sql.Date sqlDate = new java.sql.Date(dataEmprestimo.getTime()); // pegando data no formato do SQL
