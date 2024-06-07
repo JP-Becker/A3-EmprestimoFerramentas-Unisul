@@ -304,16 +304,24 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             this.JLIndicadorAmigoEmprestimos.setText("Amigo com mais empréstimos");
         }
         
-        StringBuilder str = new StringBuilder();
+        if (maioresEmprestadosID.size() > 5) {
+            this.JLAmigoMaisEmprestimos.setText("Empate");
+        } else {
         
-        for (int y = 0; y < maioresEmprestadosID.size(); y++) {
-            str.append(objetoamigoDAO.carregaAmigoPorId(maioresEmprestadosID.get(y)).getNomeAmigo());
-            if (y < maioresEmprestadosID.size() - 1) {
-                str.append(", ");
+            StringBuilder str = new StringBuilder();
+
+            int limite = maioresEmprestadosID.size();
+            if (limite > 3) {limite = 3;}
+            for (int y = 0; y < limite; y++) {
+                str.append(objetoamigoDAO.carregaAmigoPorId(maioresEmprestadosID.get(y)).getNomeAmigo());
+                if (y < limite - 1) {
+                    str.append(", ");
+                }
             }
+
+            this.JLAmigoMaisEmprestimos.setText(str.toString());
+            
         }
-        
-        this.JLAmigoMaisEmprestimos.setText(str.toString());
 
     }
 
