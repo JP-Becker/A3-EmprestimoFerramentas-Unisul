@@ -151,12 +151,19 @@ public class FrmCadastroFerramenta extends javax.swing.JFrame {
             } else {
                 marca = this.JTFMarca.getText();
             }
-            
+			
             // caso o valor seja menor que 0
-            if (Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
+			// ou tenha mais de 2 dígitos após a vírgula
+			
+			String[] decimais = objetoFerramenta.corrigirVirgula(this.JTFCusto.getText()).split("\\.");
+            
+			if (Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText())) < 0.0) {
                 JOptionPane.showMessageDialog(null, "O custo não pode ser negativo!");
                 break;
-            } else {
+            } else if (decimais[1].length() > 2) {
+				JOptionPane.showMessageDialog(null, "O custo não deve ter mais de 2 casas decimais!");
+				break;
+			} else {
                 custo = Double.parseDouble(objetoFerramenta.corrigirVirgula(this.JTFCusto.getText()));
             }
 
