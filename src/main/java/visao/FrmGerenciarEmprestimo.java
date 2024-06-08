@@ -52,14 +52,14 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID emprestimo", "ID Amigo", "ID Ferramenta", "Nome Amigo", "Nome Ferramenta", "null"
+                "Nome Amigo", "Nome Ferramenta", "ID emprestimo", "ID Amigo", "ID Ferramenta", "Data"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,7 +144,7 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
 
                 if (this.objetoEmprestimo.atualizarEmprestimoBD(id, idAmigo, idFerramenta, dataEmprestimo, dataDevolucao, false)) {
 
-                    JOptionPane.showMessageDialog(rootPane, "O amigo " + objetoEmprestimo.getAmigo().carregaAmigoPorId(idAmigo).getNomeAmigo() + " devolveu a ferramenta de ID " + objetoEmprestimo.getFerramenta().carregaFerramentaPorId(idFerramenta).getNomeFerramenta());
+                    JOptionPane.showMessageDialog(rootPane, "O amigo " + objetoEmprestimo.getAmigo().carregaAmigoPorId(idAmigo).getNomeAmigo() + " devolveu a ferramenta chamada " + objetoEmprestimo.getFerramenta().carregaFerramentaPorId(idFerramenta).getNomeFerramenta());
                 }
             }
             // atualiza a tabela.
@@ -174,11 +174,11 @@ public class FrmGerenciarEmprestimo extends javax.swing.JFrame {
         for (Emprestimo e : listaEmprestimo) {
             if (e.getPendente() == true) {
                 modelo.addRow(new Object[]{
+                e.getAmigo().carregaAmigoPorId(e.getIdAmigo()).getNomeAmigo(),
+                e.getFerramenta().carregaFerramentaPorId(e.getIdFerramenta()).getNomeFerramenta(),
                 e.getIdEmprestimo(),
                 e.getIdAmigo(),
                 e.getIdFerramenta(),
-                e.getAmigo().carregaAmigoPorId(e.getIdAmigo()).getNomeAmigo(),
-                e.getFerramenta().carregaFerramentaPorId(e.getIdFerramenta()).getNomeFerramenta(),
                 e.getDataEmprestimo(),});
             }
             
