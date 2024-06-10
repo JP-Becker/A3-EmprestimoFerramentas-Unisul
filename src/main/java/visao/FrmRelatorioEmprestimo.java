@@ -21,6 +21,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         this.carregaTabelaPassada();
         somaValorFerramentas();
         amigoMaisEmprestimos();
+        amigoNuncaDevolveu();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +41,8 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         JLAmigoMaisEmprestimos = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         JLIndicadorAmigoEmprestimos = new javax.swing.JLabel();
+        JLAmigoNuncaDevolveu = new javax.swing.JLabel();
+        JLIndicadorAmigoDevolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatorio Emprestimo");
@@ -130,6 +133,10 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
         JLIndicadorAmigoEmprestimos.setText("teste1.2");
 
+        JLAmigoNuncaDevolveu.setText("teste3");
+
+        JLIndicadorAmigoDevolver.setText("teste3.3");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -150,11 +157,14 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLAmigoMaisEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLValorTotalFerramentas)
-                            .addComponent(jLabel4)
-                            .addComponent(JLIndicadorAmigoEmprestimos))
-                        .addGap(0, 30, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JLAmigoNuncaDevolveu)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(JLValorTotalFerramentas)
+                                .addComponent(jLabel4)
+                                .addComponent(JLIndicadorAmigoEmprestimos))
+                            .addComponent(JLIndicadorAmigoDevolver))
+                        .addGap(0, 94, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -163,9 +173,13 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLIndicadorAmigoDevolver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(JLAmigoNuncaDevolveu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -237,6 +251,81 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
         this.JLValorTotalFerramentas.setText("R$ " + form.format(valorTotal));
 
+    }
+    
+    public void amigoNuncaDevolveu() {
+        
+        ArrayList<Emprestimo> listaEmprestimo = objetoemprestimo.getMinhaLista();
+
+        int[][] valores = new int[2][objetoamigoDAO.getListaAmigo().size()];
+
+        for (Emprestimo a : listaEmprestimo) {
+            boolean novoAmigo = true;
+            for (int i = 0; i < valores[1].length; i++) {
+                if (valores[0][i] == a.getIdAmigo()) {
+                    if (a.getDataDevolucao() == null) {
+                        valores[1][i] = 2;
+                    } else if (valores[0][i] != 2) {
+                        valores[1][i] = 1;
+                    }
+                    novoAmigo = false;
+                    break;
+                }
+            }
+            if (novoAmigo == true) {
+                for (int i = 0; i < valores[1].length; i++) {
+                    if (valores[0][i] == 0) {
+                        valores[0][i] = a.getIdAmigo();
+                        if (a.getDataDevolucao() == null) {
+                            valores[1][i] = 2;
+                        } else if (valores[0][i] != 2) {
+                            valores[1][i] = 1;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        ArrayList<Integer> nuncaDevolvidosID = new ArrayList<>();
+        
+        for (int i = 0; i < valores[1].length; i++) {
+            if (valores[1][i] == 2) {
+                nuncaDevolvidosID.add(valores[0][i]);
+            }
+        }
+
+        for (int y = 0; y < nuncaDevolvidosID.size(); y++) {
+            System.out.println((objetoamigoDAO.carregaAmigoPorId(nuncaDevolvidosID.get(y)).getNomeAmigo()));
+        }
+        
+        if (nuncaDevolvidosID.size() > 1) {
+            this.JLIndicadorAmigoDevolver.setText("Amigos que nunca devolveram:");
+        } else {
+            this.JLIndicadorAmigoDevolver.setText("Amigo que nunca devolveu:");
+        }
+        
+        if (nuncaDevolvidosID.size() > 5) {
+            this.JLAmigoNuncaDevolveu.setText("Empate");
+        } else if (nuncaDevolvidosID.isEmpty()){
+            this.JLAmigoNuncaDevolveu.setText("Nenhum");
+        } else {
+        
+            StringBuilder str = new StringBuilder();
+
+            int limite = nuncaDevolvidosID.size();
+            //if (limite > 3) {limite = 3;}
+            for (int y = 0; y < limite; y++) {
+                str.append(objetoamigoDAO.carregaAmigoPorId(nuncaDevolvidosID.get(y)).getNomeAmigo());
+                if (y < limite - 1) {
+                    str.append(", ");
+                }
+            }
+
+            this.JLAmigoNuncaDevolveu.setText(str.toString());
+            
+        }
+        
     }
 
     //código absolutamente RADIOATIVO abaixo, não tente entender ele
@@ -369,6 +458,8 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBVoltar;
     private javax.swing.JLabel JLAmigoMaisEmprestimos;
+    private javax.swing.JLabel JLAmigoNuncaDevolveu;
+    private javax.swing.JLabel JLIndicadorAmigoDevolver;
     private javax.swing.JLabel JLIndicadorAmigoEmprestimos;
     private javax.swing.JLabel JLValorTotalFerramentas;
     private javax.swing.JTable JTEmprestimosAtivos;

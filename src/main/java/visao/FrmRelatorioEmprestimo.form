@@ -89,13 +89,17 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JLAmigoMaisEmprestimos" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="JLValorTotalFerramentas" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="JLIndicadorAmigoEmprestimos" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="JLAmigoNuncaDevolveu" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JLValorTotalFerramentas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JLIndicadorAmigoEmprestimos" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="JLIndicadorAmigoDevolver" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -108,9 +112,15 @@
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane2" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="JLIndicadorAmigoDevolver" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JLAmigoNuncaDevolveu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -268,6 +278,16 @@
         <Component class="javax.swing.JLabel" name="JLIndicadorAmigoEmprestimos">
           <Properties>
             <Property name="text" type="java.lang.String" value="teste1.2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="JLAmigoNuncaDevolveu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="teste3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="JLIndicadorAmigoDevolver">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="teste3.3"/>
           </Properties>
         </Component>
       </SubComponents>
