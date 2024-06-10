@@ -58,3 +58,6 @@ Scripts usados no mySQL estão no arquivo banco.sql
 ## Telas
 <img src="./FrmMenuPrincipal.png" height=300 width=300>  | <img src="./FrmCadastroAmigo.png" height=300  width=300>  |  <img src="./FrmCadastroEmprestimo.png" height=300  width=300>  |  <img src="./FrmGerenciaAmigo.png" height=300  width=300>  |  <img src="./FrmGerenciaFerramenta.png" height=300  width=300>  |  <img src="./FrmGerenciaEmprestimo.png" height=300  width=300>  
 
+## Desenvolvedores
+Luiz Henrique Garcia Ribeiro (0Gandalfo)
+Igor Mirandolli (1072416369)
