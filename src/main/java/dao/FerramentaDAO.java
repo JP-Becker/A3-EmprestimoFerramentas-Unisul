@@ -158,7 +158,7 @@ public class FerramentaDAO {
     // método para verificar se a ferramenta está emprestada
     public static boolean verificaDisponibilidade(int idFerramenta) {
         String sql = "SELECT COUNT(*) FROM tb_emprestimos "
-                + "WHERE idFerramenta = ?";
+                + "WHERE idFerramenta = ? AND pendente = 1";
         try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
             stmt.setInt(1, idFerramenta);
             ResultSet rs = stmt.executeQuery();

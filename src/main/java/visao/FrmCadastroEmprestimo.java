@@ -231,10 +231,18 @@ public class FrmCadastroEmprestimo extends javax.swing.JFrame {
     public void carregaCBFerramenta() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         ArrayList<Ferramenta> listaFerramenta = objetoFerramenta.getListaFerramenta();
-        for (Ferramenta objeto : listaFerramenta) {
-            model.addElement(objeto.getNomeFerramenta());
-            CBFerramenta.setModel(model);
-
+        ArrayList<Emprestimo> listaEmprestimo = objetoEmprestimo.getMinhaLista();
+        for (int i = 0; i < listaFerramenta.size(); i++) {
+            boolean pendente = false;
+            for (int y = 0; y < listaEmprestimo.size(); y++) {
+                if (listaEmprestimo.get(y).getPendente() && listaEmprestimo.get(y).getIdFerramenta() == listaFerramenta.get(i).getIdFerramenta()) {
+                    pendente = true;
+                }
+            }
+            if (!pendente) {
+                model.addElement(listaFerramenta.get(i).getNomeFerramenta());
+                CBFerramenta.setModel(model);
+            }
         }
     }
 
