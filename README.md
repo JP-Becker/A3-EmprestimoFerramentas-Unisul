@@ -61,3 +61,4 @@ Scripts usados no mySQL estão no arquivo banco.sql
 ## Desenvolvedores
 Luiz Henrique Garcia Ribeiro (0Gandalfo)
 Igor Mirandolli (1072416369)
+Bernardo Antoniolli (1072414784, Computador, Bernardo)
