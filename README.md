@@ -65,4 +65,5 @@ Scripts usados no mySQL estão no arquivo banco.sql
 . Bernardo Antoniolli (1072414784, Computador, Bernardo)
 . Igor Mirandolli (1072416369)
 . Luiz Henrique Garcia Ribeiro (0Gandalfo)
+. Hiago de Mendonça (1072419632, HiagoDeMendonca)
 ```
