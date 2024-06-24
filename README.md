@@ -5,7 +5,7 @@ Projeto para a UC de programação do curso de Sistemas de Informação. Consist
 dessas ferramentas para esses amigos, com tudo sendo registrado em um banco de dados com mySQL.
 
 ## 🧭Status do Projeto
-- ⏳Em andamento.
+- Concluído.
 
 ## 💻Tecnologias utilizadas
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
